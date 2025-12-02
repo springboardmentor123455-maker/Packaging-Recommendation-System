@@ -1,0 +1,6 @@
+product_id,category,avg_weight_g,fragility_score,dimension_l_cm,dimension_w_cm,dimension_h_cm
+1,Electronics,450,0.9,20,15,5
+2,Food,120,0.3,10,10,6
+3,Cosmetics,80,0.6,9,5,4
+4,Books,700,0.1,25,20,3
+5,Glassware,1200,1.0,30,25,20
