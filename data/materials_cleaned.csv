@@ -1,0 +1,6 @@
+material_id,material_name,material_type,strength_kg,weight_g_per_m2,biodegradability_score,co2_emission_kg_per_kg,recyclability_percent,unit_cost
+1,Kraft_Paper,Paper,80,120,0.9,0.7,85,0.03
+2,Corrugated_Carton,Paper,200,300,0.8,0.9,70,0.15
+3,Molded_Pulp,Paper,60,150,0.95,0.6,90,0.05
+4,PLA_BioPlastic,Plastic,110,90,0.6,1.2,50,0.25
+5,Recycled_PE_Film,Plastic,70,40,0.5,1.5,60,0.1
