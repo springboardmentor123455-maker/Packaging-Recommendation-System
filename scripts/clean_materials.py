@@ -1,37 +1,63 @@
+# scripts/clean_materials.py
+# Simple cleaning & feature creation for EcoPackAI materials dataset
+
 import pandas as pd
-import numpy as np
+from pathlib import Path
 
-df = pd.read_csv("data/materials.csv")
+repo_root = Path(__file__).resolve().parents[1]
+data_dir = repo_root / "data"
+infile = data_dir / "materials.csv"
+outfile = data_dir / "materials_cleaned.csv"
 
-# Clean columns
-df.columns = [c.strip() for c in df.columns]
+print("Repo root:", repo_root)
+print("Reading:", infile)
 
-num_cols = ['strength_kg','weight_g_per_m2','biodegradability_score',
-            'co2_emission_kg_per_kg','recyclability_percent','unit_cost']
+# Read
+df = pd.read_csv(infile)
+
+# Basic cleaning examples:
+# 1. remove completely empty rows
+df = df.dropna(how="all")
+
+# 2. strip whitespace from string columns
+for c in df.select_dtypes(include=["object"]).columns:
+    df[c] = df[c].astype(str).str.strip()
+
+# 3. fix numeric columns (coerce errors -> NaN)
+num_cols = ["strength_kg", "weight_g_per_m2", "biodegradability_score", "co2_emission_kg_per_kg", "recyclability_percent", "unit_cost"]
 for c in num_cols:
-    df[c] = pd.to_numeric(df[c], errors='coerce')
+    if c in df.columns:
+        df[c] = pd.to_numeric(df[c], errors="coerce")
 
-df[num_cols] = df[num_cols].fillna(df[num_cols].median())
+# 4. fill missing numeric values with column median (safe default)
+for c in num_cols:
+    if c in df.columns:
+        df[c].fillna(df[c].median(), inplace=True)
 
-df['material_type'] = df['material_type'].astype('category')
+# 5. drop duplicates based on material_name if any
+if "material_name" in df.columns:
+    df = df.drop_duplicates(subset=["material_name"], keep="first").reset_index(drop=True)
 
-# CO2 Impact Index
-minv = df['co2_emission_kg_per_kg'].min()
-maxv = df['co2_emission_kg_per_kg'].max()
-df['co2_impact_index'] = (df['co2_emission_kg_per_kg'] - minv) / (maxv - minv + 1e-9)
+# 6. Create example index score columns:
+# CO2 Impact index (lower is better) normalized 0-1
+if "co2_emission_kg_per_kg" in df.columns:
+    df["co2_impact_index"] = (df["co2_emission_kg_per_kg"] - df["co2_emission_kg_per_kg"].min()) / (
+        df["co2_emission_kg_per_kg"].max() - df["co2_emission_kg_per_kg"].min()
+    )
 
-# Cost Index
-minc = df['unit_cost'].min()
-maxc = df['unit_cost'].max()
-df['cost_index'] = 1 - ((df['unit_cost'] - minc) / (maxc - minc + 1e-9))
+# Recyclability normalized 0-1 (higher better)
+if "recyclability_percent" in df.columns:
+    df["recyclability_norm"] = df["recyclability_percent"] / 100.0
 
-# Suitability Score
-df['material_suitability'] = (
-    0.35 * df['biodegradability_score'] +
-    0.25 * (df['recyclability_percent'] / 100) -
-    0.20 * df['co2_impact_index'] +
-    0.20 * df['cost_index']
-)
+# Material suitability score (example: combine biodegradability & recyclability & inverse CO2)
+# weights are example values
+if all(c in df.columns for c in ["biodegradability_score", "recyclability_norm", "co2_impact_index"]):
+    df["suitability_score"] = (
+        0.45 * df["biodegradability_score"] + 0.35 * df["recyclability_norm"] + 0.20 * (1 - df["co2_impact_index"])
+    )
 
-df.to_csv("data/materials_cleaned.csv", index=False)
-print("Saved data/materials_cleaned.csv")
+# Save cleaned file
+outfile.parent.mkdir(parents=True, exist_ok=True)
+df.to_csv(outfile, index=False)
+print("Saved cleaned file:", outfile)
+print("Rows:", len(df), "Columns:", len(df.columns))
