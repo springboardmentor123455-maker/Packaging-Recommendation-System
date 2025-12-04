@@ -1,0 +1,20 @@
+Table: materials
+-----------------------------------
+material_id (INT, PRIMARY KEY)
+material_name (VARCHAR)
+material_type (VARCHAR)
+strength_kg (FLOAT)
+weight_g_per_m2 (FLOAT)
+biodegradability_score (FLOAT)
+co2_emission_kg_per_kg (FLOAT)
+recyclability_percent (FLOAT)
+cost_per_kg (FLOAT)
+
+Table: products
+-----------------------------------
+product_id (INT, PRIMARY KEY)
+product_name (VARCHAR)
+category (VARCHAR)
+weight (FLOAT)
+fragility_level (INT)
+dimensions (VARCHAR)
