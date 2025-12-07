@@ -1,0 +1,11 @@
+material_name,category,strength_mpa,weight_capacity_kg,biodegradability_score,co2_emission_score,recyclability_percent,cost_per_kg
+Recycled Corrugated Cardboard,Paper,35,5,90,1.20,85,65
+Kraft Paper,Pulp,25,3,85,1.00,80,55
+Molded Pulp Tray,Bio,30,4,88,0.95,90,70
+PLA Bioplastic,Bioplastic,45,2.5,75,2.10,60,120
+Glass Bottle,Glass,70,1.5,50,3.50,95,150
+HDPE Recycled Plastic,Plastic,60,10,40,2.80,70,95
+Bamboo Fiber Box,Bio,40,4.5,92,0.80,75,110
+Aluminum Can,Metal,80,2,35,4.20,98,140
+Sugarcane Bagasse Box,Bio,32,3.5,89,1.10,88,90
+Cornstarch Biopolymer Film,Bioplastic,20,1,78,1.90,55,130
