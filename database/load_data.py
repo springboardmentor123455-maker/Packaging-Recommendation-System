@@ -3,14 +3,10 @@ import pandas as pd
 import getpass
 import os
 
-# --------------------------------------------------
-# 1. Ask for PostgreSQL password
-# --------------------------------------------------
+
 db_password = getpass.getpass("Enter PostgreSQL password for user 'postgres': ")
 
-# --------------------------------------------------
-# 2. Connect to PostgreSQL
-# --------------------------------------------------
+
 conn = psycopg2.connect(
     host="localhost",
     database="eco_packaging",
@@ -20,18 +16,14 @@ conn = psycopg2.connect(
 cur = conn.cursor()
 print("Connected to PostgreSQL")
 
-# --------------------------------------------------
-# 3. Load CSV files
-# --------------------------------------------------
+
 materials_path = os.path.join("data", "materials_.csv")
 products_path = os.path.join("data", "products_.csv")
 
 materials = pd.read_csv(materials_path)
 products = pd.read_csv(products_path)
 
-# --------------------------------------------------
-# 4. Insert MATERIALS data
-# --------------------------------------------------
+
 print("Inserting materials...")
 
 for _, row in materials.iterrows():
@@ -56,9 +48,7 @@ for _, row in materials.iterrows():
 
 print("Materials inserted successfully.")
 
-# --------------------------------------------------
-# 5. Insert PRODUCTS data
-# --------------------------------------------------
+
 print("Inserting products...")
 
 for _, row in products.iterrows():
@@ -80,9 +70,6 @@ for _, row in products.iterrows():
 
 print("Products inserted successfully.")
 
-# --------------------------------------------------
-# 6. Commit & close
-# --------------------------------------------------
 conn.commit()
 cur.close()
 conn.close()

@@ -1,13 +1,7 @@
--- ============================================
--- Connect or create the database (only needed once)
--- ============================================
 
--- CREATE DATABASE eco_packaging;
 \c eco_packaging;
 
--- ============================================
--- MATERIALS TABLE
--- ============================================
+
 DROP TABLE IF EXISTS materials CASCADE;
 
 CREATE TABLE materials (
@@ -24,9 +18,7 @@ CREATE TABLE materials (
     weight_capacity_kg DECIMAL(10,2)
 );
 
--- ============================================
--- PRODUCTS TABLE
--- ============================================
+
 DROP TABLE IF EXISTS products CASCADE;
 
 CREATE TABLE products (
@@ -41,9 +33,7 @@ CREATE TABLE products (
     price_usd DECIMAL(10,2)
 );
 
--- ============================================
--- PRODUCT-MATERIAL MAPPING (optional)
--- ============================================
+
 DROP TABLE IF EXISTS product_material CASCADE;
 
 CREATE TABLE product_material (
@@ -53,16 +43,11 @@ CREATE TABLE product_material (
     suitability_score DECIMAL(10,2)
 );
 
--- ============================================
--- INDEXING FOR PERFORMANCE (recommended)
--- ============================================
+
 
 CREATE INDEX idx_material_name ON materials(material_name);
 CREATE INDEX idx_product_name ON products(product_name);
 CREATE INDEX idx_product_industry ON products(industry);
 
--- ============================================
--- CONFIRM
--- ============================================
 
 SELECT 'Schema creation complete.' AS status;
