@@ -1,0 +1,64 @@
+material_id,material_name,material_type,durability_score,cushioning_score,water_resistance_score,biodegradability_score,recyclability_score,co2_emission_per_kg,cost_per_kg,weight_capacity_kg
+M001,Recycled Cardboard,Recycled,7,4,5,10,2,0.28,0.77,42
+M002,Virgin Cardboard,Virgin,7,9,3,10,10,0.55,1.32,46
+M003,Molded Pulp,Molded,6,8,7,10,8,1.17,2.77,61
+M004,Kraft Paper,Kraft,9,4,9,10,7,1.49,3.01,36
+M005,PLA,Mixed,7,7,9,10,6,1.19,2.39,8
+M007,PHA,Mixed,5,6,8,5,9,1.45,2.69,66
+M008,Starch-based Foam,Starch-based,5,8,6,10,6,0.33,2.57,11
+M009,rPET,Mixed,9,4,9,5,10,0.53,2.5,22
+M010,rHDPE,Mixed,5,7,7,5,3,1.12,0.82,26
+M011,Bamboo Fiber,Bamboo,4,3,4,7,7,0.98,1.49,30
+M012,Bagasse,Mixed,7,7,7,7,6,0.79,2.77,31
+M013,Palm Leaf,Palm,9,8,3,6,5,1.5,2.4,6
+M014,Mycelium Packaging,Mycelium,6,4,8,6,8,0.21,2.88,38
+M015,Seaweed Film,Seaweed,7,3,8,9,10,1.37,0.8,70
+M016,Molded Bamboo Pulp,Molded,5,8,4,9,6,0.9,1.04,64
+M017,Recycled Paperboard,Recycled,9,4,8,6,9,0.78,1.46,5
+M018,Cellulose Film,Cellulose,5,6,9,9,2,0.45,1.91,76
+M019,Biowax-coated Paper,Biowax-coated,4,6,9,8,4,1.43,3.08,17
+M020,Recycled Glass,Recycled,6,4,7,8,10,1.43,2.26,16
+M021,Recycled Aluminum,Recycled,8,7,9,8,7,0.21,2.87,66
+M022,Hemp Fiber,Hemp,4,5,7,5,8,0.74,1.54,9
+M023,Jute Fiber,Jute,6,9,6,8,8,0.6,0.53,73
+M024,Cotton Fiber,Cotton,4,9,6,6,9,1.46,0.58,26
+M025,Recycled Corrugated,Recycled,7,8,9,7,6,1,2.45,57
+M026,Corrugated Paperboard,Corrugated,7,7,4,6,2,1.22,0.7,78
+M027,Paper Honeycomb,Paper,6,8,9,10,9,1.16,3.35,51
+M028,Paper Straw Composite,Paper,6,8,7,7,10,0.6,2.48,43
+M029,Fiberboard,Mixed,6,3,5,10,6,1.41,1.74,12
+M030,Sugarcane Pulp Trays,Sugarcane,6,4,3,6,9,0.3,2.92,48
+M031,Coconut Coir Fiber,Coconut,6,4,9,10,9,1.19,1.22,38
+M032,Stone Paper,Stone,5,7,8,7,9,0.31,1.04,65
+M033,Shellac Coated Paper,Shellac,6,3,5,9,8,1.43,1.95,5
+M034,Nanocellulose Film,Nanocellulose,7,8,4,6,4,0.57,1.05,50
+M035,Chitosan Coating,Chitosan,8,9,6,8,4,1.03,2.15,24
+M036,Agar Film,Agar,6,9,5,6,5,0.78,3.33,56
+M037,Wheat Straw Board,Wheat,7,3,8,9,5,1.29,2.65,76
+M038,Banana Fiber,Banana,9,6,3,8,8,1.25,2.07,47
+M039,Peanut Shell Fiber,Peanut,6,4,9,9,2,1.38,1.09,11
+M040,Corn Husk Packaging,Corn,9,9,5,5,3,0.35,0.93,9
+M041,Rice Husk Packaging,Rice,8,7,7,5,4,0.91,3.43,31
+M042,Soy Protein Film,Soy,7,4,3,5,3,1.43,2.4,58
+M043,Gelatin Film,Gelatin,9,7,3,8,5,0.86,0.51,39
+M044,Textile Offcut Packaging,Textile,7,9,7,9,4,0.76,1.23,38
+M045,Paper Foam,Paper,4,5,5,10,9,0.67,0.94,80
+M046,Recycled PET Foam,Recycled,4,4,7,7,10,0.32,0.58,21
+M047,Compostable PE,Compostable,8,6,3,10,2,0.6,2.63,10
+M048,Bio-PE,Mixed,4,5,9,10,8,1.26,1.01,59
+M049,Bio-PET,Mixed,4,5,3,5,6,1.27,2.47,6
+M050,Wood Pulp Board,Wood,8,3,7,6,2,0.98,0.72,66
+M051,Fungal Composite,Fungal,6,3,9,7,4,0.38,2.84,14
+M052,Aloe Fiber Packaging,Aloe,9,7,9,10,7,0.26,3.07,65
+M053,Grass Paper,Grass,9,5,5,9,6,0.32,1.63,31
+M054,Recycled Kraft,Recycled,9,6,7,5,5,0.25,3.03,21
+M056,PBAT,Bioplastic,5,4,5,80,25,1.5,2.4,9.7
+M057,PLA-PBAT Blend,Bioplastic,6,5,6,82,28,1.3,2.2,10.07
+M058,Biodegradable PHA,Bioplastic,7,5,6,90,20,1,3,10.63
+M059,Starch-Based Bioplastic,Bioplastic,4,5,3,75,40,1.8,2,3.95
+M060,Cassava Bioplastic,Bioplastic,4,4,3,78,35,1.5,1.8,3.95
+M061,Seaweed-Based Bioplastic,Bioplastic,4,4,4,88,25,1.1,3.2,3.48
+M062,Algae BioSheet,Bioplastic,5,3,4,92,18,0.9,3.5,9.2
+M063,Carrageenan Film,Bioplastic,4,3,4,90,22,0.8,3,6.09
+M064,Seaweed Biopolymer Sheet,Bioplastic,5,3,5,94,24,0.7,3.6,8.25
+M065,Recycled Kraft Paper,Paper/Fiber,5,4,5,78,92,0.7,0.9,8.99
