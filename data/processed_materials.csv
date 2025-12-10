@@ -1,0 +1,64 @@
+material_name,material_type,durability_score,cushioning_score,water_resistance_score,biodegradability_score,recyclability_score,co2_emission_per_kg,cost_per_kg,weight_capacity_kg
+Recycled Cardboard,Recycled,7.0,4.0,5.0,10.0,2.0,0.28,0.77,42.0
+Virgin Cardboard,Virgin,7.0,9.0,3.0,10.0,10.0,0.55,1.32,46.0
+Molded Pulp,Molded,6.0,8.0,7.0,10.0,8.0,1.17,2.77,61.0
+Kraft Paper,Kraft,9.0,4.0,9.0,10.0,7.0,1.49,3.01,36.0
+PLA,Mixed,7.0,7.0,9.0,10.0,6.0,1.19,2.39,8.0
+PHA,Mixed,5.0,6.0,8.0,5.0,9.0,1.45,2.69,66.0
+Starch-based Foam,Starch-based,5.0,8.0,6.0,10.0,6.0,0.33,2.57,11.0
+rPET,Mixed,9.0,4.0,9.0,5.0,10.0,0.53,2.5,22.0
+rHDPE,Mixed,5.0,7.0,7.0,5.0,3.0,1.12,0.82,26.0
+Bamboo Fiber,Bamboo,4.0,3.0,4.0,7.0,7.0,0.98,1.49,30.0
+Bagasse,Mixed,7.0,7.0,7.0,7.0,6.0,0.79,2.77,31.0
+Palm Leaf,Palm,9.0,8.0,3.0,6.0,5.0,1.5,2.4,6.0
+Mycelium Packaging,Mycelium,6.0,4.0,8.0,6.0,8.0,0.21,2.88,38.0
+Seaweed Film,Seaweed,7.0,3.0,8.0,9.0,10.0,1.37,0.8,70.0
+Molded Bamboo Pulp,Molded,5.0,8.0,4.0,9.0,6.0,0.9,1.04,64.0
+Recycled Paperboard,Recycled,9.0,4.0,8.0,6.0,9.0,0.78,1.46,5.0
+Cellulose Film,Cellulose,5.0,6.0,9.0,9.0,2.0,0.45,1.91,76.0
+Biowax-coated Paper,Biowax-coated,4.0,6.0,9.0,8.0,4.0,1.43,3.08,17.0
+Recycled Glass,Recycled,6.0,4.0,7.0,8.0,10.0,1.43,2.26,16.0
+Recycled Aluminum,Recycled,8.0,7.0,9.0,8.0,7.0,0.21,2.87,66.0
+Hemp Fiber,Hemp,4.0,5.0,7.0,5.0,8.0,0.74,1.54,9.0
+Jute Fiber,Jute,6.0,9.0,6.0,8.0,8.0,0.6,0.53,73.0
+Cotton Fiber,Cotton,4.0,9.0,6.0,6.0,9.0,1.46,0.58,26.0
+Recycled Corrugated,Recycled,7.0,8.0,9.0,7.0,6.0,1.0,2.45,57.0
+Corrugated Paperboard,Corrugated,7.0,7.0,4.0,6.0,2.0,1.22,0.7,78.0
+Paper Honeycomb,Paper,6.0,8.0,9.0,10.0,9.0,1.16,3.35,51.0
+Paper Straw Composite,Paper,6.0,8.0,7.0,7.0,10.0,0.6,2.48,43.0
+Fiberboard,Mixed,6.0,3.0,5.0,10.0,6.0,1.41,1.74,12.0
+Sugarcane Pulp Trays,Sugarcane,6.0,4.0,3.0,6.0,9.0,0.3,2.92,48.0
+Coconut Coir Fiber,Coconut,6.0,4.0,9.0,10.0,9.0,1.19,1.22,38.0
+Stone Paper,Stone,5.0,7.0,8.0,7.0,9.0,0.31,1.04,65.0
+Shellac Coated Paper,Shellac,6.0,3.0,5.0,9.0,8.0,1.43,1.95,5.0
+Nanocellulose Film,Nanocellulose,7.0,8.0,4.0,6.0,4.0,0.57,1.05,50.0
+Chitosan Coating,Chitosan,8.0,9.0,6.0,8.0,4.0,1.03,2.15,24.0
+Agar Film,Agar,6.0,9.0,5.0,6.0,5.0,0.78,3.33,56.0
+Wheat Straw Board,Wheat,7.0,3.0,8.0,9.0,5.0,1.29,2.65,76.0
+Banana Fiber,Banana,9.0,6.0,3.0,8.0,8.0,1.25,2.07,47.0
+Peanut Shell Fiber,Peanut,6.0,4.0,9.0,9.0,2.0,1.38,1.09,11.0
+Corn Husk Packaging,Corn,9.0,9.0,5.0,5.0,3.0,0.35,0.93,9.0
+Rice Husk Packaging,Rice,8.0,7.0,7.0,5.0,4.0,0.91,3.43,31.0
+Soy Protein Film,Soy,7.0,4.0,3.0,5.0,3.0,1.43,2.4,58.0
+Gelatin Film,Gelatin,9.0,7.0,3.0,8.0,5.0,0.86,0.51,39.0
+Textile Offcut Packaging,Textile,7.0,9.0,7.0,9.0,4.0,0.76,1.23,38.0
+Paper Foam,Paper,4.0,5.0,5.0,10.0,9.0,0.67,0.94,80.0
+Recycled PET Foam,Recycled,4.0,4.0,7.0,7.0,10.0,0.32,0.58,21.0
+Compostable PE,Compostable,8.0,6.0,3.0,10.0,2.0,0.6,2.63,10.0
+Bio-PE,Mixed,4.0,5.0,9.0,10.0,8.0,1.26,1.01,59.0
+Bio-PET,Mixed,4.0,5.0,3.0,5.0,6.0,1.27,2.47,6.0
+Wood Pulp Board,Wood,8.0,3.0,7.0,6.0,2.0,0.98,0.72,66.0
+Fungal Composite,Fungal,6.0,3.0,9.0,7.0,4.0,0.38,2.84,14.0
+Aloe Fiber Packaging,Aloe,9.0,7.0,9.0,10.0,7.0,0.26,3.07,65.0
+Grass Paper,Grass,9.0,5.0,5.0,9.0,6.0,0.32,1.63,31.0
+Recycled Kraft,Recycled,9.0,6.0,7.0,5.0,5.0,0.25,3.03,21.0
+PBAT,Bioplastic,5.0,4.0,5.0,16.0,16.25,1.5,2.4,9.7
+PLA-PBAT Blend,Bioplastic,6.0,5.0,6.0,16.0,16.25,1.3,2.2,10.07
+Biodegradable PHA,Bioplastic,7.0,5.0,6.0,16.0,16.25,1.0,3.0,10.63
+Starch-Based Bioplastic,Bioplastic,4.0,5.0,3.0,16.0,16.25,1.8,2.0,3.95
+Cassava Bioplastic,Bioplastic,4.0,4.0,3.0,16.0,16.25,1.5,1.8,3.95
+Seaweed-Based Bioplastic,Bioplastic,4.0,4.0,4.0,16.0,16.25,1.1,3.2,3.48
+Algae BioSheet,Bioplastic,5.0,3.0,4.0,16.0,16.25,0.9,3.5,9.2
+Carrageenan Film,Bioplastic,4.0,3.0,4.0,16.0,16.25,0.8,3.0,6.09
+Seaweed Biopolymer Sheet,Bioplastic,5.0,3.0,5.0,16.0,16.25,0.7,3.6,8.25
+Recycled Kraft Paper,Paper/Fiber,5.0,4.0,5.0,16.0,16.25,0.7,0.9,8.99
