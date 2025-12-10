@@ -1,10 +1,8 @@
 import psycopg2
 import pandas as pd
 from sklearn.impute import SimpleImputer
-from sklearn.preprocessing import OrdinalEncoder
 import getpass
 import os
-import matplotlib.pyplot as plt
 import numpy as np
 from sqlalchemy import create_engine
 
@@ -25,6 +23,7 @@ conn = psycopg2.connect(
 print("\n🔗 Connected to PostgreSQL!")
 
 
+
 def iqr_clip(df, col):
     Q1 = df[col].quantile(0.25)
     Q3 = df[col].quantile(0.75)
@@ -33,43 +32,33 @@ def iqr_clip(df, col):
 
 
 
+
 mean_imputer = SimpleImputer(strategy="mean")
 median_imputer = SimpleImputer(strategy="median")
-enc = OrdinalEncoder()
 
 def preprocess(df):
+
     # Drop ID columns
     id_cols = [c for c in df.columns if c.lower().endswith("_id")]
     df = df.drop(columns=id_cols, errors="ignore")
 
-    # Identify types
+    # Identify numeric columns
     numeric = df.select_dtypes(include=['float64', 'int64']).columns
-    categorical = df.select_dtypes(include=['object']).columns
 
-    # Split numeric
+    # Split numeric -> scores vs others
     bounded_scores = [c for c in numeric if "score" in c.lower()]
     other_numeric = [c for c in numeric if c not in bounded_scores]
 
-    # Impute only if columns exist
+    # Impute missing values
     if bounded_scores:
         df[bounded_scores] = mean_imputer.fit_transform(df[bounded_scores])
 
     if other_numeric:
         df[other_numeric] = median_imputer.fit_transform(df[other_numeric])
 
-    # Fill categorical
-    for col in categorical:
-        df[col] = df[col].fillna("Unknown")
-
-    # Outliers only on numeric
+    # Outlier clipping
     for col in numeric:
         iqr_clip(df, col)
-
-    # Encode selected categories
-    cat_to_encode = [c for c in categorical if c not in ["material_name", "product_name"]]
-
-    if cat_to_encode:
-        df[cat_to_encode] = enc.fit_transform(df[cat_to_encode])
 
     return df
 
@@ -82,10 +71,12 @@ print("\nDATA LOADED")
 print(materials.shape, products.shape)
 
 
+
 materials_processed = preprocess(materials)
 products_processed = preprocess(products)
 
 print("\nPREPROCESSING COMPLETE")
+
 
 
 save_path = r"D:/codingvscode/Python vscode/infosysintern/Packaging-Recommendation-System/data/"
@@ -97,27 +88,31 @@ products_processed.to_csv(save_path + "processed_products.csv", index=False)
 print("\n💾 CSVs saved")
 
 
+
 materials_processed.to_sql("materials_processed", engine, if_exists="append", index=False, method="multi")
 products_processed.to_sql("products_processed", engine, if_exists="append", index=False, method="multi")
 
 print("\n📦 Inserted into DB")
 
 
-print("\nVALIDATION")
-print(materials_processed.shape, products_processed.shape)
 
-print("\nMissing values")
+print("\nVALIDATION")
+print("\nShapes:", materials_processed.shape, products_processed.shape)
+
+print("\nMissing values:")
 print(materials_processed.isna().sum())
 print(products_processed.isna().sum())
 
-print("\nDuplicates")
+print("\nDuplicates:")
 print(materials_processed.duplicated().sum(), products_processed.duplicated().sum())
 
-print("\nSummary Stats")
+print("\nSummary Stats:")
 print(materials_processed.describe().T)
 print(products_processed.describe().T)
+
 
 
 conn.close()
 print("\n🔒 DB Closed")
 print("\n🎯 DONE")
+
