@@ -8,9 +8,7 @@ import matplotlib.pyplot as plt
 import numpy as np
 from sqlalchemy import create_engine
 
-# ===================================
-# DB Connection
-# ===================================
+
 db_password = getpass.getpass("Enter PostgreSQL password for 'postgres': ")
 
 engine = create_engine(
@@ -26,9 +24,7 @@ conn = psycopg2.connect(
 
 print("\n🔗 Connected to PostgreSQL!")
 
-# ===================================
-# Helper to clip outliers
-# ===================================
+
 def iqr_clip(df, col):
     Q1 = df[col].quantile(0.25)
     Q3 = df[col].quantile(0.75)
@@ -36,9 +32,7 @@ def iqr_clip(df, col):
     df[col] = df[col].clip(Q1 - 1.5 * IQR, Q3 + 1.5 * IQR)
 
 
-# ===================================
-# Preprocessing function
-# ===================================
+
 mean_imputer = SimpleImputer(strategy="mean")
 median_imputer = SimpleImputer(strategy="median")
 enc = OrdinalEncoder()
@@ -80,26 +74,20 @@ def preprocess(df):
     return df
 
 
-# ===================================
-# Load from DB
-# ===================================
+
 materials = pd.read_sql("SELECT * FROM materials;", engine)
 products = pd.read_sql("SELECT * FROM products;", engine)
 
 print("\nDATA LOADED")
 print(materials.shape, products.shape)
 
-# ===================================
-# Preprocess
-# ===================================
+
 materials_processed = preprocess(materials)
 products_processed = preprocess(products)
 
 print("\nPREPROCESSING COMPLETE")
 
-# ===================================
-# Save
-# ===================================
+
 save_path = r"D:/codingvscode/Python vscode/infosysintern/Packaging-Recommendation-System/data/"
 os.makedirs(save_path, exist_ok=True)
 
@@ -108,17 +96,13 @@ products_processed.to_csv(save_path + "processed_products.csv", index=False)
 
 print("\n💾 CSVs saved")
 
-# ===================================
-# Insert into processed tables
-# ===================================
+
 materials_processed.to_sql("materials_processed", engine, if_exists="append", index=False, method="multi")
 products_processed.to_sql("products_processed", engine, if_exists="append", index=False, method="multi")
 
 print("\n📦 Inserted into DB")
 
-# ===================================
-# Validation
-# ===================================
+
 print("\nVALIDATION")
 print(materials_processed.shape, products_processed.shape)
 
@@ -133,9 +117,7 @@ print("\nSummary Stats")
 print(materials_processed.describe().T)
 print(products_processed.describe().T)
 
-# ===================================
-# Close DB
-# ===================================
+
 conn.close()
 print("\n🔒 DB Closed")
 print("\n🎯 DONE")
