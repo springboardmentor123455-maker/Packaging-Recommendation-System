@@ -1,41 +1,55 @@
-
 \c eco_packaging;
 
-
+-- ==================================
+-- DROP TABLES (SAFE RESET)
+-- ==================================
+DROP TABLE IF EXISTS product_material CASCADE;
+DROP TABLE IF EXISTS products_processed CASCADE;
+DROP TABLE IF EXISTS materials_processed CASCADE;
+DROP TABLE IF EXISTS products CASCADE;
 DROP TABLE IF EXISTS materials CASCADE;
 
+-- ==================================
+-- MATERIALS TABLE
+-- ==================================
 CREATE TABLE materials (
     material_id SERIAL PRIMARY KEY,
-    material_name VARCHAR(150) NOT NULL,
+    material_name VARCHAR(150) NOT NULL UNIQUE,
     material_type VARCHAR(100),
-    durability_score INT,
-    cushioning_score INT,
-    water_resistance_score INT,
-    biodegradability_score INT,
-    recyclability_score INT,
+
+    durability_score INT CHECK (durability_score BETWEEN 0 AND 10),
+    cushioning_score INT CHECK (cushioning_score BETWEEN 0 AND 10),
+    water_resistance_score INT CHECK (water_resistance_score BETWEEN 0 AND 10),
+
+    -- FIXED!
+    biodegradability_score INT CHECK (biodegradability_score BETWEEN 0 AND 100),
+    recyclability_score INT CHECK (recyclability_score BETWEEN 0 AND 100),
+
     co2_emission_per_kg DECIMAL(10,2),
     cost_per_kg DECIMAL(10,2),
     weight_capacity_kg DECIMAL(10,2)
 );
 
-
-DROP TABLE IF EXISTS products CASCADE;
-
+-- ==================================
+-- PRODUCTS TABLE
+-- ==================================
 CREATE TABLE products (
     product_id SERIAL PRIMARY KEY,
-    product_name VARCHAR(150) NOT NULL,
+    product_name VARCHAR(150) NOT NULL UNIQUE,
+
     industry VARCHAR(100),
     weight_kg DECIMAL(10,2),
     volume_cm3 DECIMAL(10,2),
+
     fragility_level VARCHAR(50),
     moisture_sensitivity VARCHAR(50),
     temperature_sensitivity VARCHAR(50),
     price_usd DECIMAL(10,2)
 );
 
-
-DROP TABLE IF EXISTS product_material CASCADE;
-
+-- ==================================
+-- RELATION TABLE
+-- ==================================
 CREATE TABLE product_material (
     id SERIAL PRIMARY KEY,
     product_id INT REFERENCES products(product_id) ON DELETE CASCADE,
@@ -43,11 +57,17 @@ CREATE TABLE product_material (
     suitability_score DECIMAL(10,2)
 );
 
+-- ==================================
+-- PROCESSED TABLES (EMPTY NOW)
+-- ==================================
+CREATE TABLE materials_processed AS TABLE materials WITH NO DATA;
+CREATE TABLE products_processed AS TABLE products WITH NO DATA;
 
-
+-- ==================================
+-- INDEXES
+-- ==================================
 CREATE INDEX idx_material_name ON materials(material_name);
 CREATE INDEX idx_product_name ON products(product_name);
-CREATE INDEX idx_product_industry ON products(industry);
-
+CREATE INDEX idx_industry ON products(industry);
 
 SELECT 'Schema creation complete.' AS status;
