@@ -15,4 +15,8 @@ def simple_recommendation():
     print(best_material)
 
 if __name__ == "__main__":
+<<<<<<< HEAD
     simple_recommendation()
+=======
+    simple_recommendation()
+>>>>>>> 29ce654ceebd2fdee7b0f714e872a1afd2985958
