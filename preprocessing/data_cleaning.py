@@ -1,5 +1,4 @@
-<<<<<<< HEAD
-=======
+
 import psycopg2
 import pandas as pd
 from sklearn.impute import SimpleImputer
@@ -117,5 +116,3 @@ print(products_processed.describe().T)
 conn.close()
 print("\n🔒 DB Closed")
 print("\n🎯 DONE")
-
->>>>>>> 2b6407e2b63024081f5edb5c0570d30862f96d41
