@@ -1,0 +1,201 @@
+material_type,strength,weight_capacity,biodegradability_score,co2_emission_score,recyclability_percent,industry_category
+Plastic (PET),High,Medium,80,88,10,E-commerce
+Plastic (PET),High,Medium,90,39,58,E-commerce
+Jute,High,Medium,91,42,26,Pharmaceuticals
+Cellulose Film,Medium,High,96,20,24,Electronics
+Jute,Medium,High,100,68,33,Pharmaceuticals
+Cotton Fiber,High,Medium,70,13,38,Electronics
+Cotton Fiber,Low,High,18,17,57,Clothing
+Cardboard,Low,High,75,68,49,E-commerce
+Bamboo,Low,Low,86,27,57,Cosmetics
+Compostable Film,High,Medium,99,19,90,Clothing
+PLA Bioplastic,Medium,High,36,18,14,Electronics
+Molded Pulp,Low,Low,30,72,46,Clothing
+Plastic (HDPE),Medium,High,49,36,77,E-commerce
+Cardboard,High,Medium,37,17,91,Food
+Glass,Medium,Low,84,73,71,Clothing
+Recycled Paper,Medium,Low,33,19,18,Cosmetics
+Glass,Low,Medium,29,23,58,Pharmaceuticals
+Plastic (HDPE),Medium,Low,55,44,95,E-commerce
+Cellulose Film,High,Low,49,48,79,Cosmetics
+Bamboo,Low,Low,35,84,76,Clothing
+Molded Pulp,Medium,Low,82,57,67,Electronics
+Compostable Film,Low,Low,45,71,33,Cosmetics
+Cotton Fiber,High,High,39,19,50,Pharmaceuticals
+Plastic (HDPE),Medium,Low,20,55,61,Food
+Recycled Paper,Medium,Medium,59,71,61,Cosmetics
+Aluminum,Medium,Medium,37,78,10,Cosmetics
+Glass,High,Medium,12,17,76,Pharmaceuticals
+Bamboo,High,Low,68,80,21,Electronics
+PLA Bioplastic,Low,Low,30,20,49,Pharmaceuticals
+Molded Pulp,Medium,High,75,19,70,Cosmetics
+Molded Pulp,Medium,Medium,58,48,16,Pharmaceuticals
+Cotton Fiber,Medium,Low,6,73,57,Pharmaceuticals
+Glass,High,Medium,17,39,39,Electronics
+Compostable Film,High,Medium,5,63,11,Food
+Starch-based Bioplastic,Low,Medium,13,44,30,Food
+PLA Bioplastic,Medium,Medium,92,84,79,Electronics
+Plastic (PET),Medium,Medium,53,40,29,Cosmetics
+Paper,Medium,Medium,79,52,43,Clothing
+Jute,Low,High,92,85,79,Pharmaceuticals
+Compostable Film,Low,High,25,59,40,Cosmetics
+Recycled Paper,Low,High,86,12,28,Pharmaceuticals
+Glass,High,Medium,41,86,77,Cosmetics
+Molded Pulp,Low,High,62,80,68,Pharmaceuticals
+Plastic (PET),High,Medium,78,6,42,Electronics
+Plastic (PET),Low,Medium,56,26,66,Pharmaceuticals
+Paper,High,Low,19,21,22,Pharmaceuticals
+Plastic (HDPE),High,High,16,66,67,Electronics
+Recycled Paper,High,Medium,90,48,28,E-commerce
+PLA Bioplastic,Medium,High,21,33,15,Pharmaceuticals
+Recycled Paper,High,Medium,79,46,24,E-commerce
+Starch-based Bioplastic,High,Low,23,6,44,E-commerce
+Recycled Paper,High,Low,51,60,59,Cosmetics
+Recycled Paper,Low,Medium,77,56,62,Food
+Paper,Medium,High,48,34,41,Clothing
+Aluminum,High,High,49,67,39,Electronics
+PLA Bioplastic,High,Medium,61,38,24,Cosmetics
+PLA Bioplastic,Medium,High,37,85,93,Pharmaceuticals
+Compostable Film,Medium,Low,79,84,94,Pharmaceuticals
+Bamboo,Medium,Low,45,76,41,Electronics
+Recycled Paper,Low,Medium,79,25,81,Electronics
+Molded Pulp,Medium,Low,26,71,66,Cosmetics
+Cardboard,High,High,71,67,47,Electronics
+Cardboard,High,Medium,56,39,25,Cosmetics
+Plastic (PET),High,Low,11,27,35,Food
+Plastic (HDPE),High,Medium,70,76,76,Food
+Cellulose Film,High,Medium,14,60,80,Clothing
+Jute,Low,High,35,9,79,Pharmaceuticals
+Paper,High,Low,66,59,36,Food
+Glass,High,High,44,10,49,Food
+Plastic (PET),Low,Low,82,26,69,E-commerce
+Aluminum,High,Medium,81,46,56,Pharmaceuticals
+Plastic (HDPE),Medium,High,87,52,41,E-commerce
+Jute,Medium,High,19,29,81,Pharmaceuticals
+Paper,High,High,21,12,39,Cosmetics
+Plastic (PET),High,Low,53,18,39,Food
+Cotton Fiber,High,High,89,79,36,Food
+Recycled Paper,Medium,Medium,64,9,28,E-commerce
+Cellulose Film,Low,Low,86,19,16,E-commerce
+Starch-based Bioplastic,High,High,52,10,36,Electronics
+Compostable Film,Medium,Low,37,21,83,Cosmetics
+Cardboard,High,High,33,23,72,Pharmaceuticals
+Glass,High,High,38,81,59,Cosmetics
+Cellulose Film,Low,High,52,68,47,Cosmetics
+Plastic (PET),Low,High,36,61,55,Clothing
+Plastic (PET),High,Medium,76,53,21,Food
+Jute,High,Low,7,43,87,E-commerce
+Bamboo,Medium,Low,35,65,51,Cosmetics
+Compostable Film,Low,High,14,32,39,Electronics
+Cotton Fiber,Medium,High,23,12,16,Cosmetics
+Cotton Fiber,Low,High,28,87,37,Food
+Compostable Film,Medium,Medium,37,29,14,Cosmetics
+Jute,Medium,Low,97,23,27,Pharmaceuticals
+Jute,Medium,Low,40,53,41,Cosmetics
+Cardboard,High,Low,7,37,27,Cosmetics
+Cellulose Film,Low,High,74,63,80,Clothing
+Cellulose Film,Medium,High,67,40,89,Cosmetics
+Aluminum,Medium,Low,93,24,85,E-commerce
+Jute,Low,Medium,36,64,65,Pharmaceuticals
+Aluminum,High,Low,22,27,45,Food
+Cellulose Film,Low,Medium,58,36,59,Pharmaceuticals
+Aluminum,Low,Low,81,18,13,Clothing
+PLA Bioplastic,Medium,Low,20,12,83,Electronics
+Cotton Fiber,Low,Medium,31,44,51,Pharmaceuticals
+Glass,Low,Low,21,28,68,Food
+PLA Bioplastic,Medium,High,89,16,49,Electronics
+Cellulose Film,Low,Low,42,62,73,Electronics
+Aluminum,High,Medium,40,6,89,Cosmetics
+PLA Bioplastic,High,Low,58,71,68,Cosmetics
+Paper,High,Medium,73,24,24,Cosmetics
+Bamboo,High,High,59,44,86,Cosmetics
+Jute,High,High,77,60,20,Electronics
+Compostable Film,Low,High,91,57,37,E-commerce
+PLA Bioplastic,Medium,High,48,50,63,Electronics
+Plastic (PET),Medium,Medium,13,45,58,Clothing
+Plastic (HDPE),High,Medium,87,34,56,Pharmaceuticals
+Paper,Medium,Low,94,82,75,Cosmetics
+Jute,Medium,Medium,53,73,38,Food
+Molded Pulp,Medium,High,99,26,20,E-commerce
+Cotton Fiber,Low,Medium,12,30,28,E-commerce
+Recycled Paper,Low,Medium,22,75,91,Cosmetics
+Bamboo,Low,High,19,68,45,Cosmetics
+Starch-based Bioplastic,High,Medium,86,5,16,Electronics
+Jute,Low,Low,30,84,82,E-commerce
+Cellulose Film,Low,Medium,30,20,80,E-commerce
+Plastic (HDPE),Medium,High,43,53,72,Pharmaceuticals
+Jute,High,Low,83,44,58,E-commerce
+Molded Pulp,Low,High,66,22,58,Pharmaceuticals
+Cardboard,Low,Medium,68,15,77,Pharmaceuticals
+Glass,Low,High,90,25,17,Cosmetics
+Starch-based Bioplastic,Medium,Low,51,46,60,Clothing
+Plastic (PET),Medium,High,5,18,23,Food
+Cellulose Film,Medium,Medium,60,35,43,Electronics
+Jute,High,Medium,90,38,44,Clothing
+PLA Bioplastic,Medium,Medium,24,9,47,Food
+Bamboo,Low,High,82,81,37,Electronics
+Recycled Paper,High,Low,9,64,78,Electronics
+Recycled Paper,Medium,Medium,56,38,49,Clothing
+Plastic (HDPE),Low,High,24,50,92,Food
+Recycled Paper,Medium,Low,95,85,12,Cosmetics
+Plastic (HDPE),High,Low,23,85,37,Clothing
+Plastic (PET),High,Medium,11,55,29,Food
+Cardboard,Medium,Low,10,66,80,Electronics
+Aluminum,Medium,Low,23,71,40,Food
+Bamboo,Medium,High,88,43,24,Cosmetics
+Glass,High,Medium,37,5,85,Electronics
+Aluminum,Low,Medium,52,35,11,Clothing
+Glass,Low,Medium,75,82,31,Pharmaceuticals
+Molded Pulp,High,Medium,18,63,79,Clothing
+Paper,Medium,Low,99,31,90,Electronics
+Cotton Fiber,High,High,91,62,79,Pharmaceuticals
+Cellulose Film,Medium,Medium,26,81,48,Pharmaceuticals
+Cardboard,Low,Low,99,43,19,E-commerce
+Plastic (HDPE),Low,Low,72,44,51,Cosmetics
+PLA Bioplastic,Low,High,89,76,26,Food
+Cardboard,Low,Medium,62,45,38,Pharmaceuticals
+Cardboard,High,Medium,27,18,92,Clothing
+Aluminum,Medium,Medium,51,55,76,Pharmaceuticals
+Compostable Film,High,Low,9,48,57,Pharmaceuticals
+Plastic (PET),High,Low,59,46,47,Food
+Glass,High,Low,44,73,72,Cosmetics
+Molded Pulp,High,Low,21,74,95,Food
+Recycled Paper,Low,Medium,6,19,49,Cosmetics
+Plastic (HDPE),High,Medium,39,20,53,E-commerce
+Jute,High,Medium,7,28,30,Cosmetics
+Plastic (PET),High,Medium,43,63,51,Clothing
+Plastic (PET),Low,Low,75,56,31,Cosmetics
+Jute,High,Medium,87,9,76,Electronics
+Glass,High,Low,14,65,21,Food
+Cellulose Film,High,High,21,84,65,Clothing
+Molded Pulp,High,Medium,32,86,60,Pharmaceuticals
+Bamboo,Medium,High,23,40,57,Food
+Aluminum,Low,Medium,94,70,31,Cosmetics
+Plastic (HDPE),Medium,Low,99,11,25,Clothing
+Paper,Low,Low,77,24,18,Electronics
+Paper,Low,High,32,38,81,Food
+Recycled Paper,Low,Medium,78,44,70,Pharmaceuticals
+Plastic (PET),Medium,High,15,18,26,E-commerce
+Plastic (PET),Medium,High,40,19,20,Clothing
+Cotton Fiber,Medium,Medium,5,56,53,E-commerce
+Plastic (PET),Medium,Medium,49,87,74,Electronics
+Bamboo,High,Low,45,86,40,Electronics
+Glass,Medium,Low,100,88,28,Pharmaceuticals
+Recycled Paper,Low,High,43,14,74,Clothing
+Cardboard,High,High,13,11,91,Electronics
+Recycled Paper,Low,High,29,36,91,Clothing
+Cellulose Film,High,High,87,24,19,Cosmetics
+Compostable Film,High,Low,81,42,15,Clothing
+Compostable Film,Medium,Medium,97,5,76,Clothing
+Compostable Film,High,High,100,67,55,Clothing
+Paper,High,Low,85,26,24,E-commerce
+Plastic (PET),Low,High,11,22,72,Electronics
+Plastic (HDPE),Medium,Low,96,66,54,Clothing
+Starch-based Bioplastic,High,Medium,83,43,51,Electronics
+Cotton Fiber,Low,Medium,64,34,73,Clothing
+Molded Pulp,Medium,High,5,72,52,Cosmetics
+Recycled Paper,Low,Medium,51,36,14,Electronics
+Aluminum,Low,Low,86,20,95,Food
+Cellulose Film,High,High,28,78,78,Pharmaceuticals
+Cardboard,High,Medium,62,74,95,Cosmetics
+Starch-based Bioplastic,Low,Low,40,10,51,Food
