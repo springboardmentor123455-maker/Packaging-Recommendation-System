@@ -1,0 +1,8 @@
+======================================================================
+EcoPackAI - Week 1-2 Validation Report
+Generated: 2025-12-15 13:45:22
+======================================================================
+
+Materials: 1200 records
+Categories: 12 records
+Features: 28 columns
