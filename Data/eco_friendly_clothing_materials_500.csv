@@ -1,0 +1,501 @@
+Material_Type,Strength_MPa,Weight_Capacity_kg,Biodegradability_Score,CO2_Emission_Score,Recyclability_Percent
+Piñatex (Pineapple Fiber),147.47,4.43,0.61,3.58,90.67
+Mycelium Leather,27.31,3.79,0.27,2.81,23.08
+Piñatex (Pineapple Fiber),58.8,5.37,0.59,3.66,78.92
+Recycled Polyester (rPET),92.42,8.34,0.45,2.39,34.74
+Recycled Cotton,156.38,12.28,0.41,3.58,74.66
+Tencel (Lyocell),195.68,10.12,0.92,3.4,44.02
+Piñatex (Pineapple Fiber),94.47,11.83,0.77,0.19,38.42
+Cork Fabric,104.41,4.11,0.43,1.88,87.45
+Organic Cotton,176.79,12.19,0.5,0.39,78.45
+Recycled Cotton,171.39,10.42,0.56,1.51,56.45
+Organic Cotton,144.4,10.37,0.5,2.71,40.59
+Piñatex (Pineapple Fiber),168.7,7.87,0.31,1.28,82.63
+Cork Fabric,61.51,10.4,0.72,2.92,52.76
+Bamboo Fiber,57.25,13.89,0.42,0.79,99.13
+Recycled Cotton,43.27,8.34,0.35,3.81,71.35
+Cork Fabric,147.29,4.03,0.94,3.37,75.37
+Piñatex (Pineapple Fiber),171.58,11.2,0.73,3.66,67.03
+Recycled Polyester (rPET),119.51,3.03,0.35,2.93,80.64
+Cork Fabric,173.17,8.2,0.27,2.01,93.51
+Recycled Cotton,179.64,7.6,0.66,1.44,64.87
+Recycled Cotton,135.23,2.24,0.53,0.29,28.84
+Recycled Cotton,65.31,13.48,0.87,0.67,99.59
+Organic Cotton,118.48,7.43,0.3,3.45,29.66
+Bamboo Fiber,104.72,10.64,0.47,2.82,77.36
+Tencel (Lyocell),172.59,1.32,0.45,2.29,92.79
+Hemp Fiber,150.8,2.18,0.45,1.74,88.95
+Cork Fabric,109.4,10.59,0.74,2.53,99.8
+Hemp Fiber,167.52,4.61,0.28,1.22,74.22
+Recycled Polyester (rPET),170.06,13.1,0.27,0.94,84.86
+Hemp Fiber,149.52,9.08,0.39,1.83,67.88
+Bamboo Fiber,170.64,8.07,0.82,1,96.88
+Linen (Flax Fiber),81.76,14.23,0.76,3.38,14.09
+Piñatex (Pineapple Fiber),84.21,11.76,0.56,1.96,56.47
+Organic Cotton,169.22,1.2,0.58,0.34,89.58
+Mycelium Leather,75.1,4.33,0.37,1.74,21.32
+Mycelium Leather,98.04,9.29,0.98,1.24,50.89
+Recycled Polyester (rPET),48.3,4.21,0.84,0.7,30.1
+Cork Fabric,61.78,0.29,0.42,3.77,34.91
+Recycled Polyester (rPET),142.31,11.95,0.66,2.81,45.19
+Recycled Cotton,52.53,11.18,0.49,3.13,81.4
+Hemp Fiber,166.66,4.04,0.53,3.75,34.8
+Tencel (Lyocell),52.14,11.56,0.22,0.36,39.36
+Bamboo Fiber,64.38,10.62,0.25,1.25,98.93
+Organic Cotton,116.05,12.68,0.69,3.98,40.08
+Tencel (Lyocell),169.12,0.73,0.89,2.74,50.13
+Piñatex (Pineapple Fiber),160.4,1.79,0.61,3.5,93.48
+Piñatex (Pineapple Fiber),166.93,12.37,0.22,0.83,70.69
+Linen (Flax Fiber),94.6,11.06,0.58,2.05,47.58
+Tencel (Lyocell),157.55,3.16,0.39,3.6,76.88
+Organic Cotton,185.57,12.95,0.6,2.31,20.34
+Organic Cotton,51.18,8.05,0.3,0.38,64.81
+Mycelium Leather,27.83,4.16,0.7,2.43,98.45
+Cork Fabric,123.86,9.79,0.63,2.27,88.17
+Bamboo Fiber,116.3,10.4,0.27,1.78,19.19
+Cork Fabric,150.04,9.46,0.53,0.74,42.74
+Organic Cotton,129.32,14.34,0.91,2.54,70.34
+Tencel (Lyocell),68.67,14.07,0.82,0.67,58.37
+Tencel (Lyocell),28.83,4.61,0.79,0.25,77.2
+Tencel (Lyocell),151.71,8.31,0.95,1.45,61.7
+Piñatex (Pineapple Fiber),93.72,9.05,0.23,1.71,92.3
+Linen (Flax Fiber),27.49,1.9,0.35,2.93,58.96
+Organic Cotton,103.62,0.2,0.51,4,83.83
+Organic Cotton,34.9,3.39,0.88,3.55,53.3
+Bamboo Fiber,158.19,1.01,0.34,1.28,13.34
+Recycled Polyester (rPET),128.59,9.33,0.76,1.24,36.28
+Hemp Fiber,168.85,6.71,0.59,1.22,12.49
+Hemp Fiber,88.73,14.68,0.55,2.89,47.11
+Tencel (Lyocell),48.08,1.91,0.77,1.56,60.74
+Recycled Cotton,71.1,8.07,0.37,2.03,57.52
+Recycled Cotton,35.98,3.91,0.32,2.23,96.17
+Tencel (Lyocell),148.39,11.43,0.45,0.39,57.6
+Recycled Cotton,132.02,10.3,0.62,1.43,50.99
+Cork Fabric,145.81,11.45,0.4,1.84,18.76
+Organic Cotton,27.16,13.34,0.32,0.47,95.43
+Bamboo Fiber,76.52,4.96,0.46,3.84,60.08
+Recycled Cotton,100.58,7.63,0.51,3.91,66.13
+Tencel (Lyocell),148.59,2.64,0.73,2.36,35.59
+Linen (Flax Fiber),175.88,7.3,0.33,1.26,67.22
+Hemp Fiber,161.25,7.53,0.26,3.31,45.25
+Bamboo Fiber,76.08,1,0.89,2.69,12.95
+Recycled Polyester (rPET),98.37,11.83,0.59,3.48,44.17
+Piñatex (Pineapple Fiber),157.49,12.75,0.42,3.85,82.78
+Recycled Cotton,82.56,8.96,0.3,2.09,36.59
+Bamboo Fiber,77.93,12.53,0.34,1.02,24.8
+Hemp Fiber,105.49,13.02,0.95,1.2,86.03
+Cork Fabric,68.42,3.89,0.72,1.68,85.03
+Recycled Polyester (rPET),39.03,8.03,0.94,2.24,40.8
+Recycled Cotton,47.47,12.6,0.79,0.5,48.42
+Linen (Flax Fiber),142.08,13.51,0.33,2.16,73.45
+Recycled Polyester (rPET),52.8,10.67,0.74,1.81,54.74
+Hemp Fiber,138.74,6.12,0.79,2.01,77.66
+Bamboo Fiber,23.86,7.43,0.87,1.94,36.6
+Mycelium Leather,90.84,13.72,0.98,3.02,98.88
+Hemp Fiber,71.16,6.58,0.78,2.87,71.03
+Cork Fabric,45.76,14.4,0.38,3.92,21.47
+Linen (Flax Fiber),107.97,14.17,0.57,0.61,38.69
+Organic Cotton,140.71,12.82,0.24,0.18,30.39
+Mycelium Leather,121.28,10.17,0.71,1.12,88.75
+Mycelium Leather,172.09,7.11,0.31,3.31,17.04
+Recycled Cotton,160.54,9.43,0.57,1.66,96.82
+Linen (Flax Fiber),67.91,0.12,0.72,0.43,26.14
+Organic Cotton,190.18,7.89,0.68,2.72,80.47
+Recycled Polyester (rPET),98.67,7.95,0.56,3.36,94.32
+Recycled Polyester (rPET),110.84,0.76,0.4,1.03,34.1
+Hemp Fiber,192.9,9.17,0.77,1.07,54.1
+Hemp Fiber,189.53,7.32,0.35,2.95,33.34
+Recycled Cotton,141.72,10.15,0.25,2.98,83.66
+Bamboo Fiber,114.78,3.29,0.46,2.81,51.13
+Hemp Fiber,116.72,13.41,0.32,2.06,66
+Organic Cotton,121.69,1.96,0.32,1.75,70.24
+Cork Fabric,99.1,7.71,0.49,2.85,81.25
+Tencel (Lyocell),38.05,5,0.3,1.72,78.5
+Cork Fabric,39.27,9.03,0.36,2.58,63.92
+Mycelium Leather,160.9,1.49,0.64,1.55,46.59
+Cork Fabric,93.47,5.65,0.99,0.12,68.43
+Cork Fabric,171.15,0.72,0.84,3.31,41.64
+Linen (Flax Fiber),111.38,3.94,0.83,0.17,58.41
+Recycled Cotton,99.87,0.65,0.93,1.22,35.14
+Recycled Cotton,149.13,13.65,0.57,3.28,39.59
+Recycled Cotton,178.89,6.38,0.21,1.42,93.69
+Hemp Fiber,75.55,5.95,0.35,0.29,68.89
+Recycled Cotton,187.83,0.38,0.86,0.17,25.57
+Linen (Flax Fiber),85.4,7.41,0.76,0.67,37.9
+Recycled Cotton,180.01,5.16,0.72,0.86,42.89
+Tencel (Lyocell),42.33,3.51,0.97,3.29,66.29
+Piñatex (Pineapple Fiber),59.75,11.78,0.66,0.67,24.96
+Piñatex (Pineapple Fiber),67.16,8.21,0.98,3.76,59.97
+Recycled Polyester (rPET),24.01,7.33,0.4,0.12,14.39
+Organic Cotton,46.74,2.99,0.61,2.46,23.29
+Hemp Fiber,49,10.69,0.63,2.99,14.02
+Cork Fabric,82.39,14.92,0.65,2.34,91.69
+Hemp Fiber,69.93,9.37,0.89,0.52,60.37
+Mycelium Leather,109.51,12.72,0.77,1.81,76.05
+Recycled Cotton,138.16,9.51,0.69,0.74,86.92
+Linen (Flax Fiber),168.77,11.57,0.35,2.5,76.71
+Recycled Cotton,146.98,5.14,0.85,0.71,40.19
+Hemp Fiber,130.51,2.68,0.39,3.26,78.12
+Tencel (Lyocell),150.81,14.58,0.44,0.86,97.15
+Bamboo Fiber,161.39,14.21,0.77,2.34,43.21
+Cork Fabric,32.08,5.75,0.6,1.07,97.27
+Cork Fabric,193.22,9.93,0.37,3.09,51.99
+Organic Cotton,172.26,7.98,0.7,3.05,35.95
+Recycled Polyester (rPET),161.29,8.95,0.57,2.81,90.93
+Bamboo Fiber,129.91,8.38,0.89,3.99,64.93
+Hemp Fiber,174.19,11.46,0.61,2.06,92.75
+Recycled Cotton,36.89,1.71,0.81,2.15,60.07
+Linen (Flax Fiber),75.15,5.09,0.28,0.2,78.82
+Organic Cotton,93.72,0.26,0.77,3.71,92.05
+Recycled Cotton,196.72,7.28,0.94,1.43,54.58
+Hemp Fiber,183.93,8.21,0.37,2.85,44.88
+Cork Fabric,52.71,6.89,0.36,2.25,95.89
+Piñatex (Pineapple Fiber),76.63,3.95,0.54,2.28,64.39
+Linen (Flax Fiber),80.62,9.66,0.55,0.21,72.33
+Organic Cotton,50.39,11.71,0.99,2.68,32.24
+Cork Fabric,186.27,13.87,0.73,3.76,30.95
+Piñatex (Pineapple Fiber),29.54,12.89,0.35,3.49,28.59
+Tencel (Lyocell),90.62,3.42,0.92,2.38,42.3
+Mycelium Leather,62.83,1.4,0.83,0.69,89.96
+Organic Cotton,72.96,11.34,0.82,3.54,21.84
+Recycled Polyester (rPET),149.03,6.92,0.91,3.71,13.74
+Mycelium Leather,90.22,6.19,0.37,0.75,66.05
+Recycled Polyester (rPET),37.66,9.89,0.68,3.02,38.72
+Organic Cotton,20.07,3.31,0.55,3.8,70.64
+Cork Fabric,88.01,4.42,0.75,1.02,76.87
+Bamboo Fiber,51.41,4.01,0.65,2.97,28.08
+Mycelium Leather,90.19,14.38,0.42,0.64,57.3
+Piñatex (Pineapple Fiber),57.45,13.52,0.51,0.52,66.11
+Piñatex (Pineapple Fiber),188.82,3.48,0.75,1.5,25.81
+Cork Fabric,183.38,4.51,0.94,1.99,72.4
+Piñatex (Pineapple Fiber),67.63,10.22,0.96,3.3,91.41
+Cork Fabric,147.63,3.05,0.84,0.24,61.88
+Linen (Flax Fiber),33.39,12.75,0.31,2.87,19.21
+Mycelium Leather,137.98,12.69,0.5,3.76,44.3
+Linen (Flax Fiber),85.47,6.64,0.6,0.62,39.54
+Bamboo Fiber,34.84,3.88,0.26,1.4,27.05
+Cork Fabric,152.7,5.62,0.69,2.91,41.14
+Mycelium Leather,198.81,9.67,0.88,1.57,62.91
+Recycled Cotton,190.83,9.16,0.92,2.51,17.63
+Tencel (Lyocell),24.29,4.14,0.94,2.17,14.91
+Recycled Cotton,194.97,9.15,0.21,3.95,23.12
+Tencel (Lyocell),43.89,4.57,0.33,2.68,82.92
+Linen (Flax Fiber),44.3,0.95,0.58,0.33,61.51
+Organic Cotton,181.58,4.09,0.38,2.65,37.07
+Linen (Flax Fiber),123.29,2.23,0.44,0.53,60
+Tencel (Lyocell),61.67,10.52,0.77,2.33,33.53
+Recycled Cotton,83.1,12.72,0.94,0.4,85.83
+Mycelium Leather,112.25,13.34,0.57,1.59,71.12
+Bamboo Fiber,131.2,11.5,0.69,0.62,73.1
+Organic Cotton,86.4,8.26,0.26,2.43,11.68
+Cork Fabric,116,10.04,0.33,2.36,74.71
+Piñatex (Pineapple Fiber),189.64,1.62,0.27,2.51,85.82
+Piñatex (Pineapple Fiber),128.72,9.67,0.4,0.56,33.92
+Tencel (Lyocell),196.97,14.43,0.94,3.91,97.96
+Organic Cotton,127.23,10.33,0.88,1.51,85.22
+Bamboo Fiber,184.63,10.79,0.69,3.92,55.99
+Piñatex (Pineapple Fiber),155.02,4.9,0.89,2.47,82.67
+Tencel (Lyocell),120.7,1.94,0.76,2.36,49.14
+Cork Fabric,100.01,9.21,0.8,2.18,40.1
+Hemp Fiber,143.52,13.38,0.26,1.97,76.13
+Mycelium Leather,80.51,14.17,0.29,2.39,73.09
+Cork Fabric,138.27,13.47,0.65,2.66,20.6
+Cork Fabric,33.55,4.88,0.83,2.28,62.26
+Recycled Polyester (rPET),161.23,11.74,0.71,2.95,78.84
+Recycled Cotton,176.81,5.97,0.52,2.58,45.77
+Cork Fabric,176.62,11.94,0.94,0.14,83.62
+Hemp Fiber,104.56,3.01,0.8,3.97,98.71
+Recycled Polyester (rPET),22.31,9.29,0.83,1.45,19.24
+Hemp Fiber,23.63,10.51,0.41,2.24,48.32
+Piñatex (Pineapple Fiber),186.93,4.82,0.47,1.54,97.22
+Mycelium Leather,169.21,10.95,0.4,3.82,97.61
+Recycled Polyester (rPET),65.36,2.08,0.44,3.19,98.56
+Mycelium Leather,62.24,5.68,0.37,3.38,69.06
+Cork Fabric,92.85,6.66,0.55,0.55,94.11
+Organic Cotton,92.05,1.64,0.84,2.16,99.5
+Linen (Flax Fiber),192.55,2.04,0.55,0.26,79.81
+Mycelium Leather,102.38,12.61,0.47,0.29,55.45
+Organic Cotton,157.29,11.64,0.24,3.33,85.13
+Piñatex (Pineapple Fiber),26.2,13.2,0.53,2.1,97.03
+Piñatex (Pineapple Fiber),37.82,6.36,0.98,0.11,58.68
+Cork Fabric,176.45,1.99,0.98,1.08,31.02
+Hemp Fiber,197.83,12.85,0.41,2.65,16.57
+Linen (Flax Fiber),54.91,8.34,0.49,2.62,47.7
+Bamboo Fiber,99.54,9.57,0.37,1.21,59.99
+Linen (Flax Fiber),132.62,1.57,0.52,3.96,32.77
+Hemp Fiber,66.05,10.76,0.36,0.65,33.51
+Cork Fabric,190.56,13.6,0.51,2.78,15.4
+Organic Cotton,120.59,1.35,0.94,3.46,80.87
+Recycled Cotton,53.69,8.5,0.82,1.6,96.36
+Recycled Polyester (rPET),142,13.59,0.24,3.94,22.44
+Tencel (Lyocell),115.3,14.74,0.24,3.92,41.55
+Recycled Cotton,56.29,10.73,0.47,0.84,25.95
+Piñatex (Pineapple Fiber),137.72,1.59,0.28,3.43,31.28
+Organic Cotton,40.83,3.3,0.74,3,67.24
+Mycelium Leather,125.04,4.31,0.32,2.82,75.15
+Hemp Fiber,156.06,13.75,0.66,1.31,97.41
+Bamboo Fiber,161.35,13.67,0.66,0.9,86.86
+Organic Cotton,114.89,8.33,0.67,3.38,89
+Recycled Polyester (rPET),195.16,8.83,0.75,3.53,91.26
+Piñatex (Pineapple Fiber),79.8,11.9,0.42,1.76,98.47
+Organic Cotton,123.57,3.45,0.32,3.63,79.2
+Piñatex (Pineapple Fiber),68.99,10.73,0.74,0.5,34.81
+Tencel (Lyocell),64.71,13.21,0.62,1.71,37.07
+Organic Cotton,59.95,2.23,0.5,3.19,88.5
+Organic Cotton,69.52,11.08,0.34,0.29,52.29
+Hemp Fiber,87.03,2.94,0.29,0.66,39.5
+Cork Fabric,178.39,7.87,0.24,1.59,65.21
+Tencel (Lyocell),73.73,4.99,0.44,1.96,99.77
+Bamboo Fiber,101.06,0.96,0.66,0.96,50.54
+Cork Fabric,131.46,11.8,0.52,2.94,50.91
+Tencel (Lyocell),146.5,4.76,0.64,0.47,28.99
+Tencel (Lyocell),178.83,2.97,0.87,3.08,64.3
+Tencel (Lyocell),153.23,5.96,0.51,0.38,65.25
+Cork Fabric,147.89,4.34,0.37,3.61,41.51
+Bamboo Fiber,134.97,0.44,0.32,1.67,84.74
+Linen (Flax Fiber),59.44,3.64,0.6,0.6,91.03
+Linen (Flax Fiber),170.87,3.14,0.41,1.2,54.35
+Mycelium Leather,155.95,12.39,0.27,2.51,83.92
+Mycelium Leather,81.37,8,0.49,3.01,16.31
+Hemp Fiber,187.42,3.85,0.65,0.4,42.37
+Piñatex (Pineapple Fiber),175.28,6.18,0.74,3.43,19.92
+Piñatex (Pineapple Fiber),196.13,14.45,0.89,2.95,62.14
+Mycelium Leather,139.22,3.01,0.36,0.24,72.16
+Recycled Polyester (rPET),46.04,7.04,0.32,0.35,84.09
+Hemp Fiber,70.72,8.1,0.34,3.53,32.32
+Cork Fabric,120.51,10.74,0.75,3.41,91.23
+Linen (Flax Fiber),113.89,12.01,0.53,2.78,32.74
+Cork Fabric,52.15,7.72,0.68,1.44,54.61
+Organic Cotton,186.68,9.52,0.28,2.12,70.45
+Recycled Polyester (rPET),27.51,4.31,0.9,2.83,47.7
+Piñatex (Pineapple Fiber),91.06,14.89,0.42,2.16,36.07
+Recycled Polyester (rPET),130.34,11.3,0.65,2.03,50.81
+Recycled Polyester (rPET),197.27,5.79,0.37,3.71,35.86
+Cork Fabric,191.82,6.39,0.5,3.16,25.73
+Organic Cotton,74.29,7,0.55,1.82,55.28
+Mycelium Leather,137.09,11.57,0.55,1.91,21.21
+Linen (Flax Fiber),64.09,7.05,0.54,0.43,96.72
+Recycled Cotton,152.68,14.53,0.82,3.23,28.14
+Bamboo Fiber,117.79,6.38,0.51,3.65,70.13
+Cork Fabric,51.04,10.09,0.58,1.35,14.63
+Bamboo Fiber,195.91,14.26,0.45,3.63,10.83
+Recycled Cotton,63.95,1.92,0.5,1.17,60.19
+Mycelium Leather,159.73,10.95,0.71,1.48,94.78
+Recycled Polyester (rPET),44.85,14.77,0.92,0.76,29.58
+Organic Cotton,72.99,1.6,0.68,0.68,16.58
+Mycelium Leather,194.9,2.91,0.88,2.56,87.73
+Bamboo Fiber,82.81,8.61,0.38,1.29,21.22
+Tencel (Lyocell),122.7,8.61,0.24,1.24,85.09
+Recycled Polyester (rPET),108.39,9.81,0.64,2.7,47.81
+Bamboo Fiber,188.46,0.66,0.67,3.65,27.42
+Cork Fabric,194.91,5.38,0.36,2.68,83.59
+Cork Fabric,165.74,8.94,0.7,1.78,85.89
+Recycled Cotton,116.78,4.83,0.82,2.81,76.27
+Bamboo Fiber,162.92,3.59,0.59,1.96,36.52
+Tencel (Lyocell),187.5,8.12,0.28,1.6,37.56
+Bamboo Fiber,99.4,4.81,0.83,1.83,89.1
+Mycelium Leather,42.54,9.4,0.3,0.98,82.3
+Recycled Cotton,121.86,1.5,0.77,0.35,65.2
+Tencel (Lyocell),148.76,8.47,0.51,3.23,47.68
+Linen (Flax Fiber),81.25,0.7,0.58,3.12,79.64
+Hemp Fiber,159.55,10.79,0.26,2.73,95.78
+Bamboo Fiber,68.48,13.09,0.81,2.26,11.26
+Recycled Cotton,23.58,0.96,0.8,2.17,84.56
+Organic Cotton,125.8,8.76,0.73,0.95,48.08
+Piñatex (Pineapple Fiber),68.91,3.2,0.89,0.68,79.06
+Recycled Polyester (rPET),183.2,8.45,0.77,2.8,64.18
+Recycled Cotton,133.79,0.4,0.7,1.78,66.59
+Tencel (Lyocell),193.1,1.92,0.83,0.2,22.88
+Cork Fabric,189.05,8.32,0.68,0.17,45.93
+Linen (Flax Fiber),40.62,0.77,0.76,1.26,94.71
+Cork Fabric,108.42,2.64,0.65,1.09,65.71
+Cork Fabric,130.97,12.16,0.6,0.73,51.13
+Tencel (Lyocell),57.3,12.72,0.75,0.58,79.6
+Piñatex (Pineapple Fiber),106.38,0.12,0.59,2.8,88.16
+Recycled Cotton,94.28,8.58,0.71,3.54,70.54
+Cork Fabric,195.38,0.86,0.4,0.5,50.87
+Cork Fabric,155.34,14.89,0.94,2.73,66.81
+Tencel (Lyocell),170.14,10.2,0.51,0.78,17.04
+Organic Cotton,47.62,12.42,0.37,3,41.96
+Recycled Cotton,170.61,14.7,0.48,3.72,26.99
+Linen (Flax Fiber),84.74,9.28,0.48,1.08,68.32
+Piñatex (Pineapple Fiber),121.93,4.26,0.51,2.86,75.42
+Tencel (Lyocell),150.59,5.11,0.59,0.22,89.52
+Recycled Polyester (rPET),43.99,7.72,0.58,0.96,32.52
+Cork Fabric,29.48,5.75,0.63,3.23,88.28
+Tencel (Lyocell),38.84,11.57,0.48,2.48,85.56
+Tencel (Lyocell),113.71,1.89,0.35,2.42,71.47
+Organic Cotton,75.36,11.58,0.77,3.47,67.42
+Mycelium Leather,107.57,5.89,0.7,2.45,29.88
+Piñatex (Pineapple Fiber),57.1,4.51,0.44,3.5,81.27
+Organic Cotton,152.71,12.28,0.76,3.88,25.93
+Hemp Fiber,92.24,5.61,0.97,3.31,36.85
+Mycelium Leather,55.19,0.93,0.28,0.87,79.52
+Piñatex (Pineapple Fiber),151.76,5.75,0.25,0.34,74.38
+Tencel (Lyocell),132.56,8.72,0.27,0.47,22.87
+Tencel (Lyocell),92.8,10.29,0.2,2.87,16.99
+Tencel (Lyocell),63.67,5.53,0.41,1,91.75
+Piñatex (Pineapple Fiber),160.85,8.28,0.24,1.84,29.63
+Organic Cotton,163.2,6.63,0.68,1.06,10.56
+Mycelium Leather,38.53,13.99,0.93,2.06,87
+Bamboo Fiber,118.84,4.89,0.43,2.46,33.78
+Organic Cotton,67.69,1.03,0.77,1.31,65.27
+Mycelium Leather,178.77,10.66,0.89,2.65,45.11
+Linen (Flax Fiber),168.33,14.57,0.51,0.37,16.43
+Linen (Flax Fiber),24.42,3.22,0.54,3.22,94
+Tencel (Lyocell),175.21,12.38,0.91,2,12.41
+Recycled Polyester (rPET),117.62,7.38,0.77,0.64,53.44
+Piñatex (Pineapple Fiber),50.52,9.61,0.73,2.9,43.49
+Mycelium Leather,173.22,3.17,0.26,2.77,23.99
+Recycled Polyester (rPET),65.34,1.75,0.39,3.74,55.8
+Linen (Flax Fiber),154.5,4.79,0.37,2.31,50.45
+Bamboo Fiber,58.07,13.8,0.83,0.63,34.26
+Cork Fabric,114.68,8.64,0.61,0.43,88.07
+Organic Cotton,42.78,6.8,0.75,2.57,37.71
+Linen (Flax Fiber),187.49,6.97,0.98,1.44,24.27
+Cork Fabric,104.33,12.34,0.51,3.79,56.43
+Piñatex (Pineapple Fiber),87.24,0.36,0.36,3.89,98.37
+Recycled Cotton,74.51,14.9,0.45,1.39,60.65
+Piñatex (Pineapple Fiber),46.23,7.13,0.35,2.57,19.5
+Mycelium Leather,83.2,13.37,0.83,0.18,25.55
+Recycled Polyester (rPET),184.93,1.08,0.9,2.48,96.95
+Organic Cotton,188.14,9.94,0.5,1.25,15.97
+Linen (Flax Fiber),156.98,4.63,0.89,2.06,18.16
+Piñatex (Pineapple Fiber),66.77,0.38,0.23,0.88,63.21
+Mycelium Leather,37.68,13.48,0.28,1.98,78.06
+Organic Cotton,23.14,10.94,0.4,0.29,78.84
+Recycled Polyester (rPET),27.77,1.7,0.33,3.58,71.34
+Bamboo Fiber,57.34,8.79,0.52,0.6,31.56
+Organic Cotton,54.24,2.8,0.29,2.92,83.96
+Recycled Polyester (rPET),39.63,3.73,0.43,1.06,41.05
+Hemp Fiber,156.63,2.54,0.51,0.51,65.61
+Tencel (Lyocell),119.99,8.05,0.62,3.74,37.97
+Recycled Cotton,39.11,12.72,0.85,1.02,83.89
+Bamboo Fiber,62.59,10.04,0.3,2.46,77.55
+Bamboo Fiber,66.17,10.12,0.7,2.14,88.91
+Organic Cotton,145.39,1.28,0.45,1.79,43.1
+Mycelium Leather,41.96,11.08,0.38,2.13,73.53
+Piñatex (Pineapple Fiber),101.09,4.76,0.84,2.59,97.83
+Hemp Fiber,193.88,12.24,0.52,2.77,46.72
+Bamboo Fiber,89.39,4.48,0.58,1.49,60.61
+Piñatex (Pineapple Fiber),23.33,4.95,0.53,1.4,14.3
+Linen (Flax Fiber),31.47,9.82,0.23,3.33,75.57
+Recycled Cotton,145.94,11.17,0.26,2.22,23.74
+Cork Fabric,26.4,12.32,0.53,2.61,58.2
+Organic Cotton,172.93,1.23,0.31,1.41,33.51
+Bamboo Fiber,127.5,10.64,0.71,1.33,40.56
+Cork Fabric,159.41,0.68,0.64,0.6,47.85
+Organic Cotton,95.03,3.82,0.49,3.93,88.25
+Hemp Fiber,54.61,9.21,0.23,3.38,93.67
+Linen (Flax Fiber),68.13,6.12,0.4,1.32,78.38
+Linen (Flax Fiber),185.32,9.63,0.2,2.99,95.09
+Mycelium Leather,188.88,6.08,0.58,0.95,87.37
+Bamboo Fiber,111.62,13.91,0.33,1.7,59.85
+Bamboo Fiber,148.75,9.41,0.44,3.44,17.57
+Mycelium Leather,50.32,1.17,0.34,0.9,26.62
+Mycelium Leather,156.45,10.29,0.78,1.21,83.52
+Recycled Cotton,102.8,1.85,0.45,3.06,14.3
+Mycelium Leather,63.1,4.56,0.77,1.94,77.03
+Cork Fabric,103.08,12.45,0.64,3.93,54.39
+Mycelium Leather,32.54,13.97,0.34,1.38,44.05
+Organic Cotton,23.21,13.87,0.35,3.4,52.95
+Recycled Polyester (rPET),93.76,5.87,0.65,1.88,46.34
+Tencel (Lyocell),89.3,1.08,0.46,1.58,82.46
+Tencel (Lyocell),181.26,12.43,0.63,1.31,22.41
+Mycelium Leather,62.61,10.69,0.53,2.47,24.56
+Cork Fabric,27.02,6.94,0.52,2.04,51.63
+Linen (Flax Fiber),156.18,2.45,0.98,3.61,66.35
+Organic Cotton,144.33,3.65,0.34,3.09,65.07
+Cork Fabric,138.86,12.12,0.34,1.85,97.79
+Linen (Flax Fiber),123.95,14.81,0.46,1.94,28.48
+Tencel (Lyocell),50.06,13.91,0.35,3.93,40.36
+Organic Cotton,82.34,10.65,0.78,3.69,54.71
+Piñatex (Pineapple Fiber),178.16,13.24,0.3,2.87,83.34
+Recycled Cotton,176.47,11.14,0.66,0.15,26.05
+Recycled Polyester (rPET),154.04,0.3,0.59,3.23,25.76
+Recycled Polyester (rPET),37.34,1.26,0.43,2.46,45.59
+Piñatex (Pineapple Fiber),30.52,11.86,0.94,1.34,95.21
+Recycled Cotton,131.67,8.43,0.76,0.88,56.8
+Cork Fabric,65.44,3.32,0.26,1.03,15.34
+Cork Fabric,104.05,9.17,0.52,1.7,51.54
+Bamboo Fiber,115.88,9.93,0.52,0.8,29.67
+Piñatex (Pineapple Fiber),47.87,14.39,0.32,2.46,38.69
+Bamboo Fiber,119.24,3.38,0.38,1.87,95.54
+Linen (Flax Fiber),58.88,10.08,0.37,1.54,69.23
+Linen (Flax Fiber),43.2,12.83,0.54,2.12,11.49
+Tencel (Lyocell),162.22,8.35,0.49,3,60.64
+Organic Cotton,96.5,5.89,0.38,0.75,17.28
+Mycelium Leather,165.46,9.45,0.22,0.46,97.99
+Cork Fabric,50.75,14.88,0.69,1.66,19.8
+Hemp Fiber,62.01,10.78,0.42,3.94,80.26
+Tencel (Lyocell),73.15,13.22,0.61,3.89,37.27
+Mycelium Leather,123.01,4.96,0.66,1.55,26.55
+Piñatex (Pineapple Fiber),160.63,4.45,0.76,1.13,66.3
+Mycelium Leather,23,14.18,0.28,0.19,94.35
+Piñatex (Pineapple Fiber),111.57,3.79,0.72,3.71,50.78
+Cork Fabric,124.48,1.95,0.64,3.72,91.08
+Linen (Flax Fiber),173.23,2.42,0.84,3.77,42.46
+Hemp Fiber,116.22,12.5,0.42,2.35,51.55
+Mycelium Leather,62.95,5.73,0.28,0.44,79.3
+Bamboo Fiber,81.86,6.48,0.74,1.95,76.48
+Recycled Cotton,172.3,6.89,0.37,1.36,92.4
+Recycled Cotton,77.13,11.1,0.96,3.79,54.51
+Organic Cotton,92.46,2.21,0.39,0.42,54.37
+Hemp Fiber,72.55,11.81,0.56,3.73,41.14
+Hemp Fiber,23.55,4.93,0.56,3.93,12.13
+Linen (Flax Fiber),176.77,4.52,0.66,2.79,29.96
+Organic Cotton,165.74,0.91,0.5,3.85,78.34
+Bamboo Fiber,183.41,7.15,0.89,1.06,12.95
+Cork Fabric,165.95,12.25,0.43,3.38,97.42
+Organic Cotton,88.8,0.9,0.45,2.6,94.11
+Organic Cotton,172.46,5.02,0.99,2.13,17.37
+Recycled Polyester (rPET),75.86,8.19,0.74,1.7,87.4
+Organic Cotton,121.35,11.23,0.25,1.46,18.46
+Recycled Polyester (rPET),39.2,12.89,0.61,2.75,56.23
+Organic Cotton,135.55,14.62,0.91,1.47,18.94
+Organic Cotton,33.18,14.82,0.27,1.75,81.52
+Tencel (Lyocell),47.66,12.88,0.28,1.37,30.05
+Cork Fabric,137.4,7.74,0.61,3.19,81.03
+Linen (Flax Fiber),86.77,8.74,0.86,2.15,37.15
+Bamboo Fiber,78.5,7.23,0.9,2.37,76.15
+Linen (Flax Fiber),119.18,11.87,0.73,2.78,48.4
+Recycled Cotton,61.96,0.74,0.54,3.96,75.11
+Bamboo Fiber,40.42,10.79,0.97,1.56,67.15
+Mycelium Leather,21.07,9.55,0.4,1.28,35.84
+Mycelium Leather,71.4,1.25,0.23,1.7,93.18
+Piñatex (Pineapple Fiber),175.97,6.97,0.58,2.67,84.32
+Recycled Polyester (rPET),97.44,8.69,0.84,2.9,97.55
+Mycelium Leather,137.34,5.3,0.31,2.21,13.18
+Organic Cotton,33.45,8.51,0.71,2.95,83.45
+Cork Fabric,36.47,2.42,0.32,3.58,29.46
+Recycled Polyester (rPET),191.31,0.97,0.64,1.36,54.97
+Hemp Fiber,93.42,2.64,0.75,1.84,71.45
+Piñatex (Pineapple Fiber),122.78,2.19,0.45,2.78,74.4
+Cork Fabric,187.66,8.2,0.9,1.89,56.42
+Cork Fabric,131.53,12.94,0.84,3.81,63.39
+Cork Fabric,81.11,5.37,0.36,1.19,42.07
+Organic Cotton,57.31,10.26,0.31,1.18,91.58
+Piñatex (Pineapple Fiber),149.62,0.97,0.65,2.16,75.79
+Mycelium Leather,38.15,10.2,0.81,2.52,90.32
+Tencel (Lyocell),89.17,6.78,0.36,2.36,13.7
+Cork Fabric,178.16,8.13,0.82,3.88,76.61
+Bamboo Fiber,61.67,12.25,0.57,0.41,57.96
+Hemp Fiber,49.69,2.07,0.89,2.49,63.65
+Cork Fabric,83.46,6.64,0.98,0.55,11.52
+Organic Cotton,148.16,3.1,0.44,2.14,43.08
+Recycled Polyester (rPET),142.66,5.94,0.54,3.87,53.71
+Piñatex (Pineapple Fiber),129.7,4.5,0.43,3.62,76.96
+Piñatex (Pineapple Fiber),64.77,1.15,0.47,3.19,41.23
+Organic Cotton,199.84,8.74,0.44,0.84,23.76
+Recycled Polyester (rPET),179.47,1.86,0.9,3.79,31.72
+Hemp Fiber,170.26,13.01,0.49,3.22,19.36
+Recycled Cotton,190.46,9.5,0.73,3.95,62.2
+Piñatex (Pineapple Fiber),90.91,12.44,0.73,0.13,18.95
+Hemp Fiber,188.44,0.7,0.32,2.91,52.59
+Hemp Fiber,108.55,11.55,0.22,0.52,76.11
+Tencel (Lyocell),171.16,4.73,0.36,3.5,89.58
+Cork Fabric,109.31,2.28,0.29,2.48,61.29
+Mycelium Leather,167.42,6.44,0.76,2.24,78.14
+Linen (Flax Fiber),65.1,5.92,0.81,3.25,12.9
+Linen (Flax Fiber),77.25,2.59,0.53,3.56,32.87
+Tencel (Lyocell),151.25,5.37,0.87,3.5,19.78
