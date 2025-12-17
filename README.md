@@ -86,6 +86,7 @@ Durability Normalization
 Correlation Heatmaps & EDA Visualizations
 
 📞 Contact
-Maintainer: Ayush Kumar Pandey Email: ayushpandey1974@gmail.com
+Maintainer: Ayush Kumar Pandey Email: meetaupadhyay963@gmail.com
 
-GitHub: github.com/ayushpandey3357
+GitHub: github.com/millie5172
+
