@@ -6,7 +6,11 @@ import getpass
 import os
 import numpy as np
 from sqlalchemy import create_engine
+import matplotlib.pyplot as plt
 
+
+
+# DATABASE CONNECTION
 
 db_password = getpass.getpass("Enter PostgreSQL password for 'postgres': ")
 
@@ -24,11 +28,17 @@ conn = psycopg2.connect(
 print("\nConnected to PostgreSQL!")
 
 
+
+# PREPROCESSING TOOLS
+
 mean_imputer = SimpleImputer(strategy="mean")
 median_imputer = SimpleImputer(strategy="median")
 scaler = StandardScaler()
-label_encoders = {}        # store encoders for inference later
+label_encoders = {}
 
+
+
+# PREPROCESS FUNCTION
 
 def preprocess(df, df_name=""):
 
@@ -45,16 +55,16 @@ def preprocess(df, df_name=""):
     print(f"Categorical columns: {categorical}")
     print(f"Numeric columns: {numeric}")
 
-    # Fill missing categorical values
+    # Handle missing categorical values
     df[categorical] = df[categorical].fillna("Unknown")
 
-    # Label Encode ALL categorical columns
+    # Label encoding
     for col in categorical:
         le = LabelEncoder()
         df[col] = le.fit_transform(df[col])
         label_encoders[col] = le
 
-    # Split numeric columns for imputation
+    # Numeric imputation
     bounded_scores = [c for c in numeric if "score" in c.lower()]
     other_numeric = [c for c in numeric if c not in bounded_scores]
 
@@ -64,19 +74,20 @@ def preprocess(df, df_name=""):
     if other_numeric:
         df[other_numeric] = median_imputer.fit_transform(df[other_numeric])
 
-    # Feature engineering for MATERIALS
+    
+    # FEATURE ENGINEERING (MATERIALS)
+    
     if df_name == "MATERIALS":
 
-        if all(col in df.columns for col in 
+        if all(col in df.columns for col in
                ["co2_emission_per_kg", "recyclability_score", "biodegradability_score"]):
             df["CO2_Impact_Index"] = df["co2_emission_per_kg"] / (
                 df["recyclability_score"] + df["biodegradability_score"] + 1
             )
 
-        if all(col in df.columns for col in 
-               ["durability_score", "cushioning_score", "water_resistance_score",
-                "weight_capacity_kg", "cost_per_kg"]):
-
+        if all(col in df.columns for col in
+               ["durability_score", "cushioning_score",
+                "water_resistance_score", "weight_capacity_kg"]):
             df["Performance_Score"] = (
                 0.3 * df["durability_score"] +
                 0.3 * df["cushioning_score"] +
@@ -84,12 +95,13 @@ def preprocess(df, df_name=""):
                 0.2 * df["weight_capacity_kg"]
             )
 
+        if "cost_per_kg" in df.columns:
             df["Cost_Efficiency_Index"] = df["Performance_Score"] / (df["cost_per_kg"] + 1e-6)
 
         if all(col in df.columns for col in
-               ["durability_score", "cushioning_score", "water_resistance_score",
+               ["durability_score", "cushioning_score",
+                "water_resistance_score",
                 "recyclability_score", "biodegradability_score"]):
-
             df["Material_Suitability_Score"] = (
                 0.25 * df["durability_score"] +
                 0.25 * df["cushioning_score"] +
@@ -98,28 +110,27 @@ def preprocess(df, df_name=""):
                 0.15 * df["biodegradability_score"]
             )
 
-        # Add engineered features for scaling
-        for col in ["CO2_Impact_Index", "Cost_Efficiency_Index",
-                    "Material_Suitability_Score", "Performance_Score"]:
+        for col in [
+            "CO2_Impact_Index",
+            "Performance_Score",
+            "Cost_Efficiency_Index",
+            "Material_Suitability_Score"
+        ]:
             if col in df.columns:
                 numeric.append(col)
 
     # Log transform skewed columns
-    skewed_cols = []
-    if "volume_cm3" in df.columns:
-        skewed_cols.append("volume_cm3")
-    if "price_usd" in df.columns:
-        skewed_cols.append("price_usd")
+    for col in ["volume_cm3", "price_usd"]:
+        if col in df.columns:
+            df[col] = np.log1p(df[col])
 
-    for col in skewed_cols:
-        df[col] = np.log1p(df[col])
-
-    # Standard scale all numeric columns
+    # Standard scaling
     df[numeric] = scaler.fit_transform(df[numeric])
 
     return df
 
 
+# LOAD DATA
 
 materials = pd.read_sql("SELECT * FROM materials;", engine)
 products = pd.read_sql("SELECT * FROM products;", engine)
@@ -134,6 +145,9 @@ products_processed = preprocess(products, "PRODUCTS")
 print("\nPREPROCESSING COMPLETE")
 
 
+
+# SAVE CSVs
+
 save_path = r"D:/codingvscode/Python vscode/infosysintern/Packaging-Recommendation-System/data/"
 os.makedirs(save_path, exist_ok=True)
 
@@ -143,7 +157,11 @@ products_processed.to_csv(save_path + "processed_products.csv", index=False)
 print("\nCSVs saved")
 
 
-print("\n=== FINAL DATA QUALITY VALIDATION ===")
+
+# DATA QUALITY VALIDATION
+
+print("\n=== DATA QUALITY VALIDATION ===")
+
 print("\nShapes:")
 print(materials_processed.shape, products_processed.shape)
 
@@ -156,15 +174,65 @@ print("Materials:", materials_processed.duplicated().sum())
 print("Products:", products_processed.duplicated().sum())
 
 print("\nSummary Statistics (Materials):")
-print(materials_processed.describe().T)
+materials_stats = materials_processed.describe().T
+print(materials_stats)
 
 print("\nSummary Statistics (Products):")
-print(products_processed.describe().T)
+products_stats = products_processed.describe().T
+print(products_stats)
 
-print("\nSample Rows:")
+# Zero-variance feature check
+print("\nZero-Variance Features (Materials):")
+print(materials_stats[materials_stats["std"] == 0].index.tolist())
+
+
+
+# CORRELATION ANALYSIS & CHARTS
+
+def plot_correlation(df, title, filename):
+
+    corr = df.corr()
+
+    plt.figure(figsize=(12, 10))
+    plt.imshow(corr, interpolation='nearest')
+    plt.title(title)
+    plt.colorbar()
+
+    plt.xticks(range(len(corr.columns)), corr.columns, rotation=90)
+    plt.yticks(range(len(corr.columns)), corr.columns)
+
+    plt.tight_layout()
+    plt.savefig(save_path + filename)
+    plt.close()
+
+    print(f"Correlation heatmap saved: {filename}")
+
+
+plot_correlation(
+    materials_processed,
+    "Feature Correlation Matrix – Materials",
+    "materials_correlation.png"
+)
+
+plot_correlation(
+    products_processed,
+    "Feature Correlation Matrix – Products",
+    "products_correlation.png"
+)
+
+
+
+# SAMPLE ROWS
+
+print("\nSample Rows (Materials):")
 print(materials_processed.head(3))
+
+print("\nSample Rows (Products):")
 print(products_processed.head(3))
 
+
+
+# CLEANUP
 
 conn.close()
 print("\nDB Closed")
