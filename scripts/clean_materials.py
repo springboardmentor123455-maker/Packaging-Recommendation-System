@@ -81,8 +81,4 @@ def clean_and_engineer_materials(
 
 
 if __name__ == "__main__":
-<<<<<<< HEAD
-    clean_and_engineer_materials()
-=======
-    clean_and_engineer_materials()
->>>>>>> 8ce1258d546f23f50178c662e8aa9a29c9bab856
+     clean_and_engineer_materials()
