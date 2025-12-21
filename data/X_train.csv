@@ -1,0 +1,9 @@
+strength_mpa,weight_capacity_kg,biodegradability_score,recyclability_percent,category_Bioplastic,category_Glass,category_Metal,category_Paper,category_Plastic,category_Pulp
+40,4.5,92,75,False,False,False,False,False,False
+35,5.0,90,85,False,False,False,True,False,False
+45,2.5,75,60,True,False,False,False,False,False
+25,3.0,85,80,False,False,False,False,False,True
+20,1.0,78,55,True,False,False,False,False,False
+32,3.5,89,88,False,False,False,False,False,False
+60,10.0,40,70,False,False,False,False,True,False
+80,2.0,35,98,False,False,True,False,False,False
