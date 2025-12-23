@@ -12,6 +12,12 @@ An AI-powered platform for recommending eco-friendly packaging materials based o
 - Feature engineering
 - Validation and quality assurance
 
+**Milestone 2 (Week 3-4): Complete**
+- Machine Learning Dataset Preparation
+- Train Cost & CO2 Prediction Models (Random Forest, XGBoost)
+- Recommendation Engine Development
+- Verification & Testing
+
 ## Dataset Summary
 
 ### Materials Dataset
@@ -58,6 +64,11 @@ infosys/
 ├── setup_database.py                    # PostgreSQL setup script
 ├── database_schema.sql                  # Database schema definition
 ├── validate_week1_2.py                  # Automated validation
+├── ml_preparation.py                    # ML Data Splitting & Prep
+├── ml_models.py                         # ML Model Definitions
+├── train_models.py                      # Model Training Script
+├── recommendation_engine.py             # Recommendation Logic
+├── verify_milestone2.py                 # Milestone 2 Verification
 └── requirements.txt                     # Dependencies
 ```
 
@@ -65,7 +76,7 @@ infosys/
 
 ### Dependencies
 ```bash
-pip install pandas numpy scikit-learn matplotlib seaborn psycopg2-binary faker scipy
+pip install pandas numpy scikit-learn matplotlib seaborn psycopg2-binary faker scipy xgboost
 ```
 
 ### Running the Pipeline
@@ -78,9 +89,15 @@ python generate_product_categories.py
 python data_cleaning.py
 python feature_engineering.py
 
-# Validate results
-python data_validation.py
-python validate_week1_2.py
+# Train ML Models
+python ml_preparation.py
+python train_models.py
+
+# Run Recommendation Engine
+python recommendation_engine.py
+
+# Verify results
+python verify_milestone2.py
 ```
 
 ## Results
@@ -135,4 +152,3 @@ PostgreSQL database ready for deployment with:
 - `product_categories` table - Category specifications
 - `packaging_recommendations` table - ML prediction storage
 - Indexed columns for performance optimization
-
