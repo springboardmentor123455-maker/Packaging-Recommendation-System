@@ -1,66 +1,67 @@
 import pandas as pd
 import numpy as np
-
-from sklearn.model_selection import train_test_split
-from sklearn.ensemble import RandomForestRegressor
+from sklearn.ensemble import RandomForestRegressor, GradientBoostingRegressor
 from sklearn.metrics import mean_squared_error, mean_absolute_error, r2_score
 
-# -----------------------------
-# 1. Load cleaned dataset
-# -----------------------------
-df = pd.read_csv("data/materials_cleaned.csv")
+# STEP 1: Load prepared data
+X_train = pd.read_csv("data/X_train.csv")
+X_test = pd.read_csv("data/X_test.csv")
 
-# -----------------------------
-# 2. Feature selection (X)
-# -----------------------------
-X = df[
-    [
-        "strength_kg",
-        "weight_g_per_m2",
-        "biodegradability_score",
-        "co2_emission_kg_per_kg",
-        "recyclability_percent"
-    ]
-]
+y_cost_train = pd.read_csv("data/y_cost_train.csv").values.ravel()
+y_cost_test = pd.read_csv("data/y_cost_test.csv").values.ravel()
 
-# -----------------------------
-# 3. Target variable (y)
-# -----------------------------
-y = df["cost_kg"]
+y_co2_train = pd.read_csv("data/y_co2_train.csv").values.ravel()
+y_co2_test = pd.read_csv("data/y_co2_test.csv").values.ravel()
 
-# -----------------------------
-# 4. Train-test split
-# -----------------------------
-X_train, X_test, y_train, y_test = train_test_split(
-    X, y, test_size=0.2, random_state=42
+df_original = pd.read_csv("data/materials_cleaned.csv")
+
+print("\n Prepared data loaded")
+
+# STEP 2: Cost Prediction – Random Forest
+cost_model = RandomForestRegressor(random_state=42)
+cost_model.fit(X_train, y_cost_train)
+cost_pred = cost_model.predict(X_test)
+
+# STEP 3: CO₂ Prediction – Gradient Boosting (XGBoost alternative)
+co2_model = GradientBoostingRegressor(random_state=42)
+co2_model.fit(X_train, y_co2_train)
+co2_pred = co2_model.predict(X_test)
+
+# STEP 4: Evaluation Function
+def evaluate(y_true, y_pred, name):
+    rmse = np.sqrt(mean_squared_error(y_true, y_pred))
+    mae = mean_absolute_error(y_true, y_pred)
+    r2 = r2_score(y_true, y_pred)
+
+    print(f"\n {name} Model Evaluation")
+    print("RMSE:", rmse)
+    print("MAE :", mae)
+    print("R2  :", r2)
+
+evaluate(y_cost_test, cost_pred, "Cost Prediction (Random Forest)")
+evaluate(y_co2_test, co2_pred, "CO₂ Prediction (Gradient Boosting)")
+
+# STEP 5: Predict for all materials
+df_original["predicted_cost"] = cost_model.predict(pd.concat([X_train, X_test]))
+df_original["predicted_co2"] = co2_model.predict(pd.concat([X_train, X_test]))
+
+# STEP 6: Ranking system
+df_original["final_score"] = (
+    df_original["predicted_cost"].rank(ascending=True) +
+    df_original["predicted_co2"].rank(ascending=True)
 )
 
-print("Training samples:", X_train.shape[0])
-print("Testing samples:", X_test.shape[0])
+df_original["Rank"] = df_original["final_score"].rank(method="dense")
 
-# -----------------------------
-# 5. Random Forest Model
-# -----------------------------
-rf_model = RandomForestRegressor(
-    n_estimators=100,
-    random_state=42
+# STEP 7: Show Top 10
+print("\n Top 10 Ranked Eco-Friendly Materials:\n")
+print(
+    df_original.sort_values("Rank")[
+        ["Rank", "material_name", "predicted_cost", "predicted_co2"]
+    ].head(10)
 )
 
-rf_model.fit(X_train, y_train)
+# STEP 8: Save output
+df_original.to_csv("data/final_recommendations.csv", index=False)
 
-# -----------------------------
-# 6. Predictions
-# -----------------------------
-y_pred = rf_model.predict(X_test)
-
-# -----------------------------
-# 7. Evaluation Metrics
-# -----------------------------
-rmse = np.sqrt(mean_squared_error(y_test, y_pred))
-mae = mean_absolute_error(y_test, y_pred)
-r2 = r2_score(y_test, y_pred)
-
-print("Random Forest Results:")
-print("RMSE:", rmse)
-print("MAE:", mae)
-print("R2 Score:", r2)
+print("\n Module 4 AI Recommendation Completed")
