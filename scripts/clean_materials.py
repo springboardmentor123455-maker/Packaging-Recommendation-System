@@ -1,84 +1,53 @@
 import pandas as pd
-from sklearn.preprocessing import MinMaxScaler
 
+def clean_materials():
+    # Input & output paths
+    input_path = "data/materials.csv"
+    output_path = "data/materials_cleaned.csv"
 
-def clean_and_engineer_materials(
-    input_path: str = "data/materials.csv",
-    output_path: str = "data/materials_cleaned.csv",
-):
-    # 1. Load Raw Data -------------------------------------------------
-    print(f"\nLoading raw materials data from: {input_path}")
+    print("Loading materials data...")
     df = pd.read_csv(input_path)
 
-    print("\n--- RAW DATA PREVIEW ---")
-    print(df.head())
-    print("\nShape:", df.shape)
-    print("\nMissing values BEFORE conversion:")
-    print(df.isna().sum())
+    print("Columns found:")
+    print(df.columns)
 
-    # 2. Convert numeric columns safely --------------------------------
+    # Keep a copy
+    cleaned_df = df.copy()
+
+    # Convert numeric columns safely
     numeric_cols = [
         "strength_kg",
         "weight_g_per_m2",
         "biodegradability_score",
         "co2_emission_kg_per_kg",
         "recyclability_percent",
-        "cost_kg",          # ✅ correct column name
+        "cost_kg",
+        "water_resistance_score"
     ]
 
-    # Convert to numeric (anything invalid -> NaN)
     for col in numeric_cols:
-        df[col] = pd.to_numeric(df[col], errors="coerce")
+        if col in cleaned_df.columns:
+            cleaned_df[col] = pd.to_numeric(cleaned_df[col], errors="coerce")
 
-    print("\nMissing values AFTER numeric conversion:")
-    print(df[numeric_cols].isna().sum())
-
-    # 3. Handle Missing Values (median) --------------------------------
-    df[numeric_cols] = df[numeric_cols].fillna(df[numeric_cols].median())
-
-    print("\nMissing values AFTER filling (median):")
-    print(df[numeric_cols].isna().sum())
-
-    # 4. Normalization with MinMaxScaler -------------------------------
-    scaler = MinMaxScaler()
-    df[numeric_cols] = scaler.fit_transform(df[numeric_cols])
-
-    print("\n--- Normalized data preview ---")
-    print(df.head())
-
-    # 5. Feature Engineering -------------------------------------------
-    # Cost efficiency: high strength, low cost_kg
-    df["cost_efficiency_index"] = df["strength_kg"] / (df["cost_kg"] + 0.0001)
-
-    # Sustainability score: biodegradability + recyclability
-    df["sustainability_score"] = (
-        df["biodegradability_score"] * 0.6
-        + df["recyclability_percent"] * 0.4
+    # Fill missing numeric values with median
+    cleaned_df[numeric_cols] = cleaned_df[numeric_cols].fillna(
+        cleaned_df[numeric_cols].median()
     )
 
-    # Overall material suitability for eco-packaging
-    df["material_suitability"] = (
-        df["sustainability_score"] * 0.6
-        + df["cost_efficiency_index"] * 0.4
+    # Drop rows missing essential text data
+    cleaned_df = cleaned_df.dropna(
+        subset=["material_name", "material_type"]
     )
 
-    print("\n--- Feature engineered columns (preview) ---")
-    print(df[["cost_efficiency_index",
-              "sustainability_score",
-              "material_suitability"]].head())
+    # Reset index
+    cleaned_df = cleaned_df.reset_index(drop=True)
 
-    # 6. Outlier / Stats Check -----------------------------------------
-    print("\n--- Describe stats (for outlier check) ---")
-    print(df[numeric_cols + [
-        "cost_efficiency_index",
-        "sustainability_score",
-        "material_suitability",
-    ]].describe())
+    # Save cleaned file
+    cleaned_df.to_csv(output_path, index=False)
 
-    # 7. Save Cleaned & Engineered Data --------------------------------
-    df.to_csv(output_path, index=False)
-    print(f"\nCLEANED & ENGINEERED DATA saved to: {output_path}")
+    print("✅ Cleaned materials data saved to:", output_path)
+    print("Final shape:", cleaned_df.shape)
 
 
 if __name__ == "__main__":
-     clean_and_engineer_materials()
+    clean_materials()
