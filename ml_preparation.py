@@ -11,9 +11,9 @@ import os
 
 # Database connection parameters (should match setup_database.py)
 DB_PARAMS = {
-    "dbname": "eco_pack_db",
+    "dbname": "ecopackai_db",
     "user": "postgres",
-    "password": "password",
+    "password": "postgres",
     "host": "localhost",
     "port": "5432"
 }
@@ -30,7 +30,11 @@ def load_data_from_db():
     except Exception as e:
         print(f"Error loading data from DB: {e}")
         print("Attempting to load from local CSV...")
-        csv_path = 'data/materials.csv'
+        # Use absolute path to ensure file is found regardless of CWD
+        base_dir = os.path.dirname(os.path.abspath(__file__))
+        csv_path = os.path.join(base_dir, 'data', 'materials.csv')
+        
+        print(f"Looking for CSV at: {csv_path}")
         if os.path.exists(csv_path):
             df = pd.read_csv(csv_path)
             print(f"Data loaded successfully from CSV. Shape: {df.shape}")

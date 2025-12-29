@@ -61,37 +61,22 @@ class RecommendationEngine:
         """
         df = load_data_from_db()
         if df is None:
+            print("DEBUG: load_data_from_db returned None")
             return []
+        
+        print(f"DEBUG: Loaded DataFrame with shape: {df.shape}")
+        # print(f"DEBUG: Columns: {df.columns.tolist()}")
 
         # Filter by hard constraints first
+        print(f"DEBUG: Filtering for strength >= {required_strength}")
         candidates = df[df['strength'] >= required_strength].copy()
+        
+        print(f"DEBUG: Candidates after filter: {len(candidates)}")
         
         if candidates.empty:
             print("No materials meet the strength requirement.")
             return []
 
-        # In a real scenario, we might want to predict values for *hypothetical* materials or 
-        # just use the actual values in the DB. 
-        # Since the task is "AI Recommendation", we often use the model to predict/verify 
-        # or to rank materials where we might have missing data (imputed) or if we are generating new material concepts.
-        # BUT, for this specific milestone, let's use the models to "score" the candidates 
-        # (or assume we are simulating a scenario where we don't know the exact cost/co2 yet, 
-        # e.g., for a new batch, but here we do have them in DB).
-        
-        # Let's use the PREDICTED values for ranking to demonstrate the ML capability.
-        # This simulates "what would the model think this material costs/pollutes?" 
-        # (Useful if the DB values were old or estimates).
-        
-        # Prepare data for prediction (drop targets as we are predicting them)
-        # The preprocessor expects columns present in training.
-        # Training had: 'strength', 'weight_capacity', 'biodegradability_score'..., 'material_type'
-        # And checks dropped 'cost_per_kg', 'co2_emission_score'.
-        
-        # So we pass the candidates dataframe. The preprocessor will handle it.
-        # Wait, prepare_data drops target columns. The preprocessor.transform expects the dataframe *without* drops?
-        # No, preprocessor (ColumnTransformer) selects columns by name. 
-        # As long as the DF has the feature columns, it's fine.
-        
         try:
             X_cost_candidates = self.cost_preprocessor.transform(candidates)
             candidates['predicted_cost'] = self.cost_model.predict(X_cost_candidates)
@@ -101,6 +86,8 @@ class RecommendationEngine:
             
         except Exception as e:
             print(f"Error during prediction for recommendation: {e}")
+            import traceback
+            traceback.print_exc()
             return []
 
         # Ranking Logic
@@ -130,7 +117,9 @@ class RecommendationEngine:
         if max_co2:
             recommendations = recommendations[recommendations['predicted_co2'] <= max_co2]
             
-        return recommendations[['material_name', 'material_type', 'strength', 'predicted_cost', 'predicted_co2', 'rank_score']]
+        return recommendations[['material_name', 'material_type', 'strength', 'predicted_cost', 'predicted_co2', 'rank_score', 
+                                'biodegradability_score', 'recyclability_percent', 'water_resistance', 'temperature_tolerance', 
+                                'weight_capacity', 'thickness_mm']]
 
 if __name__ == "__main__":
     engine = RecommendationEngine()

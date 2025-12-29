@@ -18,6 +18,12 @@ An AI-powered platform for recommending eco-friendly packaging materials based o
 - Recommendation Engine Development
 - Verification & Testing
 
+**Milestone 3 (Week 5-6): Complete**
+- Flask Backend API Implementation
+- Frontend UI Development (Glassmorphism Design)
+- Dynamic Recommendation Interface
+- Database Integration
+
 ## Dataset Summary
 
 ### Materials Dataset
@@ -37,68 +43,63 @@ An AI-powered platform for recommending eco-friendly packaging materials based o
 3. **Material Suitability Score** - Composite sustainability rating (0-100)
 4. **Sustainability Rating** - 1-5 star environmental grade
 
-### Data Quality
-- Completeness: 100%
-- Missing values: Handled via median imputation
-- Normalization: StandardScaler and MinMaxScaler applied
-- Total features: 28 (11 original + 17 engineered)
+### Web Application
+- **Modern UI**: Dark-themed, glassmorphism design with responsive layout.
+- **Parametrization**: Input product category, strength, and constraints.
+- **AI Ranking**: Real-time scoring and ranking of materials using ML models.
+- **Visuals**: Progress bars for suitability scores and badges for top ranks.
 
 ## Project Structure
 
 ```
 infosys/
-├── data/
-│   ├── materials.csv                    # Raw materials data (1200 records)
-│   ├── product_categories.csv           # Product categories (12 types)
-│   ├── materials_cleaned.csv            # Preprocessed dataset
-│   ├── materials_engineered.csv         # Feature-engineered dataset
-│   ├── distribution_plots.png           # Data visualizations
-│   ├── correlation_heatmap.png          # Feature correlation analysis
-│   └── material_comparison.png          # Material type comparisons
+├── app/
+│   ├── templates/
+│   │   └── index.html               # Main frontend interface
+│   ├── static/
+│   │   ├── css/style.css            # Custom styling
+│   │   └── js/script.js             # Frontend logic
+│   ├── __init__.py                  # Flask app factory
+│   ├── app.py                       # App entry point (circular dep fixed in run.py)
+│   ├── routes.py                    # API Routes
+│   └── database.py                  # Database connection logic
 │
-├── generate_materials_data.py           # Data generation script
-├── generate_product_categories.py       # Category generation script
-├── data_cleaning.py                     # Data preprocessing pipeline
-├── feature_engineering.py               # Feature creation pipeline
-├── data_validation.py                   # Quality validation script
-├── setup_database.py                    # PostgreSQL setup script
-├── database_schema.sql                  # Database schema definition
-├── validate_week1_2.py                  # Automated validation
-├── ml_preparation.py                    # ML Data Splitting & Prep
-├── ml_models.py                         # ML Model Definitions
-├── train_models.py                      # Model Training Script
-├── recommendation_engine.py             # Recommendation Logic
-├── verify_milestone2.py                 # Milestone 2 Verification
-└── requirements.txt                     # Dependencies
+├── data/
+│   ├── materials.csv                # Raw materials data (1200 records)
+│   ├── product_categories.csv       # Product categories (12 types)
+│   ├── materials_cleaned.csv        # Preprocessed dataset
+│   ├── materials_engineered.csv     # Feature-engineered dataset
+│   └── ...
+│
+├── run.py                           # Application startup script
+├── ml_models.py                     # ML Model Definitions
+├── train_models.py                  # Model Training Script
+├── recommendation_engine.py         # Recommendation Logic
+├── setup_database.py                # PostgreSQL setup script
+├── database_schema.sql              # Database schema definition
+└── requirements.txt                 # Dependencies
 ```
 
 ## Setup and Execution
 
 ### Dependencies
 ```bash
-pip install pandas numpy scikit-learn matplotlib seaborn psycopg2-binary faker scipy xgboost
+pip install pandas numpy scikit-learn matplotlib seaborn psycopg2-binary faker scipy xgboost flask
 ```
 
 ### Running the Pipeline
 ```bash
-# Generate datasets
-python generate_materials_data.py
-python generate_product_categories.py
+# 1. Setup Database
+python setup_database.py
 
-# Process and engineer features
-python data_cleaning.py
-python feature_engineering.py
-
-# Train ML Models
-python ml_preparation.py
+# 2. Train ML Models (Required for app)
 python train_models.py
 
-# Run Recommendation Engine
-python recommendation_engine.py
-
-# Verify results
-python verify_milestone2.py
+# 3. Run Web Application
+python run.py
 ```
+
+Access the application at: **http://127.0.0.1:5001/**
 
 ## Results
 
@@ -108,42 +109,6 @@ python verify_milestone2.py
 3. Hemp Packaging Grade Economy - 78.40 (4 stars)
 4. Recycled Paper Grade C - 77.73 (4 stars)
 5. Recycled Paper Grade A - 77.64 (4 stars)
-
-### Material Type Distribution
-All 15 material types contain 80 records each for balanced representation:
-- Cardboard, Kraft Paper, Biodegradable Plastic
-- Mushroom Packaging, Cornstarch Packaging
-- Recycled Paper, Bamboo Fiber, Hemp Packaging
-- Seaweed Packaging, Glass, Aluminum
-- Recycled Plastic, Wood Fiber, Cotton Packaging, Jute Packaging
-
-## Technical Implementation
-
-### Data Cleaning
-- Missing value imputation using median strategy
-- Outlier detection via Z-score and IQR methods
-- Feature normalization and standardization
-- Categorical encoding (Label Encoding for material types)
-
-### Feature Engineering Formulas
-
-**CO₂ Impact Index:**
-```
-= (CO₂_Emission × 0.6) + ((100 - Recyclability) × 0.4)
-Normalized to 0-100 scale (lower is better)
-```
-
-**Cost Efficiency Index:**
-```
-= (Strength / Cost) × (Weight_Capacity / Cost)
-Normalized to 0-100 scale (higher is better)
-```
-
-**Material Suitability Score:**
-```
-= (Biodegradability × 0.3) + (Recyclability × 0.25) + 
-  ((100 - CO₂_Impact) × 0.25) + (Strength_Normalized × 0.2)
-```
 
 ## Database Schema
 
