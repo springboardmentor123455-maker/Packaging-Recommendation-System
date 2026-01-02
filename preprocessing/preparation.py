@@ -3,17 +3,16 @@ import numpy as np
 import os
 from sklearn.model_selection import train_test_split
 
-# =========================================================
+
 # PATHS
-# =========================================================
 
 BASE_DATA = "D:/codingvscode/Python vscode/infosysintern/Packaging-Recommendation-System/data/"
 PREP_PATH = BASE_DATA + "prepared/"
 os.makedirs(PREP_PATH, exist_ok=True)
 
-# =========================================================
+
 # LOAD DATA
-# =========================================================
+
 
 materials = pd.read_csv(BASE_DATA + "processed_materials.csv")
 products  = pd.read_csv(BASE_DATA + "processed_products.csv")
@@ -21,9 +20,9 @@ products  = pd.read_csv(BASE_DATA + "processed_products.csv")
 print("Materials:", materials.shape)
 print("Products :", products.shape)
 
-# =========================================================
+
 # ================= MATERIAL-ONLY PREPARATION ==============
-# =========================================================
+
 
 # ---------------- FEATURE ENGINEERING ----------------
 
@@ -82,10 +81,8 @@ y_co2_test.to_csv(PREP_PATH + "y_co2_test.csv", index=False)
 
 print("✔ Material-level preparation complete (Cost & CO₂ INDEX)")
 
-# =========================================================
 # ============ PRODUCT–MATERIAL PREPARATION ================
-# ============ (UNCHANGED – WORKING WELL) ==================
-# =========================================================
+
 
 materials["key"] = 1
 products["key"]  = 1
