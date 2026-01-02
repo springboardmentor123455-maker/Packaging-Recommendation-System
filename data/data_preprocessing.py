@@ -23,7 +23,7 @@ def process_data():
     le = LabelEncoder()
     if 'material_type' in df.columns:
         df['material_type_encoded'] = le.fit_transform(df['material_type'])
-        print("Categorical 'material_type' encoded.")
+        print("Categorical 'materials_type' encoded.")
 
    
     scaler = MinMaxScaler()
