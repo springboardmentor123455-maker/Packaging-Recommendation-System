@@ -1,0 +1,8 @@
+from backend.db.database import engine
+
+try:
+    conn = engine.connect()
+    print("Database connection successful")
+    conn.close()
+except Exception as e:
+    print("Database connection failed:", e)
