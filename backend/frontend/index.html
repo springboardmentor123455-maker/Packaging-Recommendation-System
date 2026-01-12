@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>AI Packaging Recommendation System</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+
+<h2>AI Packaging Recommendation System</h2>
+
+<div class="card">
+    <input id="product" placeholder="food / electronics / glass">
+    <input id="weight" type="number" placeholder="Weight (kg)">
+    <input id="fragility" type="number" min="1" max="5" placeholder="Fragility (1–5)">
+    <button id="btn" type="button">Get Recommendation</button>
+</div>
+
+<table>
+    <thead>
+        <tr>
+            <th>Material</th>
+            <th>Type</th>
+            <th>Strength</th>
+            <th>Weight</th>
+            <th>AI Score</th>
+        </tr>
+    </thead>
+    <tbody id="result"></tbody>
+</table>
+
+<script src="script.js"></script>
+</body>
+</html>
