@@ -1,0 +1,90 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Eco Packaging Material Recommendation</title>
+
+    <!-- Bootstrap CSS -->
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet">
+
+    <!-- Custom CSS -->
+    <link rel="stylesheet" href="css/style.css">
+</head>
+<body>
+
+<div class="container mt-5">
+
+    <h2 class="text-center mb-4">
+        AI-Based Eco-Friendly Packaging Recommendation System
+    </h2>
+
+    <!-- Input Form -->
+    <div class="card p-4 mb-4">
+        <h5>Enter Product Parameters</h5>
+
+        <form id="productForm">
+            <div class="row">
+
+                <div class="col-md-4">
+                    <label class="form-label">Product Weight (kg)</label>
+                    <input type="number" class="form-control" id="weight" required>
+                </div>
+
+                <div class="col-md-4">
+                    <label class="form-label">Product Volume (cm³)</label>
+                    <input type="number" class="form-control" id="volume" required>
+                </div>
+
+                <div class="col-md-4">
+                    <label class="form-label">Fragility Level (1–5)</label>
+                    <input type="number" class="form-control" id="fragility" min="1" max="5" required>
+                </div>
+
+            </div>
+
+            <button type="submit" class="btn btn-success mt-3">
+                Get AI Recommendation
+            </button>
+        </form>
+    </div>
+
+    <!-- AI Recommendation Result -->
+    <div class="card p-4 mb-4" id="resultSection" style="display:none;">
+        <h5>Recommended Material</h5>
+        <p id="recommendedMaterial" class="fw-bold text-success"></p>
+        <p id="ecoScore"></p>
+        <p id="estimatedCost"></p>
+        <small class="text-muted">
+            * Cost values are normalized relative scores used for comparison, not actual INR prices.
+        </small>
+    </div>
+
+    <!-- Ranking Table -->
+    <div class="card p-4">
+        <h5>Material Ranking & Comparison</h5>
+
+        <table class="table table-bordered mt-3">
+            <thead class="table-dark">
+                <tr>
+                    <th>Rank</th>
+                    <th>Material</th>
+                    <th>Relative Cost Score (Normalized)</th>
+                    <th>CO₂ Emission (kg)</th>
+                    <th>Eco Score</th>
+                </tr>
+            </thead>
+            <tbody id="rankingTable">
+            </tbody>
+        </table>
+    </div>
+
+</div>
+
+<!-- Bootstrap JS -->
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js"></script>
+
+<!-- Custom JS -->
+<script src="js/app.js"></script>
+
+</body>
+</html>

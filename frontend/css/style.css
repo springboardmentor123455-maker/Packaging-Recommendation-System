@@ -1,0 +1,135 @@
+/* Global Styling*/
+body {
+    font-family: "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
+    background: linear-gradient(135deg, #f4f7fa, #eef2f7);
+    min-height: 100vh;
+    color: #2d3748;
+}
+
+/*  Headings */
+h2 {
+    font-weight: 600;
+    color: #1a202c;
+}
+
+h5 {
+    font-weight: 600;
+    color: #2f855a;
+}
+
+/*  Cards (Main Containers)*/
+.card {
+    background: #ffffff;
+    border: none;
+    border-radius: 14px;
+    box-shadow: 0 10px 30px rgba(0, 0, 0, 0.08);
+    transition: transform 0.2s ease, box-shadow 0.2s ease;
+}
+
+.card:hover {
+    transform: translateY(-3px);
+    box-shadow: 0 15px 35px rgba(0, 0, 0, 0.12);
+}
+
+/* Form Inputs */
+.form-label {
+    font-weight: 500;
+    margin-bottom: 6px;
+    color: #4a5568;
+}
+
+.form-control {
+    border-radius: 10px;
+    border: 1px solid #cbd5e0;
+    padding: 10px 12px;
+    font-size: 14px;
+    transition: border-color 0.2s ease, box-shadow 0.2s ease;
+}
+
+.form-control:focus {
+    border-color: #38a169;
+    box-shadow: 0 0 0 0.15rem rgba(56, 161, 105, 0.25);
+}
+
+/* Buttons */
+.btn-success {
+    background: linear-gradient(135deg, #38a169, #2f855a);
+    border: none;
+    border-radius: 10px;
+    padding: 10px 18px;
+    font-weight: 500;
+    font-size: 15px;
+    box-shadow: 0 6px 18px rgba(56, 161, 105, 0.35);
+    transition: transform 0.2s ease, box-shadow 0.2s ease;
+}
+
+.btn-success:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 10px 25px rgba(56, 161, 105, 0.45);
+}
+
+/*Recommendation Section*/
+#recommendedMaterial {
+    font-size: 18px;
+    margin-top: 8px;
+}
+
+#ecoScore,
+#estimatedCost {
+    margin: 0;
+    font-size: 14px;
+    color: #4a5568;
+}
+
+/* Table Styling*/
+.table {
+    border-radius: 12px;
+    overflow: hidden;
+    margin-bottom: 0;
+}
+
+.table thead {
+    background: linear-gradient(135deg, #2f855a, #276749);
+    color: #ffffff;
+}
+
+.table th {
+    font-weight: 500;
+    text-transform: uppercase;
+    font-size: 12px;
+    letter-spacing: 0.05em;
+    border: none;
+}
+
+.table td {
+    font-size: 14px;
+    vertical-align: middle;
+    border-color: #e2e8f0;
+}
+
+.table tbody tr {
+    transition: background-color 0.2s ease;
+}
+
+.table tbody tr:hover {
+    background-color: #f0fff4;
+}
+
+/* 
+   Ranking Highlight
+*/
+.table tbody tr:first-child {
+    background-color: #f0fff4;
+    font-weight: 600;
+}
+
+/*  Responsive Tweaks */
+@media (max-width: 768px) {
+    h2 {
+        font-size: 20px;
+    }
+
+    .btn-success {
+        width: 100%;
+    }
+}
