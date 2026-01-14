@@ -1,91 +1,221 @@
-📦EcoPackAI - AI-Powered Sustainable Packaging Recommendation System
-Milestone 1 – Data Collection & Preprocessing
-This project is part of the Infosys Springboard Virtual Internship (AI Domain). The goal is to build an intelligent system that recommends eco-friendly packaging materials based on sustainability metrics.
+# 📦 EcoPackAI – AI-Powered Sustainable Packaging Recommendation System  
 
-✅ Milestone 1 Completed Tasks
-1️⃣ Data Import & Storage
-Imported a 500-row synthetic eco-material dataset
+EcoPackAI is an AI-powered packaging recommendation system that suggests the **best eco-friendly packaging material** based on product characteristics like **weight**, **volume**, and **fragility**.  
+It uses machine learning models + an eco-score ranking logic to generate a **ranked list of packaging materials**, helping users choose sustainable packaging.
 
-Stored it inside a MySQL database (materials table)
+---
 
-Connected MySQL to Jupyter Notebook using mysql.connector
+## 🏢 Internship Details  
+**Project Type:** Infosys Springboard Virtual Internship (AI Domain)  
+**Duration:** 6 Weeks (Milestone 1–3)  
+**Completion Date:** January 2026  
+**Technology Stack:** Python, MySQL, Flask, Machine Learning, HTML, CSS, JavaScript  
 
-Loaded dataset into Pandas DataFrame
+---
 
-2️⃣ Data Quality Checks
-Performed essential checks:
+## ✨ Key Features  
+- ✅ Eco-friendly packaging recommendation system  
+- ✅ Dataset preprocessing + feature engineering  
+- ✅ ML models for prediction  
+  - Random Forest (Cost Prediction)
+  - XGBoost (CO₂ Prediction)
+- ✅ AI-based ranking using eco-score + cost index  
+- ✅ Flask backend API (`/predict`)  
+- ✅ Frontend UI with dynamic results + ranking table  
 
-Dataset shape
+---
 
-Missing values
+## 🏗️ Project Architecture  
 
-Duplicate rows
+```
+┌──────────────────────────────────────────────────────────┐
+│                 Web Interface (Frontend)                 │
+│              HTML + CSS + JavaScript                     │
+│     (Input Form + Best Recommendation + Ranking Table)   │
+└──────────────────────────┬───────────────────────────────┘
+                           │ HTTP/JSON  POST /predict
+┌──────────────────────────▼───────────────────────────────┐
+│                 Flask Backend API                         │
+│   Flask + CORS + Blueprint Routes + JSON Responses        │
+│   app.py → recommendation_routes.py → ai_model.py         │
+└───────────────┬───────────────────────────┬──────────────┘
+                │                           │
+┌───────────────▼───────────────┐   ┌──────▼──────────────┐
+│     AI / ML Recommendation     │   │      MySQL DB        │
+│  eco_score + cost index rank   │   │  eco_packaging DB    │
+│  Reads cleaned_materials.csv   │   │  product table model │
+└───────────────────────────────┘   └──────────────────────┘
+```
 
-Descriptive statistics (df.describe())
+---
 
-3️⃣ Outlier Detection (IQR Method)
-Identified outliers in:
+## 📌 Milestone Summary  
 
-Weight
+### ✅ Milestone 1 – Data Collection & Preprocessing  
+**Completed Tasks**
+- Imported dataset and stored inside **MySQL database**
+- Connected MySQL with Jupyter Notebook using `mysql.connector`
+- Performed Data Quality Checks:
+  - Dataset shape
+  - Missing values
+  - Duplicates
+  - `df.describe()`
+- Outlier Detection (IQR Method)
+- Outlier Treatment (Clipping)
+- Exported cleaned dataset
 
-Cost
+**Output Files**
+- `data.csv`
+- `cleaned_materials.csv`
 
-CO₂ Emissions
+---
 
-Used IQR to calculate:
+### ✅ Milestone 2 – Feature Engineering & Machine Learning  
+**Completed Tasks**
+- Feature engineering + encoding
+- Created engineered dataset with extra features
+- Prepared ML pipeline (train-test split + scaling)
+- Trained models and evaluated performance
 
-Q1, Q3
+📌 **Actual Evaluation Results**
+- **Random Forest (Cost Prediction)**
+  - RMSE: `0.03425175`
+  - MAE: `0.01396171`
+  - R² Score: `0.98610537`
 
-Lower bound
+- **XGBoost (CO₂ Prediction)**
+  - RMSE: `0.00118505`
+  - MAE: `0.00099652`
+  - R² Score: `0.99998250`
 
-Upper bound
+---
 
-Outlier count per column
+### ✅ Milestone 3 – Backend + Frontend Integration  
+**Completed Tasks**
+- Flask backend API with CORS + Blueprint routing
+- Main endpoints:
+  - `GET /` (health check)
+  - `POST /predict` (recommendation + ranking)
+- Web frontend UI:
+  - input form (weight, volume, fragility)
+  - best material display
+  - ranking table display
 
-4️⃣ Outlier Treatment (Clipping)
-df_clean[numeric_cols] = df[numeric_cols].clip(lower_bound, upper_bound, axis=1)
+---
 
-✔ All outliers were successfully removed.
+## 🔌 API Endpoints  
 
-5️⃣ Cleaned Dataset Export
-Exported cleaned dataset as:
+| Method | Endpoint | Purpose |
+|--------|----------|---------|
+| GET | `/` | Backend status check |
+| POST | `/predict` | Returns best recommendation + ranking |
 
-materials_cleaned.csv
+---
 
-This file will be used in further milestones.
+## 🧪 Example API Request  
 
-📁 Project Structure
-Packaging-Recommendation-System/ │ README.md │ requirements.txt │ ├── notebooks/ │ milestone1_data_preprocessing.ipynb │ ├── data/ │ materials_cleaned.csv
+```json
+POST /predict
+{
+  "weight": 2.5,
+  "volume": 800,
+  "fragility": 4
+}
+```
 
-🛠️ Tools & Technologies Used
-Python
+## ✅ Example API Response  
 
-Pandas
+```json
+{
+  "best_material": 101,
+  "best_price_inr": 750.5,
+  "best_cost_index": 0.652,
+  "best_eco_score": 98.4,
+  "ranking": [
+    {
+      "material": 101,
+      "price_inr": 750.5,
+      "cost_index": 0.652,
+      "co2": 1.6,
+      "eco_score": 98.4
+    }
+  ]
+}
+```
 
-NumPy
+---
 
-Jupyter Notebook
+## 📂 Project Structure  
 
-VS Code
+```
+Packaging-Recommendation-System/
+│ README.md
+│ requirements.txt
+│ Project_Documentation.md
+│
+├── notebooks/
+│   module1.ipynb
+│   module2.ipynb
+│   module3.ipynb
+│   module4.ipynb
+│
+├── dataset/
+│   data.csv
+│   cleaned_materials.csv
+│
+├── backend/
+│   app.py
+│   config.py
+│   database.py
+│   models.py
+│   recommendation_routes.py
+│   product_routes.py
+│   ai_model.py
+│   env_score.py
+│
+└── frontend/
+    index.html
+    style.css
+    app.js
+```
 
-MySQL
+---
 
-Git & GitHub
+## ⚙️ Installation & Setup  
 
-🚀 Upcoming Milestone: Feature Engineering
-Milestone 2 will include:
+### 1️⃣ Clone Repository  
+```bash
+git clone <your-repository-url>
+cd Packaging-Recommendation-System
+```
 
-Sustainability Score
+### 2️⃣ Install Dependencies  
+```bash
+pip install -r requirements.txt
+```
 
-CO₂ Impact Index
+---
 
-Cost Efficiency Index
+## ▶️ Run the Project  
 
-Durability Normalization
+### ✅ Run Backend  
+```bash
+python app.py
+```
 
-Correlation Heatmaps & EDA Visualizations
+Backend will start at:
+```
+http://127.0.0.1:5000
+```
 
-📞 Contact
-Maintainer: Ayush Kumar Pandey Email: ayushpandey1974@gmail.com
+### ✅ Run Frontend  
+Open `frontend/index.html` using:
+- VS Code Live Server (recommended)
 
-GitHub: github.com/ayushpandey3357
+---
+
+## 🚀 Future Enhancements  
+- Add more endpoints (`/predict/cost`, `/predict/co2`, `/materials`)
+- Store recommendation history in MySQL
+- Improve ranking using weighted composite scoring
+- Cloud deployment (Render / Railway / AWS)
