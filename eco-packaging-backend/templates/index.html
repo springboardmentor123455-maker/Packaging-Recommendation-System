@@ -1,0 +1,34 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Eco Packaging Decision Engine</title>
+    <link rel="stylesheet" href="/static/style.css">
+</head>
+<body>
+
+<div class="container">
+    <h1>Eco-Friendly Packaging Decision Engine</h1>
+    <p class="subtitle">Smart material selection based on sustainability logic</p>
+
+    <div class="controls">
+        <select id="weight">
+            <option>Low</option>
+            <option selected>Medium</option>
+            <option>High</option>
+        </select>
+
+        <select id="fragility">
+            <option>Low</option>
+            <option selected>Medium</option>
+            <option>High</option>
+        </select>
+
+        <button onclick="getResults()">Generate Recommendation</button>
+    </div>
+
+    <div id="results"></div>
+</div>
+
+<script src="/static/script.js"></script>
+</body>
+</html>
