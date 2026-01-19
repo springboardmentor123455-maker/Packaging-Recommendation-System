@@ -1,135 +1,151 @@
-/* Global Styling*/
 body {
-    font-family: "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
-    background: linear-gradient(135deg, #f4f7fa, #eef2f7);
-    min-height: 100vh;
-    color: #2d3748;
+  background: #f6f7fb;
+  font-family: system-ui, -apple-system, "Segoe UI", Roboto, Arial, sans-serif;
 }
 
-/*  Headings */
-h2 {
-    font-weight: 600;
-    color: #1a202c;
+/* Header */
+.header-card {
+  background: linear-gradient(135deg, #0f172a, #1e293b);
+  border-radius: 18px;
+  padding: 18px 20px;
+  color: white;
+  box-shadow: 0 12px 30px rgba(0,0,0,0.12);
 }
 
-h5 {
-    font-weight: 600;
-    color: #2f855a;
+.title {
+  font-weight: 800;
+  letter-spacing: 0.3px;
 }
 
-/*  Cards (Main Containers)*/
-.card {
-    background: #ffffff;
-    border: none;
-    border-radius: 14px;
-    box-shadow: 0 10px 30px rgba(0, 0, 0, 0.08);
-    transition: transform 0.2s ease, box-shadow 0.2s ease;
+.subtitle {
+  color: rgba(255,255,255,0.75);
+  font-size: 14px;
 }
 
-.card:hover {
-    transform: translateY(-3px);
-    box-shadow: 0 15px 35px rgba(0, 0, 0, 0.12);
+.badge-box .badge {
+  margin-right: 8px;
 }
 
-/* Form Inputs */
-.form-label {
-    font-weight: 500;
-    margin-bottom: 6px;
-    color: #4a5568;
+/* Cards */
+.form-card,
+.result-card,
+.table-card,
+.kpi-card {
+  border: none;
+  border-radius: 18px;
+  box-shadow: 0 12px 28px rgba(0,0,0,0.06);
+  background: #ffffff;
 }
 
-.form-control {
-    border-radius: 10px;
-    border: 1px solid #cbd5e0;
-    padding: 10px 12px;
-    font-size: 14px;
-    transition: border-color 0.2s ease, box-shadow 0.2s ease;
+/* KPI */
+.kpi-title {
+  font-size: 12px;
+  color: #64748b;
+  font-weight: 800;
+  text-transform: uppercase;
+  letter-spacing: 0.7px;
 }
 
-.form-control:focus {
-    border-color: #38a169;
-    box-shadow: 0 0 0 0.15rem rgba(56, 161, 105, 0.25);
+.kpi-value {
+  font-size: 28px;
+  font-weight: 900;
+  color: #0f172a;
+  margin-top: 6px;
+}
+
+/* Result card */
+.result-card {
+  background: #ffffff;
+  border-left: 6px solid #22c55e;
 }
 
 /* Buttons */
-.btn-success {
-    background: linear-gradient(135deg, #38a169, #2f855a);
-    border: none;
-    border-radius: 10px;
-    padding: 10px 18px;
-    font-weight: 500;
-    font-size: 15px;
-    box-shadow: 0 6px 18px rgba(56, 161, 105, 0.35);
-    transition: transform 0.2s ease, box-shadow 0.2s ease;
+.dashboard-btn {
+  min-width: 180px;
+  font-weight: 800;
 }
 
-.btn-success:hover {
-    transform: translateY(-2px);
-    box-shadow: 0 10px 25px rgba(56, 161, 105, 0.45);
+/* Result layout */
+.result-grid {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 14px;
+  margin-top: 12px;
 }
 
-/*Recommendation Section*/
-#recommendedMaterial {
-    font-size: 18px;
-    margin-top: 8px;
-}
-
-#ecoScore,
-#estimatedCost {
-    margin: 0;
-    font-size: 14px;
-    color: #4a5568;
-}
-
-/* Table Styling*/
-.table {
-    border-radius: 12px;
-    overflow: hidden;
-    margin-bottom: 0;
-}
-
-.table thead {
-    background: linear-gradient(135deg, #2f855a, #276749);
-    color: #ffffff;
-}
-
-.table th {
-    font-weight: 500;
-    text-transform: uppercase;
-    font-size: 12px;
-    letter-spacing: 0.05em;
-    border: none;
-}
-
-.table td {
-    font-size: 14px;
-    vertical-align: middle;
-    border-color: #e2e8f0;
-}
-
-.table tbody tr {
-    transition: background-color 0.2s ease;
-}
-
-.table tbody tr:hover {
-    background-color: #f0fff4;
-}
-
-/* 
-   Ranking Highlight
-*/
-.table tbody tr:first-child {
-    background-color: #f0fff4;
-    font-weight: 600;
-}
-
-/*  Responsive Tweaks */
 @media (max-width: 768px) {
-    h2 {
-        font-size: 20px;
-    }
+  .result-grid {
+    grid-template-columns: 1fr;
+  }
+}
 
-    .btn-success {
-        width: 100%;
-    }
+.result-box {
+  background: #f8fafc;
+  border: 1px solid rgba(0,0,0,0.06);
+  border-radius: 14px;
+  padding: 12px 14px;
+}
+
+.result-box .label {
+  font-size: 12px;
+  color: #64748b;
+  margin-bottom: 4px;
+  font-weight: 700;
+}
+
+.result-box .value {
+  font-size: 18px;
+  font-weight: 900;
+  color: #0f172a;
+}
+
+/* Pill */
+.pill {
+  background: rgba(59,130,246,0.12);
+  color: #2563eb;
+  border-radius: 999px;
+  padding: 6px 10px;
+  font-size: 12px;
+  font-weight: 900;
+}
+
+/* Notes */
+.note {
+  color: #64748b;
+  font-size: 13px;
+}
+
+/* Table polish */
+.table td, .table th {
+  vertical-align: middle;
+}
+
+.table thead th {
+  border-color: rgba(255,255,255,0.15) !important;
+}
+/* ===== FIXED Header (Index + Dashboard) ===== */
+.header-card {
+  position: fixed;
+  top: 20px;
+  left: 50%;
+  transform: translateX(-50%);
+  width: min(1320px, 92%);
+  z-index: 9999;
+  border-radius: 22px;
+}
+
+
+
+
+
+/* Small spacing so content doesn't hide under sticky header */
+body {
+  padding-top: 95px;
+}
+
+/* Optional: smooth sticky shadow effect */
+.header-card {
+  box-shadow: 0 10px 35px rgba(0, 0, 0, 0.18);
+  overflow: hidden;
+  background: linear-gradient(135deg, #0f172a, #1e293b);
 }
