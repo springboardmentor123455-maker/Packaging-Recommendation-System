@@ -1,119 +1,130 @@
 # EcoPackAI - Sustainable Packaging Recommendation System
 
-## Project Overview
+## 📘 Project Documentation & Methodology
 
-An AI-powered platform for recommending eco-friendly packaging materials based on product attributes and sustainability parameters.
+**Project Name:** EcoPackAI  
+**Domain:** Supply Chain Sustainability & AI  
+**Tech Stack:** Python, Flask, Pandas, SQLite/PostgreSQL, HTML/CSS/JS
 
-## Implementation Status
+---
 
-**Milestone 1 (Week 1-2): Complete**
-- Data collection and management
-- Data cleaning and preprocessing
-- Feature engineering
-- Validation and quality assurance
+## 🚀 1. Data Collection & Architecture (Milestone 1)
 
-**Milestone 2 (Week 3-4): Complete**
-- Machine Learning Dataset Preparation
-- Train Cost & CO2 Prediction Models (Random Forest, XGBoost)
-- Recommendation Engine Development
-- Verification & Testing
+### **Objective**
+To build a robust dataset representing various packaging materials and their environmental impact.
 
-**Milestone 3 (Week 5-6): Complete**
-- Flask Backend API Implementation
-- Frontend UI Development (Glassmorphism Design)
-- Dynamic Recommendation Interface
-- Database Integration
+### **Methodology used**
+Since real-world proprietary data is scarce, we used **Synthetic Data Generation**.
+*   **Tools:** `Faker`, `NumPy`, `Pandas`.
+*   **Process:**
+    1.  defined 15 core **Material Types** (e.g., Corrugated Cardboard, Corn Starch, Mushroom Packaging).
+    2.  Generated **1200 data points**.
+    3.  Simulated plausible relationships (e.g., higher strength $\approx$ slightly higher cost).
+*   **Key Attributes:** `CO2_Emission`, `Biodegradability_Score`, `Cost_per_kg`, `Water_Resistance`.
 
-## Dataset Summary
+### **Data Cleaning**
+*   **Outliers:** Used **IQR (Interquartile Range)** method to detect and cap extreme values in Cost and CO2.
+*   **Missing Values:** Imputed using category-wise mean filling.
+*   **Normalization:** Applied **Min-Max Scaling** to normalize scores between 0-100 for easier comparison.
 
-### Materials Dataset
-- **Total Records**: 1200
-- **Material Types**: 15 eco-friendly packaging types
-- **Parameters**: 11 core attributes per material
+---
 
-### Product Categories
-- **Total Categories**: 12
-- **Coverage**: Electronics, Food, Cosmetics, Pharmaceuticals, etc.
+## 🗄️ 2. Database Implementation (Milestone 1 & 2)
 
-## Key Features
+### **Objective**
+Store and retrieve material standards and recommendations efficiently.
 
-### Engineered Metrics
-1. **CO₂ Impact Index** - Environmental impact score (0-100)
-2. **Cost Efficiency Index** - Value for money metric (0-100)
-3. **Material Suitability Score** - Composite sustainability rating (0-100)
-4. **Sustainability Rating** - 1-5 star environmental grade
+### **Methodology**
+*   **Hybrid Approach:** 
+    *   We designed the system for **PostgreSQL** (Production standard) but implemented a smart fallback to **SQLite/CSV** for local development ease.
+*   **Schema Design:**
+    *   `materials_data`: Master table for all material properties.
+    *   `product_categories`: Rules for what material suits what product (e.g., Electronics need high cushion).
+*   **Why this approach?** It allows the app to run instantly on any machine without complex database installation validation.
 
-### Web Application
-- **Modern UI**: Dark-themed, glassmorphism design with responsive layout.
-- **Parametrization**: Input product category, strength, and constraints.
-- **AI Ranking**: Real-time scoring and ranking of materials using ML models.
-- **Visuals**: Progress bars for suitability scores and badges for top ranks.
+---
 
-## Project Structure
+## 🧠 3. AI & Recommendation Engine (Milestone 2)
 
-```
-infosys/
-├── app/
-│   ├── templates/
-│   │   └── index.html               # Main frontend interface
-│   ├── static/
-│   │   ├── css/style.css            # Custom styling
-│   │   └── js/script.js             # Frontend logic
-│   ├── __init__.py                  # Flask app factory
-│   ├── app.py                       # App entry point (circular dep fixed in run.py)
-│   ├── routes.py                    # API Routes
-│   └── database.py                  # Database connection logic
-│
-├── data/
-│   ├── materials.csv                # Raw materials data (1200 records)
-│   ├── product_categories.csv       # Product categories (12 types)
-│   ├── materials_cleaned.csv        # Preprocessed dataset
-│   ├── materials_engineered.csv     # Feature-engineered dataset
-│   └── ...
-│
-├── run.py                           # Application startup script
-├── ml_models.py                     # ML Model Definitions
-├── train_models.py                  # Model Training Script
-├── recommendation_engine.py         # Recommendation Logic
-├── setup_database.py                # PostgreSQL setup script
-├── database_schema.sql              # Database schema definition
-└── requirements.txt                 # Dependencies
-```
+### **Objective**
+To intelligently rank materials based on user constraints.
 
-## Setup and Execution
+### **Methodology**
+*   **Scoring Algorithm:** We developed a **Weighted Suitability Score**.
+    *   *Formula:* $Score = (0.4 \times Bio) + (0.3 \times Strength) - (0.2 \times CO2) - (0.1 \times Cost)$
+*   **Filtering:** The engine first filters materials that meet the "Hard Constraints" (e.g., if User says "Must be Waterproof", strictly remove non-waterproof items).
+*   **Ranking:** remaining items are sorted by the calculated Suitability Score.
 
-### Dependencies
-```bash
-pip install pandas numpy scikit-learn matplotlib seaborn psycopg2-binary faker scipy xgboost flask
-```
+---
 
-### Running the Pipeline
-```bash
-# 1. Setup Database
-python setup_database.py
+## 💻 4. Web Application Development (Milestone 3)
 
-# 2. Train ML Models (Required for app)
-python train_models.py
+### **Objective**
+Create a user-friendly interface for Supply Chain Managers.
 
-# 3. Run Web Application
-python run.py
-```
+### **Tech Stack**
+*   **Backend:** **Flask (Python)**. Lightweight and fast.
+    *   `routes.py`: Handles HTTP requests.
+    *   `run.py`: Entry point for the server.
+*   **Frontend:** **HTML5, CSS3, JavaScript**.
+    *   **Design Style:** **Glassmorphism** (Translucent backgrounds, blur effects) for a modern, premium look.
+    *   **Responsiveness:** CSS Grid/Flexbox used to ensure it works on Tablets/Desktops.
+*   **Integration:** The Frontend sends JSON data to Flask features, Flask consults the AI engine, and returns JSON results.
 
-Access the application at: **http://127.0.0.1:5001/**
+---
 
-## Results
+## 📊 5. BI Dashboard (Milestone 4)
 
-### Top Sustainable Materials (by Suitability Score)
-1. Recycled Paper Grade Standard - 79.11 (5 stars)
-2. Recycled Paper Grade Economy - 78.73 (5 stars)
-3. Hemp Packaging Grade Economy - 78.40 (4 stars)
-4. Recycled Paper Grade C - 77.73 (4 stars)
-5. Recycled Paper Grade A - 77.64 (4 stars)
+### **Objective**
+To visualize sustainability impact and market trends.
 
-## Database Schema
+### **Methodology**
+*   **Visuals:** Implemented interactive charts using **Chart.js**.
+*   **Key Metrics:**
+    *   **Market vs. Sustainable:** Bar charts comparing average CO2 of general market vs. our green recommendations.
+    *   **Cost Analysis:** Scatter plots showing Cost vs. Eco-friendliness.
+    *   **Material Distribution:** Pie charts of available material types.
 
-PostgreSQL database ready for deployment with:
-- `materials_data` table - All material attributes
-- `product_categories` table - Category specifications
-- `packaging_recommendations` table - ML prediction storage
-- Indexed columns for performance optimization
+---
+
+## ☁️ 6. Deployment Guide (Render.com)
+
+### **How to Deploy (Step-by-Step)**
+
+This application is "Cloud Ready". Follow these steps to deploy on Render (Free Tier):
+
+**1. Prepare the Code**
+*   Ensure `requirements.txt` is present (Already done).
+*   Ensure `run.py` uses `port=os.environ.get("PORT", 5000)` (Already handled).
+
+**2. Push to GitHub**
+*   Create a repo on GitHub.
+*   Push all project files to the repo.
+
+**3. Configure Render**
+1.  Go to **dashboard.render.com** -> Click **"New +"** -> **"Web Service"**.
+2.  Connect your GitHub repository.
+3.  **Settings:**
+    *   **Name:** `ecopack-ai`
+    *   **Runtime:** `Python 3`
+    *   **Build Command:** `pip install -r requirements.txt`
+    *   **Start Command:** `gunicorn run:app`
+4.  Click **"Deploy Web Service"**.
+
+**4. Result**
+*   Render will install dependencies and start Gunicorn.
+*   You will get a URL (e.g., `https://ecopack-ai.onrender.com`) to access your live app.
+
+---
+
+## 📈 Project Status Summary
+
+| Module | Status | Technology Used |
+| :--- | :--- | :--- |
+| **Data Cleaning** | ✅ Completed | Pandas, NumPy |
+| **Database** | ✅ Completed | SQLite / CSV Fallback |
+| **AI Model** | ✅ Completed | Scikit-Learn |
+| **Backend API** | ✅ Completed | Flask |
+| **Frontend UI** | ✅ Completed | CSS3 Glassmorphism |
+| **Dashboard** | ✅ Completed | Chart.js |
+| **Deployment** | ⏳ Ready | Render Configuration |
