@@ -2,7 +2,7 @@
    GLOBAL THEME (Index + Dashboard)
    ============================== */
 
-/* ✅ Theme variables */
+/*  Theme variables */
 :root{
   --page-bg: #f6f7fb;
 
@@ -15,7 +15,7 @@
   --header-total-space: calc(var(--header-gap-top) + var(--header-height) + var(--content-gap));
 }
 
-/* ✅ TOP MASK: prevents content from showing above fixed header */
+/*  TOP MASK: prevents content from showing above fixed header */
 body::before {
   content: "";
   position: fixed;
@@ -23,19 +23,19 @@ body::before {
   left: 0;
   right: 0;
 
-  /* ✅ exactly equal to total header spacing */
+  /*  exactly equal to total header spacing */
   height: var(--header-total-space);
 
   background: var(--page-bg);
   z-index: 99998; /* header is 99999 so header stays above */
 }
 
-/* ✅ Body main styling */
+/*  Body main styling */
 body {
   background: var(--page-bg);
   font-family: system-ui, -apple-system, "Segoe UI", Roboto, Arial, sans-serif;
 
-  /* ✅ important: constant gap from top */
+  /*  important: constant gap from top */
   padding-top: var(--header-total-space);
   margin: 0;
 }
@@ -91,7 +91,7 @@ body {
   background: #ffffff;
 }
 
-/* ✅ IMPORTANT:
+/*  IMPORTANT:
    Form card ko header se chipakne mat dena
    (But gap already padding-top se aa raha hai)
 */
@@ -145,7 +145,7 @@ body {
 }
 
 @media (max-width: 768px) {
-  /* ✅ Mobile: header usually bigger height */
+  /*  Mobile: header usually bigger height */
   :root{
     --header-height: 140px;
     --content-gap: 22px;
