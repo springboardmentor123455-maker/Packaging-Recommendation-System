@@ -1,3 +1,4 @@
+import os
 import joblib
 import pandas as pd
 import numpy as np
@@ -5,12 +6,15 @@ from fastapi import FastAPI, HTTPException
 from pydantic import BaseModel
 from sqlalchemy import create_engine
 
-# --- CONFIGURATION ---
-DB_USER = "postgres"
-DB_PASS = "0816"   # <--- Your Password
-DB_NAME = "ecopack_db"
-DB_HOST = "localhost"
+# # --- CONFIGURATION ---
+# DB_USER = "postgres"
+# DB_PASS = "0816"   # <--- Your Password
+# DB_NAME = "ecopack_db"
+# DB_HOST = "localhost"
+DATABASE_URL = os.getenv("postgresql://neondb_owner:npg_wLV9zEcHyZ8h@ep-little-sun-ah1ijpio-pooler.c-3.us-east-1.aws.neon.tech/neondb?sslmode=require&channel_binding=require")
 
+# Ensure the engine uses this new URL
+engine = create_engine(DATABASE_URL)
 # --- LOAD ML MODELS (The "Brains") ---
 # We load them once at startup so we don't waste time reloading for every request
 # --- LOAD ML MODELS ---
