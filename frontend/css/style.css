@@ -1,15 +1,66 @@
-body {
-  background: #f6f7fb;
-  font-family: system-ui, -apple-system, "Segoe UI", Roboto, Arial, sans-serif;
+/* ==============================
+   GLOBAL THEME (Index + Dashboard)
+   ============================== */
+
+/* ✅ Theme variables */
+:root{
+  --page-bg: #f6f7fb;
+
+  /* Fixed header positioning */
+  --header-gap-top: 20px;     /* header starts 20px from top */
+  --header-height: 95px;      /* approx height of header box */
+  --content-gap: 1px;        /* ✅ gap between header and first card */
+
+  /* Total spacing needed to push content below header */
+  --header-total-space: calc(var(--header-gap-top) + var(--header-height) + var(--content-gap));
 }
 
-/* Header */
+/* ✅ TOP MASK: prevents content from showing above fixed header */
+body::before {
+  content: "";
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+
+  /* ✅ exactly equal to total header spacing */
+  height: var(--header-total-space);
+
+  background: var(--page-bg);
+  z-index: 99998; /* header is 99999 so header stays above */
+}
+
+/* ✅ Body main styling */
+body {
+  background: var(--page-bg);
+  font-family: system-ui, -apple-system, "Segoe UI", Roboto, Arial, sans-serif;
+
+  /* ✅ important: constant gap from top */
+  padding-top: var(--header-total-space);
+  margin: 0;
+}
+
+/* ==============================
+   FIXED HEADER (Index + Dashboard)
+   ============================== */
+
 .header-card {
+  position: fixed;
+  top: var(--header-gap-top);
+  left: 50%;
+  transform: translateX(-50%);
+  width: min(1320px, 92%);
+  z-index: 99999;
+
   background: linear-gradient(135deg, #0f172a, #1e293b);
-  border-radius: 18px;
+  border-radius: 22px;
   padding: 18px 20px;
   color: white;
-  box-shadow: 0 12px 30px rgba(0,0,0,0.12);
+
+  overflow: hidden;
+  opacity: 1;
+
+  box-shadow: 0 12px 35px rgba(0, 0, 0, 0.20);
 }
 
 .title {
@@ -18,7 +69,7 @@ body {
 }
 
 .subtitle {
-  color: rgba(255,255,255,0.75);
+  color: rgba(255, 255, 255, 0.75);
   font-size: 14px;
 }
 
@@ -26,18 +77,38 @@ body {
   margin-right: 8px;
 }
 
-/* Cards */
+/* ==============================
+   COMMON CARDS UI
+   ============================== */
+
 .form-card,
 .result-card,
 .table-card,
 .kpi-card {
   border: none;
   border-radius: 18px;
-  box-shadow: 0 12px 28px rgba(0,0,0,0.06);
+  box-shadow: 0 12px 28px rgba(0, 0, 0, 0.06);
   background: #ffffff;
 }
 
-/* KPI */
+/* ✅ IMPORTANT:
+   Form card ko header se chipakne mat dena
+   (But gap already padding-top se aa raha hai)
+*/
+.form-card {
+  margin-top: 0 !important;
+}
+
+/* Result card style */
+.result-card {
+  background: #ffffff;
+  border-left: 6px solid #22c55e;
+}
+
+/* ==============================
+   KPI CARDS
+   ============================== */
+
 .kpi-title {
   font-size: 12px;
   color: #64748b;
@@ -53,19 +124,19 @@ body {
   margin-top: 6px;
 }
 
-/* Result card */
-.result-card {
-  background: #ffffff;
-  border-left: 6px solid #22c55e;
-}
+/* ==============================
+   BUTTONS
+   ============================== */
 
-/* Buttons */
 .dashboard-btn {
   min-width: 180px;
   font-weight: 800;
 }
 
-/* Result layout */
+/* ==============================
+   RESULT GRID (Index)
+   ============================== */
+
 .result-grid {
   display: grid;
   grid-template-columns: repeat(3, 1fr);
@@ -74,6 +145,12 @@ body {
 }
 
 @media (max-width: 768px) {
+  /* ✅ Mobile: header usually bigger height */
+  :root{
+    --header-height: 140px;
+    --content-gap: 22px;
+  }
+
   .result-grid {
     grid-template-columns: 1fr;
   }
@@ -81,7 +158,7 @@ body {
 
 .result-box {
   background: #f8fafc;
-  border: 1px solid rgba(0,0,0,0.06);
+  border: 1px solid rgba(0, 0, 0, 0.06);
   border-radius: 14px;
   padding: 12px 14px;
 }
@@ -99,9 +176,12 @@ body {
   color: #0f172a;
 }
 
-/* Pill */
+/* ==============================
+   SMALL PILL
+   ============================== */
+
 .pill {
-  background: rgba(59,130,246,0.12);
+  background: rgba(59, 130, 246, 0.12);
   color: #2563eb;
   border-radius: 999px;
   padding: 6px 10px;
@@ -109,43 +189,24 @@ body {
   font-weight: 900;
 }
 
-/* Notes */
+/* ==============================
+   NOTES
+   ============================== */
+
 .note {
   color: #64748b;
   font-size: 13px;
 }
 
-/* Table polish */
-.table td, .table th {
+/* ==============================
+   TABLE STYLE
+   ============================== */
+
+.table td,
+.table th {
   vertical-align: middle;
 }
 
 .table thead th {
-  border-color: rgba(255,255,255,0.15) !important;
-}
-/* ===== FIXED Header (Index + Dashboard) ===== */
-.header-card {
-  position: fixed;
-  top: 20px;
-  left: 50%;
-  transform: translateX(-50%);
-  width: min(1320px, 92%);
-  z-index: 9999;
-  border-radius: 22px;
-}
-
-
-
-
-
-/* Small spacing so content doesn't hide under sticky header */
-body {
-  padding-top: 95px;
-}
-
-/* Optional: smooth sticky shadow effect */
-.header-card {
-  box-shadow: 0 10px 35px rgba(0, 0, 0, 0.18);
-  overflow: hidden;
-  background: linear-gradient(135deg, #0f172a, #1e293b);
+  border-color: rgba(255, 255, 255, 0.15) !important;
 }

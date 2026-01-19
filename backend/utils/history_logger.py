@@ -4,12 +4,12 @@ import os
 import csv
 from datetime import datetime
 
-# ✅ absolute path (no path confusion)
+# absolute path (no path confusion)
 BASE_DIR = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))  # backend/
 DB_DIR = os.path.join(BASE_DIR, "databases")
 HISTORY_PATH = os.path.join(DB_DIR, "recommendation_history.csv")
 
-# ✅ Fixed columns for dashboard (always same order)
+# Fixed columns for dashboard (always same order)
 FIELDS = [
     "timestamp",
     "weight",
@@ -27,10 +27,10 @@ def log_recommendation(inputs: dict, result: dict):
     Always writes clean CSV with same columns (prevents pandas ParserError).
     """
 
-    # ✅ Ensure databases folder exists
+    # Ensure databases folder exists
     os.makedirs(DB_DIR, exist_ok=True)
 
-    # ✅ Prepare row
+    # Prepare row
     row = {
         "timestamp": datetime.now().strftime("%Y-%m-%d %H:%M:%S"),
 
@@ -44,7 +44,7 @@ def log_recommendation(inputs: dict, result: dict):
         "best_eco_score": result.get("best_eco_score", ""),
     }
 
-    # ✅ Write header only once
+    # Write header only once
     file_exists = os.path.exists(HISTORY_PATH) and os.path.getsize(HISTORY_PATH) > 0
 
     with open(HISTORY_PATH, "a", newline="", encoding="utf-8") as f:

@@ -3,7 +3,7 @@
 let trendChartInstance = null;
 let ecoChartInstance = null;
 
-// ✅ API Base
+//  API Base
 const API_BASE = "http://127.0.0.1:5000/dashboard";
 
 function formatNumber(val, digits = 2) {
@@ -22,7 +22,7 @@ async function fetchJSON(url) {
   return await res.json();
 }
 
-// ✅ KPI Summary
+// KPI Summary
 async function loadSummary(fragilityValue) {
   const url = `${API_BASE}/summary?fragility=${fragilityValue}`;
   const data = await fetchJSON(url);
@@ -32,7 +32,7 @@ async function loadSummary(fragilityValue) {
   document.getElementById("avgCost").innerText = formatNumber(data.avg_cost, 3);
   document.getElementById("topMat").innerText = safeText(data.top_material, "-");
 
-  // ✅ Eco vs CO2 donut chart
+  //  Eco vs CO2 donut chart
   // We don't have avg_co2 in API. So here we show Eco% vs Remaining%
   const eco = Number(data.avg_eco) || 0;
   const remaining = Math.max(0, 100 - eco);
@@ -63,7 +63,7 @@ async function loadSummary(fragilityValue) {
   });
 }
 
-// ✅ Top Materials Chart
+// Top Materials Chart
 async function loadTopMaterials(fragilityValue) {
   const url = `${API_BASE}/top-materials?fragility=${fragilityValue}`;
   const data = await fetchJSON(url);
@@ -99,7 +99,7 @@ async function loadTopMaterials(fragilityValue) {
   });
 }
 
-// ✅ Recent Recommendations Table
+// Recent Recommendations Table
 async function loadRecentTable(fragilityValue) {
   // Get full history
   const url = `${API_BASE}/history`;
@@ -132,7 +132,7 @@ async function loadRecentTable(fragilityValue) {
     return;
   }
 
-  // ✅ IMPORTANT: handle all possible column names from your CSV
+  // IMPORTANT: handle all possible column names from your CSV
   recent10.forEach((row) => {
     const timestamp =
       row.timestamp || row.time || row.datetime || row.created_at || "-";
@@ -164,7 +164,7 @@ async function loadRecentTable(fragilityValue) {
   });
 }
 
-// ✅ Load everything
+//  Load everything
 async function loadDashboard() {
   const fragilityValue = document.getElementById("fragilityFilter").value;
 

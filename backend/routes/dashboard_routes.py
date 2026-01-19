@@ -22,7 +22,7 @@ def load_history():
     return df
 
 
-# ✅ SUMMARY API
+#  SUMMARY API
 @dashboard_bp.route("/summary", methods=["GET"])
 def summary():
     fragility = request.args.get("fragility", "all")
@@ -52,7 +52,7 @@ def summary():
     })
 
 
-# ✅ TOP MATERIALS API
+#  TOP MATERIALS API
 @dashboard_bp.route("/top-materials", methods=["GET"])
 def top_materials():
     fragility = request.args.get("fragility", "all")
@@ -72,7 +72,7 @@ def top_materials():
     return jsonify(result)
 
 
-# ✅ HISTORY JSON API (THIS WAS MISSING)
+#  HISTORY JSON API (THIS WAS MISSING)
 @dashboard_bp.route("/history", methods=["GET"])
 def history():
     df = load_history()
@@ -81,7 +81,7 @@ def history():
     return jsonify(df.to_dict(orient="records"))
 
 
-# ✅ EXPORT EXCEL API (THIS WAS MISSING)
+# EXPORT EXCEL API (THIS WAS MISSING)
 @dashboard_bp.route("/export/excel", methods=["GET"])
 def export_excel():
     df = load_history()
