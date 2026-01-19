@@ -6,17 +6,18 @@ from sklearn.ensemble import RandomForestRegressor
 from sklearn.metrics import mean_squared_error, mean_absolute_error, r2_score
 from xgboost import XGBRegressor
 
+import joblib
 # PATHS
 
-BASE_PREP = "D:/codingvscode/Python vscode/infosysintern/Packaging-Recommendation-System/data/prepared/"
-OUTPUT_DIR  = "D:/codingvscode/Python vscode/infosysintern/Packaging-Recommendation-System/data/"
+BASE_PREP = "D:/codingvscode/Python vscode/Packaging-Recommendation-System/data/prepared/"
+OUTPUT_DIR  = "D:/codingvscode/Python vscode/Packaging-Recommendation-System/data/"
 
 
 #  EXPLICIT RAW CSV PATHS 
 
 
-RAW_PRODUCTS_CSV  = r"D:/codingvscode/Python vscode/infosysintern/Packaging-Recommendation-System/data/products_.csv"
-RAW_MATERIALS_CSV = r"D:/codingvscode/Python vscode/infosysintern/Packaging-Recommendation-System/data/materials_.csv"
+RAW_PRODUCTS_CSV  = r"D:/codingvscode/Python vscode/Packaging-Recommendation-System/data/products.csv"
+RAW_MATERIALS_CSV = r"D:/codingvscode/Python vscode/Packaging-Recommendation-System/data/materials.csv"
 
 # ---- SAFETY CHECK ----
 if not os.path.exists(RAW_PRODUCTS_CSV):
@@ -173,3 +174,11 @@ product_ranking.to_csv(
 )
 
 print("\nMODULE 4 COMPLETE: GLOBAL + PRODUCT-SPECIFIC ML RECOMMENDATIONS READY")
+
+os.makedirs("trained_models", exist_ok=True)
+
+joblib.dump(rf_cost,  "trained_models/cost_model.pkl")
+joblib.dump(xgb_co2,  "trained_models/co2_model.pkl")
+joblib.dump(xgb_pm,   "trained_models/pm_model.pkl")
+
+print("\nModels saved for Flask API")

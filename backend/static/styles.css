@@ -1,0 +1,66 @@
+body {
+  background: #0f172a;
+  color: #e5e7eb;
+}
+
+.dark-card {
+  background: #020617;
+  border-radius: 12px;
+  padding: 20px;
+  box-shadow: 0 0 20px rgba(0,255,150,0.15);
+  border: 1px solid rgba(0,255,150,0.2);
+}
+
+h5 {
+  color: #22c55e;
+}
+
+.table {
+  margin-bottom: 0;
+}
+
+.metrics-box {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 15px;
+}
+
+.metric {
+  background: #020617;
+  padding: 20px;
+  border-radius: 10px;
+  text-align: center;
+  border: 1px solid rgba(0,255,150,0.3);
+  font-size: 1.1rem;
+  font-weight: bold;
+  color: #22c55e;
+}
+
+#dashboard {
+  margin-top: 40px;
+}
+
+.kpi {
+  display: flex;
+  gap: 40px;
+  font-size: 18px;
+}
+
+.kpi-box {
+  background: #0b1220;
+  border: 1px solid #1f2933;
+  border-radius: 12px;
+  padding: 12px;
+  margin-bottom: 10px;
+}
+
+.kpi-box p {
+  margin: 0;
+  font-size: 13px;
+  color: #9ca3af;
+}
+
+.kpi-box h5 {
+  margin-top: 5px;
+  color: #22c55e;
+}
