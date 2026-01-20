@@ -268,7 +268,7 @@ EcoPackAI demonstrates a complete AI-powered sustainable packaging recommendatio
   *Packaging Recommendation System: AI Framework for Sustainable Packaging Design and Material Optimization*
  
 
-##  document file structure
+## 8 .document file structure
 EcoPackAI/
 │
 ├── backend/
@@ -313,4 +313,5 @@ EcoPackAI/
 ├── .gitignore
 └── LICENSE   (optional)
 
-
+## 9. for cloud deployment(netlify)
+https://mellifluous-boba-8c51ef.netlify.app/
