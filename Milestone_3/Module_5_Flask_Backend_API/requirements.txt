@@ -1,5 +1,5 @@
-pandas>=2.0.3
-numpy
+pandas
+numpy<2.0
 psycopg2-binary
 scikit-learn
 matplotlib
