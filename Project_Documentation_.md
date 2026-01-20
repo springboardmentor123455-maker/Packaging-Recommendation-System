@@ -226,36 +226,142 @@ POST /predict
 
 ---
 
+### Milestone 4: Week 7–8  
+
+#### Module 7: Business Intelligence Dashboard  
+**Objective:** Build analytics dashboard to visualize sustainability performance and recommendation insights.
+
+**Implementation:**  
+- Built sustainability analytics using Python visualization libraries.
+- Generated charts to represent:
+  - **CO₂ Reduction Percentage**
+  - **Cost Savings**
+  - **Material Usage Trends**
+- Used plotting libraries:
+  - `matplotlib` / `plotly` (as per requirement)
+- Dashboard visuals prepared using project dataset and prediction results.
+
+**Analytics Included:**  
+1. **CO₂ Reduction %** – comparison of CO₂ before/after eco recommendation  
+2. **Cost Savings** – cost comparison between normal vs optimized materials  
+3. **Material Usage Trends** – usage trend by material type/category  
+
+**Results:**  
+- Sustainability dashboard created successfully  
+- Charts generated for CO₂ reduction, cost saving, and usage trends  
+- Dashboard output ready for project presentation  
+
+---
+
+#### Module 8: Deployment & Documentation  
+**Objective:** Deploy the complete system and finalize technical documentation.
+
+**Implementation:**  
+- Deployed Flask backend on **Render**
+- Connected deployed backend to **MySQL database**
+- Verified deployed system:
+  - Backend API running online
+  - MySQL connection working
+  - Frontend connected to deployed backend
+
+**Deployment Tasks Completed:**  
+1. Render Web Service setup (Flask backend)  
+2. Configured environment variables for DB credentials  
+3. Connected MySQL cloud DB in Render deployment  
+4. Production server started successfully  
+5. Tested API endpoints (`/predict`) after deployment  
+
+**Documentation Completed:**  
+- Technical documentation (`Project_Documentation.md`)
+- GitHub README (`README.md`)
+
+*(Report + video demo will be done later as per requirement.)*
+
+**Results:**  
+- ✅ Project deployed successfully on Render  
+- ✅ MySQL database connected successfully  
+- ✅ Deployed `/predict` API working correctly  
+- ✅ Documentation and README completed  
+
+---
+
 ## Technical Implementation  
 
 ### File Structure (As implemented)  
 
 ```
 Packaging-Recommendation-System/
-├── dataset/
-│   ├── data.csv
-│   └── cleaned_materials.csv
-├── notebooks/
-│   ├── module1.ipynb
-│   ├── module2.ipynb
-│   ├── module3.ipynb
-│   └── module4.ipynb
+├── .venv/
+│
 ├── backend/
+│   ├── __pycache__/
+│   ├── databases/
+│   │   ├── dashboard_report.xlsx
+│   │   ├── recommendation_history.csv
+│   │   └── sustainability_report.xlsx
+│   │
+│   ├── routes/
+│   │   ├── __pycache__/
+│   │   ├── dashboard_routes.py
+│   │   ├── product_routes.py
+│   │   └── recommendation_routes.py
+│   │
+│   ├── utils/
+│   │   ├── __pycache__/
+│   │   ├── ai_model.py
+│   │   ├── env_score.py
+│   │   └── history_logger.py
+│   │
 │   ├── app.py
 │   ├── config.py
 │   ├── database.py
 │   ├── models.py
-│   ├── routes/
-│   │   ├── recommendation_routes.py
-│   │   └── product_routes.py
-│   └── utils/
-│       ├── ai_model.py
-│       └── env_score.py
+│   └── requirements.txt
+│
+├── databases/
+│   ├── import.sql
+│   ├── recommendation_history.csv
+│   ├── schema.sql
+│   └── validation.sql
+│
+├── dataset/
+│   ├── cleaned_materials.csv
+│   └── recommendation_history.csv
+│
 ├── frontend/
-│   ├── index.html
-│   ├── style.css
-│   └── app.js
+│   ├── css/
+│   │   └── style.css
+│   │
+│   ├── js/
+│   │   ├── app.js
+│   │   └── dashboard.js
+│   │
+│   ├── dashboard.html
+│   └── index.html
+│
+├── notebooks/
+│   ├── cleaned_materials.csv
+│   ├── data.csv
+│   ├── module1.ipynb
+│   ├── module2.ipynb
+│   ├── module3.ipynb
+│   └── module4.ipynb
+│
+├── Packaging-Recommendation-System/        # (folder)
+│
+├── AI Framework for Sustainable Packa...   # (PDF/Doc file)
+├── Branch_details.xlsx
+├── data.csv
+├── LICENSE
+├── materials_cleaned.csv
+├── materials_milestone1_final.csv
+├── milestone1_data_preprocessing.ipynb
+├── milestone2_model_training.ipynb
+├── Packaging_Recommendation_System...      # (Doc file)
+├── Project_Documentation_.md
+├── README.md
 └── requirements.txt
+
 ```
 
 ### Dependencies (requirements.txt)  
@@ -301,6 +407,11 @@ pymysql (used in MySQL URI)
 **Solution:** Used fetch API + DOM update code in `app.js`  
 **Result:** Ranking table and best recommendation now display dynamically  
 
+### Challenge 3: Deployment connection errors  
+**Problem:** Database connection errors during deployment  
+**Solution:** Configured correct MySQL connection string and environment variables on Render  
+**Result:** Deployment worked successfully with live DB connection  
+
 ---
 
 ## Usage Guide  
@@ -335,19 +446,22 @@ POST http://127.0.0.1:5000/predict
 1. Add multiple API endpoints (cost, CO₂, materials list)  
 2. Improve ranking logic using weighted composite scoring  
 3. Store history of recommendations in database  
-4. Deployment using cloud services  
+4. Improve BI dashboard with interactive charts and filters  
+5. Add report + project video demonstration  
 
 ---
 
 ## Conclusion  
 
-The Packaging Recommendation System successfully demonstrates an end-to-end AI pipeline: dataset management, preprocessing, ML model training, ranking-based recommendations, and full-stack integration with Flask backend and web frontend. The system provides dynamic eco-friendly packaging recommendations with high ML performance.
+The Packaging Recommendation System successfully demonstrates an end-to-end AI pipeline: dataset management, preprocessing, ML model training, ranking-based recommendations, full-stack integration, BI insights and cloud deployment.
 
 **Key Achievements:**  
 - ✅ Dataset preprocessing + feature engineering completed  
 - ✅ High-performing Random Forest and XGBoost models  
 - ✅ Flask backend integration with frontend  
 - ✅ Dynamic best recommendation + full ranking output  
+- ✅ Deployment completed on Render with MySQL connection  
+- ✅ Sustainability analytics dashboard created  
 
 ---
 
