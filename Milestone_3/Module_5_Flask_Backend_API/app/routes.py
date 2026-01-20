@@ -34,6 +34,10 @@ def get_categories():
 
 @app.route('/api/recommend', methods=['POST'])
 def recommend():
+    recommendations_df = None
+    engine = None
+    
+    # Try to initialize AI Engine (Lazy Load)
     try:
         from recommendation_engine import RecommendationEngine
         # Lazy initialization
@@ -41,8 +45,8 @@ def recommend():
         engine = RecommendationEngine(model_dir=models_dir)
         print("✓ Recommendation Engine initialized successfully (Lazy Load)")
     except Exception as e:
-         print(f"Error initializing Engine: {e}")
-         return jsonify({'error': 'Failed to initialize AI Engine'}), 500
+         print(f"⚠️ Warning: Failed to initialize AI Engine: {e}. Switching to Simple/Rule-Based Fallback.")
+         engine = None
 
     data = request.json
     
@@ -57,18 +61,49 @@ def recommend():
         
         print(f"DEBUG: Parsed params - Strength: {required_strength}, MaxCost: {valid_max_cost}, MaxCO2: {valid_max_co2}")
 
-        # Get recommendations
-        recommendations_df = engine.recommend_materials(
-            required_strength=required_strength,
-            max_cost=valid_max_cost,
-            max_co2=valid_max_co2
-        )
+        if engine:
+            try:
+                # Get recommendations from AI
+                recommendations_df = engine.recommend_materials(
+                    required_strength=required_strength,
+                    max_cost=valid_max_cost,
+                    max_co2=valid_max_co2
+                )
+                # Cleanup AI memory immediately
+                del engine
+                import gc
+                gc.collect()
+            except Exception as e:
+                print(f"⚠️ AI Engine Runtime Error: {e}. Fallback to Simple Logic.")
+                recommendations_df = None
         
-        # Explicit garbage collection to free memory
-        del engine
-        import gc
-        gc.collect()
-        
+        # FALLBACK: If AI failed or wasn't loaded
+        if recommendations_df is None:
+            print("ℹ️ Using Simple Rule-Based Filtering (Fallback)...")
+            from ml_preparation import load_data_from_db
+            df = load_data_from_db()
+            
+            # Filter Logic
+            filtered_df = df.copy()
+            if required_strength > 0:
+                filtered_df = filtered_df[filtered_df['strength'] >= required_strength]
+            if valid_max_cost is not None:
+                filtered_df = filtered_df[filtered_df['cost_per_kg'] <= valid_max_cost]
+            if valid_max_co2 is not None:
+                filtered_df = filtered_df[filtered_df['co2_emission_score'] <= valid_max_co2]
+            
+            # Sort by sustainable score descending
+            # Calculate a simple score if not present
+            if 'sustainable_score' not in filtered_df.columns:
+                 # Normalize and combine (Simple heuristic)
+                 filtered_df['sustainable_score'] = (
+                     (filtered_df['biodegradability_score'] / 100) * 0.4 + 
+                     (1 - (filtered_df['co2_emission_score'] / filtered_df['co2_emission_score'].max())) * 0.4 +
+                     (filtered_df['recyclability_score'] / 10) * 0.2
+                 ) * 100
+            
+            recommendations_df = filtered_df.sort_values(by='sustainable_score', ascending=False).head(5)
+
         if recommendations_df.empty:
              print("DEBUG: No recommendations found.")
              return jsonify({'message': 'No recommendations found matching criteria', 'results': []})
