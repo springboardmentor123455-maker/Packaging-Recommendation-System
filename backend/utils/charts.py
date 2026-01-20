@@ -2,6 +2,20 @@ import matplotlib.pyplot as plt
 import os
 import matplotlib
 matplotlib.use("Agg")
+Flask==3.1.2
+flask-cors==6.0.2
+gunicorn==23.0.0
+
+pandas==2.3.3
+numpy==2.3.5
+sqlalchemy==2.0.45
+psycopg2-binary==2.9.11
+
+matplotlib==3.10.8
+openpyxl==3.1.5
+reportlab==4.2.5
+python-dotenv==1.2.1
+
 
 
 def generate_comparison_charts(analytics, comparison, output_dir):
