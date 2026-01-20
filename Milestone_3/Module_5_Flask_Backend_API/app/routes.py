@@ -21,21 +21,7 @@ ml_prep_dir = os.path.join(root_dir, 'Milestone_2', 'Module_3_ML_Dataset_Prepara
 if ml_prep_dir not in sys.path:
     sys.path.append(ml_prep_dir)
 
-# Import RecommendationEngine
-try:
-    from recommendation_engine import RecommendationEngine
-    # Initialize with the absolute path to the saved models
-    models_dir = os.path.join(rec_model_dir, 'models')
-    engine = RecommendationEngine(model_dir=models_dir)
-    print("✓ Recommendation Engine initialized successfully")
-except ImportError as e:
-    print(f"Error importing RecommendationEngine: {e}")
-    # checking what is in the path
-    print(f"Search paths: {sys.path}")
-    engine = None
-except Exception as e:
-    print(f"Error initializing RecommendationEngine: {e}")
-    engine = None
+# RecommendationEngine initialization moved to inside recommend() route for memory efficiency
 
 @app.route('/')
 def index():
@@ -48,11 +34,17 @@ def get_categories():
 
 @app.route('/api/recommend', methods=['POST'])
 def recommend():
-    if not engine:
-        return jsonify({'error': 'Recommendation Engine not initialized'}), 500
-        
+    try:
+        from recommendation_engine import RecommendationEngine
+        # Lazy initialization
+        models_dir = os.path.join(rec_model_dir, 'models')
+        engine = RecommendationEngine(model_dir=models_dir)
+        print("✓ Recommendation Engine initialized successfully (Lazy Load)")
+    except Exception as e:
+         print(f"Error initializing Engine: {e}")
+         return jsonify({'error': 'Failed to initialize AI Engine'}), 500
+
     data = request.json
-    
     
     # Extract parameters
     try:
@@ -66,12 +58,16 @@ def recommend():
         print(f"DEBUG: Parsed params - Strength: {required_strength}, MaxCost: {valid_max_cost}, MaxCO2: {valid_max_co2}")
 
         # Get recommendations
-        # Note: recommend_materials returns a DataFrame
         recommendations_df = engine.recommend_materials(
             required_strength=required_strength,
             max_cost=valid_max_cost,
             max_co2=valid_max_co2
         )
+        
+        # Explicit garbage collection to free memory
+        del engine
+        import gc
+        gc.collect()
         
         if recommendations_df.empty:
              print("DEBUG: No recommendations found.")
