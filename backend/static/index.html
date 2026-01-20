@@ -1,0 +1,147 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>EcoPackAI – Material Recommendation</title>
+
+    <!-- Bootstrap -->
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet">
+
+    <!-- Custom CSS -->
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+
+<div class="container mt-5">
+    <h2 class="text-center mb-4">EcoPackAI – Packaging Material Recommendation</h2>
+
+    <!-- ================= INPUT FORM ================= -->
+    <div class="card p-4 mb-4">
+        <div class="row g-3">
+
+            <!-- Product Category -->
+            <div class="col-md-12">
+                <label class="form-label fw-semibold">Product Category</label>
+                <select id="productCategory" class="form-select">
+                    <option value="">Select product category</option>
+                    <option value="food">Food Packaging</option>
+                    <option value="electronics">Electronics</option>
+                    <option value="cosmetics">Cosmetics</option>
+                    <option value="pharmaceutical">Pharmaceutical</option>
+                    <option value="industrial">Industrial</option>
+                </select>
+            </div>
+
+            <!-- Weight -->
+            <div class="col-md-6">
+                <label class="form-label">Product Weight (kg)</label>
+                <input type="number" id="productWeight" class="form-control" placeholder="e.g. 2.5">
+            </div>
+
+            <!-- Strength -->
+            <div class="col-md-6">
+                <label class="form-label">Required Strength (MPa)</label>
+                <input type="number" id="strengthRequired" class="form-control" placeholder="e.g. 50">
+            </div>
+
+            <!-- Priority Sliders -->
+            <div class="col-md-12 mt-3">
+                <label class="form-label fw-semibold">Priority Settings</label>
+
+                <div class="mb-2">
+                    <label>Strength Priority</label>
+                    <input type="range" id="priorityStrength" min="1" max="5" value="3" class="form-range">
+                </div>
+
+                <div class="mb-2">
+                    <label>Cost Priority</label>
+                    <input type="range" id="priorityCost" min="1" max="5" value="3" class="form-range">
+                </div>
+
+                <div class="mb-2">
+                    <label>CO₂ Priority</label>
+                    <input type="range" id="priorityCO2" min="1" max="5" value="3" class="form-range">
+                </div>
+            </div>
+        </div>
+
+        <!-- Buttons -->
+        <div class="mt-4">
+            <button class="btn btn-success" onclick="getRecommendations()">
+                Get Recommendations
+            </button>
+
+            <button class="btn btn-primary ms-2" onclick="getReport()">
+                Download PDF
+            </button>
+
+            <button class="btn btn-outline-success ms-2" onclick="downloadExcel()">
+                Download Excel
+            </button>
+        </div>
+    </div>
+
+    <!-- ================= RESULTS TABLE ================= -->
+    <div class="card p-4 mb-4">
+        <h5>Recommended Materials</h5>
+        <table class="table table-bordered mt-3">
+            <thead>
+                <tr>
+                    <th>Material</th>
+                    <th>Cost / Kg</th>
+                    <th>CO₂ Score</th>
+                    <th>Strength</th>
+                    <th>Score</th>
+                </tr>
+            </thead>
+            <tbody id="resultsTable"></tbody>
+        </table>
+    </div>
+
+    <!-- ================= ANALYTICS SUMMARY ================= -->
+    <div class="row mt-4">
+        <div class="col-md-6">
+            <div class="card p-3 text-center">
+                <h5>📉 Cost Savings</h5>
+                <h3 id="costSavings">--%</h3>
+            </div>
+        </div>
+
+        <div class="col-md-6">
+            <div class="card p-3 text-center">
+                <h5>🌱 CO₂ Reduction</h5>
+                <h3 id="co2Reduction">--%</h3>
+            </div>
+        </div>
+    </div>
+
+    <!-- ================= CHARTS ================= -->
+    <div class="mt-5">
+        <h5 class="mb-3">Sustainability Analytics</h5>
+
+        <div class="row">
+            <div class="col-md-6 mb-3">
+                <img id="costChart" class="img-fluid card p-2"
+                     alt="Cost Comparison Chart">
+            </div>
+
+            <div class="col-md-6 mb-3">
+                <img id="co2Chart" class="img-fluid card p-2"
+                     alt="CO₂ Comparison Chart">
+            </div>
+        </div>
+
+        <div class="row">
+            <div class="col-md-12">
+                <img id="usageChart" class="img-fluid card p-2"
+                     alt="Material Usage Trend">
+            </div>
+        </div>
+    </div>
+
+</div>
+
+<!-- Script -->
+<script src="script.js"></script>
+</body>
+</html>
