@@ -1,0 +1,10 @@
+# frontend
+node_modules/
+Packaging-Recommendation-System/node_modules/
+Packaging-Recommendation-System/dist/
+Packaging-Recommendation-System/public/
+Packaging-Recommendation-System/src/
+
+# python
+__pycache__/
+.env

@@ -1,3 +1,4 @@
+<<<<<<< HEAD
 import { useState } from 'react';
 import { Sparkles, Leaf, DollarSign, Wind, Award, ChevronRight, Settings2, Shield, Scale, Recycle, Info, CheckCircle2 } from 'lucide-react';
 import { Button } from '@/components/ui/button';
@@ -8,6 +9,31 @@ import {
   type ProductCategory,
   type PackagingMaterial 
 } from '@/data/packagingMaterials';
+=======
+import { useState } from "react";
+import {
+  Sparkles,
+  Leaf,
+  DollarSign,
+  Wind,
+  Award,
+  Settings2,
+  Shield,
+  Scale,
+  Recycle,
+  Info,
+  CheckCircle2,
+} from "lucide-react";
+import { Button } from "@/components/ui/button";
+import { Slider } from "@/components/ui/slider";
+import {
+  productCategories,
+  type ProductCategory,
+  type PackagingMaterial,
+} from "@/data/packagingMaterials";
+
+/* ================= TYPES ================= */
+>>>>>>> 183d583 (Backend ready for Render deployment)
 
 interface RecommendationParams {
   category: ProductCategory | null;
@@ -27,11 +53,23 @@ interface AdvancedRecommendation {
   rank: number;
 }
 
+<<<<<<< HEAD
 interface AdvancedRecommendationEngineProps {
   onRecommendationsGenerated?: (recommendations: AdvancedRecommendation[]) => void;
 }
 
 export const AdvancedRecommendationEngine = ({ onRecommendationsGenerated }: AdvancedRecommendationEngineProps) => {
+=======
+interface Props {
+  onRecommendationsGenerated?: (r: AdvancedRecommendation[]) => void;
+}
+
+/* ================= COMPONENT ================= */
+
+export const AdvancedRecommendationEngine = ({
+  onRecommendationsGenerated,
+}: Props) => {
+>>>>>>> 183d583 (Backend ready for Render deployment)
   const [params, setParams] = useState<RecommendationParams>({
     category: null,
     weightRequirement: 10,
@@ -39,6 +77,7 @@ export const AdvancedRecommendationEngine = ({ onRecommendationsGenerated }: Adv
     costSensitivity: 5,
     sustainabilityPriority: 7,
   });
+<<<<<<< HEAD
   const [recommendations, setRecommendations] = useState<AdvancedRecommendation[]>([]);
   const [isLoading, setIsLoading] = useState(false);
   const [showParameters, setShowParameters] = useState(true);
@@ -471,6 +510,170 @@ export const AdvancedRecommendationEngine = ({ onRecommendationsGenerated }: Adv
             </div>
           )}
         </div>
+=======
+
+  const [recommendations, setRecommendations] = useState<
+    AdvancedRecommendation[]
+  >([]);
+  const [isLoading, setIsLoading] = useState(false);
+
+  /* ================= FETCH FROM CLOUD ================= */
+
+  const handleGetRecommendations = async () => {
+    if (!params.category) return;
+
+    setIsLoading(true);
+
+    try {
+      const response = await fetch(
+        "https://YOUR-BACKEND.onrender.com/predict", // 🔴 CHANGE THIS
+        {
+          method: "POST",
+          headers: {
+            "Content-Type": "application/json",
+          },
+          body: JSON.stringify({
+            category: params.category,
+            weight: params.weightRequirement,
+            fragility: params.fragilityLevel,
+            cost: params.costSensitivity,
+            sustainability: params.sustainabilityPriority,
+          }),
+        }
+      );
+
+      const data = await response.json();
+      console.log("Cloud response:", data);
+
+      setRecommendations(data);
+      onRecommendationsGenerated?.(data);
+    } catch (error) {
+      console.error("Backend error:", error);
+      alert("Failed to connect to backend");
+    } finally {
+      setIsLoading(false);
+    }
+  };
+
+  /* ================= UI ================= */
+
+  return (
+    <section id="recommend" className="py-20 bg-background">
+      <div className="container mx-auto px-4 max-w-6xl">
+        <div className="text-center mb-10">
+          <h2 className="text-3xl font-bold mb-2">
+            AI Recommendation Engine
+          </h2>
+          <p className="text-muted-foreground">
+            Cloud-powered sustainable packaging recommendations
+          </p>
+        </div>
+
+        {/* CATEGORY SELECTION */}
+        <div className="grid grid-cols-2 md:grid-cols-4 gap-4 mb-8">
+          {productCategories.map((cat) => (
+            <button
+              key={cat.id}
+              onClick={() => setParams({ ...params, category: cat.id })}
+              className={`p-4 border rounded-lg ${
+                params.category === cat.id
+                  ? "border-primary bg-primary/10"
+                  : "border-border"
+              }`}
+            >
+              <div className="text-2xl">{cat.icon}</div>
+              <div className="font-semibold">{cat.label}</div>
+            </button>
+          ))}
+        </div>
+
+        {/* SLIDERS */}
+        <div className="grid md:grid-cols-2 gap-6 mb-8">
+          <div>
+            <label>Weight Requirement: {params.weightRequirement} kg</label>
+            <Slider
+              value={[params.weightRequirement]}
+              min={1}
+              max={50}
+              step={1}
+              onValueChange={([v]) =>
+                setParams({ ...params, weightRequirement: v })
+              }
+            />
+          </div>
+
+          <div>
+            <label>Fragility Level: {params.fragilityLevel}/10</label>
+            <Slider
+              value={[params.fragilityLevel]}
+              min={1}
+              max={10}
+              step={1}
+              onValueChange={([v]) =>
+                setParams({ ...params, fragilityLevel: v })
+              }
+            />
+          </div>
+
+          <div>
+            <label>Cost Sensitivity: {params.costSensitivity}/10</label>
+            <Slider
+              value={[params.costSensitivity]}
+              min={1}
+              max={10}
+              step={1}
+              onValueChange={([v]) =>
+                setParams({ ...params, costSensitivity: v })
+              }
+            />
+          </div>
+
+          <div>
+            <label>
+              Sustainability Priority: {params.sustainabilityPriority}/10
+            </label>
+            <Slider
+              value={[params.sustainabilityPriority]}
+              min={1}
+              max={10}
+              step={1}
+              onValueChange={([v]) =>
+                setParams({ ...params, sustainabilityPriority: v })
+              }
+            />
+          </div>
+        </div>
+
+        {/* BUTTON */}
+        <div className="text-center mb-10">
+          <Button
+            size="lg"
+            onClick={handleGetRecommendations}
+            disabled={!params.category || isLoading}
+          >
+            {isLoading ? "Analyzing..." : "Generate AI Recommendations"}
+          </Button>
+        </div>
+
+        {/* RESULTS */}
+        {recommendations.length > 0 && (
+          <div className="grid gap-4">
+            {recommendations.map((rec) => (
+              <div key={rec.material.id} className="border p-4 rounded-lg">
+                <h3 className="font-bold text-lg">
+                  #{rec.rank} {rec.material.name}
+                </h3>
+                <p className="text-sm text-muted-foreground">
+                  {rec.material.description}
+                </p>
+                <p>Eco Score: {rec.ecoScore}</p>
+                <p>Suitability: {rec.suitabilityScore}</p>
+                <p>Cost Score: {rec.costScore}</p>
+              </div>
+            ))}
+          </div>
+        )}
+>>>>>>> 183d583 (Backend ready for Render deployment)
       </div>
     </section>
   );

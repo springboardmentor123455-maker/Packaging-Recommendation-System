@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>AI Packaging Recommendation System</title>
+</head>
+<body>
+
+<h2>AI Packaging Recommendation System</h2>
+
+<input id="product" placeholder="food / electronics">
+<input id="weight" type="number" placeholder="Weight">
+<input id="fragility" type="number" placeholder="Fragility (1-5)">
+<button onclick="getRecommendation()">Get Recommendation</button>
+
+<br><br>
+
+<table border="1">
+    <thead>
+        <tr>
+            <th>Material</th>
+            <th>Type</th>
+            <th>Strength</th>
+            <th>Weight</th>
+            <th>AI Score</th>
+        </tr>
+    </thead>
+    <tbody id="result"></tbody>
+</table>
+
+<script src="{{ url_for('static', filename='script.js') }}"></script>
+
+</body>
+</html>
