@@ -17,8 +17,16 @@ def get_db_path():
 def get_db_connection():
     try:
         db_path = get_db_path()
+        print(f"DEBUG: Calculated DB Path: {db_path}")
         if not os.path.exists(db_path):
-             print(f"Database not found at: {db_path}")
+             print(f"ERROR: Database not found at: {db_path}")
+             print(f"DEBUG: Current working directory: {os.getcwd()}")
+             print(f"DEBUG: Listing directories at root...")
+             try:
+                 # valid for render structure
+                 print(os.listdir(os.path.dirname(os.path.dirname(os.path.dirname(os.path.dirname(os.path.abspath(__file__)))))))
+             except:
+                 pass
              return None
              
         conn = sqlite3.connect(db_path)
