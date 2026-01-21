@@ -206,13 +206,13 @@ Run the Flask application using local_app.py
 📄 Documentation and Demo
 
 Project Report:
-https://drive.google.com/drive/folders/1NYe67iTyC0tsSrTnaa05xgEIkZyBdGxo
+https://drive.google.com/drive/folders/1we2qkOkBqkNf7RfMBDoBD1HA0du0E6ED?usp=drive_link
 
 Video Demo:
-https://drive.google.com/file/d/18Ijd5YpUXgIBRVOi_AXpxgBhLOady-lM/view
+https://drive.google.com/drive/folders/1ERiK1SKLKj4UAAHjoc1K05HVXELb7yd2?usp=sharing
 
 PPT Presentation:
-https://drive.google.com/drive/folders/1BC3py8AlXgBCHcCSl754JSDp1QGtOFVC
+https://drive.google.com/drive/folders/1C88EpthPoXYgFPY0NxhqSyWGLcWLO9bW?usp=drive_link
 
 📌 Results and Outcomes
 
@@ -239,5 +239,5 @@ Enterprise-scale deployment with CI/CD pipelines
 👨‍🎓 Author
 
 Name → Abrar H
-
-Role → Integrated MCA Student | AI & Data Science Enthusiast
+Integrated MCA Student 
+Amrita Vishwa Vidyapeetham, Kochi Campus
