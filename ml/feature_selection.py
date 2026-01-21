@@ -1,6 +1,7 @@
 import pandas as pd
 
-df = pd.read_csv("data/processed_materials.csv")
+df = pd.read_csv("../data/processed_materials.csv")
+)
 
 X = df[
     [

@@ -26,3 +26,8 @@ function getResults() {
         });
     });
 }
+
+function getReports() {
+    // This triggers the backend route that sends the Excel file
+    window.location.href = "/download-excel";
+}

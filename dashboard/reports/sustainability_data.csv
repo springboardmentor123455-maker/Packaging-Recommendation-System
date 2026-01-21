@@ -1,0 +1,7 @@
+material,original_co2,predicted_co2,original_cost,predicted_cost,co2_reduction_percent,cost_savings
+Cardboard,80,50,120,90,37.5,30
+Bioplastic,95,55,160,115,42.10526315789473,45
+Molded Pulp,70,40,110,85,42.857142857142854,25
+Paper Foam,85,60,140,100,29.411764705882355,40
+Corrugated Fiber,90,58,150,105,35.55555555555556,45
+Bagasse,88,52,145,98,40.909090909090914,47

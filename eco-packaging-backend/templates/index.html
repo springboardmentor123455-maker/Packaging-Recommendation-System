@@ -1,34 +1,101 @@
 <!DOCTYPE html>
 <html>
 <head>
-    <title>Eco Packaging Decision Engine</title>
-    <link rel="stylesheet" href="/static/style.css">
+    <title>Eco Packaging Dashboard</title>
+    <link rel="stylesheet"
+          href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css">
 </head>
-<body>
+<body class="bg-light">
 
-<div class="container">
-    <h1>Eco-Friendly Packaging Decision Engine</h1>
-    <p class="subtitle">Smart material selection based on sustainability logic</p>
+<div class="container mt-5">
+    <h2 class="text-center mb-4">🌱 Eco-Friendly Material Decision Engine</h2>
 
-    <div class="controls">
-        <select id="weight">
-            <option>Low</option>
-            <option selected>Medium</option>
-            <option>High</option>
-        </select>
+    <div class="card p-4 shadow mb-4">
+        <div class="row">
+            <div class="col-md-4">
+                <label>Product Weight</label>
+                <select id="weight" class="form-select">
+                    <option>Low</option>
+                    <option selected>Medium</option>
+                    <option>High</option>
+                </select>
+            </div>
+            <div class="col-md-4">
+                <label>Fragility</label>
+                <select id="fragility" class="form-select">
+                    <option>Low</option>
+                    <option selected>Medium</option>
+                    <option>High</option>
+                </select>
+            </div>
+            <div class="col-md-4">
+                <label>Results Limit</label>
+                <input id="limit" type="number" value="5" class="form-control">
+            </div>
+        </div>
 
-        <select id="fragility">
-            <option>Low</option>
-            <option selected>Medium</option>
-            <option>High</option>
-        </select>
+        <div class="mt-4 text-center">
+            <button class="btn btn-success me-2" onclick="getComparison()">
+                Generate Comparison
+            </button>
 
-        <button onclick="getResults()">Generate Recommendation</button>
+            <a href="/dashboard" class="btn btn-dark me-2">
+                📊 Go to BI Dashboard
+            </a>
+
+            <a href="/download-excel" class="btn btn-outline-primary">
+                Download Excel Report
+            </a>
+        </div>
     </div>
 
-    <div id="results"></div>
+    <div class="card p-4 shadow">
+        <h4 class="mb-3">📊 Material Comparison Table</h4>
+        <table class="table table-bordered table-striped">
+            <thead class="table-dark">
+                <tr>
+                    <th>Material</th>
+                    <th>Biodegradability</th>
+                    <th>Recyclability (%)</th>
+                    <th>CO₂ Emission</th>
+                    <th>Sustainability Score</th>
+                </tr>
+            </thead>
+            <tbody id="comparisonTable"></tbody>
+        </table>
+    </div>
 </div>
 
-<script src="/static/script.js"></script>
+<script>
+function getComparison() {
+    fetch("/material-comparison", {
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify({
+            weight: document.getElementById("weight").value,
+            fragility: document.getElementById("fragility").value,
+            limit: document.getElementById("limit").value
+        })
+    })
+    .then(res => res.json())
+    .then(data => {
+        let table = document.getElementById("comparisonTable");
+        table.innerHTML = "";
+
+        data.forEach(item => {
+            table.innerHTML += `
+                <tr>
+                    <td>${item.material}</td>
+                    <td>${item.biodegradability}</td>
+                    <td>${item.recyclability}</td>
+                    <td>${item.co2_emission}</td>
+                    <td><strong>${item.sustainability_score}</strong></td>
+                </tr>
+            `;
+        });
+    });
+}
+</script>
+
 </body>
 </html>
