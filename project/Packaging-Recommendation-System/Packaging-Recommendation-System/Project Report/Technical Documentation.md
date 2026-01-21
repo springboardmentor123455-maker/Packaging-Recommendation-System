@@ -147,9 +147,20 @@ python app.py
 (Add the following screenshots here)
 
 * Web UI
+  <img width="1919" height="644" alt="image" src="https://github.com/user-attachments/assets/6987d64d-3ebe-4c5d-b2ba-e34557d9f122" />
+
 * Recommendation results
+  <img width="1919" height="897" alt="image" src="https://github.com/user-attachments/assets/ab1313c1-4f32-4a4c-843a-075a87ad684c" />
+
+  <img width="1919" height="720" alt="image" src="https://github.com/user-attachments/assets/de857163-1cba-498a-ab83-e89254151228" />
+
+
 * BI Dashboard
-* PostgreSQL database connection
+ <img width="1918" height="958" alt="image" src="https://github.com/user-attachments/assets/34180167-9386-4faf-ab07-8354cc47f684" />
+
+ <img width="1551" height="602" alt="image" src="https://github.com/user-attachments/assets/2f30009c-3c12-486d-b79f-4d2d5f9fb156" />
+
+ <img width="1916" height="958" alt="image" src="https://github.com/user-attachments/assets/46b37c32-5274-4a70-9e65-cc31326c40fd" />
 
 ---
 
