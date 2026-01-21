@@ -1,12 +1,4 @@
----
-title: EcoPackAI
-emoji: 📦
-colorFrom: green
-colorTo: blue
-sdk: docker
-pinned: false
-app_port: 7860
----
+
 
 # EcoPackAI - Sustainable Packaging Recommendation System
 
