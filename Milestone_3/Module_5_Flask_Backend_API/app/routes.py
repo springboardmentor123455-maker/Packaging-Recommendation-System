@@ -81,7 +81,7 @@ def recommend():
         # FALLBACK: If AI failed or wasn't loaded
         if recommendations_df is None:
             print("ℹ️ Using Simple Rule-Based Filtering (Fallback)...")
-            from ml_preparation import load_data_from_db
+            from app.db_helper import load_data_from_db
             df = load_data_from_db()
             
             # Filter Logic
@@ -171,8 +171,8 @@ def export_report():
     try:
         export_format = request.args.get('format', 'xlsx')
         
-        # 1. Fetch Data
-        from ml_preparation import load_data_from_db
+    # 1. Fetch Data
+        from app.db_helper import load_data_from_db
         df = load_data_from_db()
         from app.database import get_all_categories
         cats = get_all_categories()
