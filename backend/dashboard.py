@@ -40,7 +40,7 @@ RAW_PRODUCTS  = os.path.join(DATA_DIR, "products.csv")
 COST_MODEL = joblib.load(os.path.join(MODEL_DIR, "cost_model.pkl"))
 CO2_MODEL  = joblib.load(os.path.join(MODEL_DIR, "co2_model.pkl"))
 
-USD_TO_INR = 83
+USD_TO_INR = 83 
 
 # =================================================
 # LOADERS
@@ -113,7 +113,7 @@ def sustainability_kpis():
     avg_co2_reduction = round((1 - co2_norm.mean()) * 100, 1)
 
     # Higher cost efficiency = better
-    avg_cost_savings = round(cost_norm.mean() * 100, 1)
+    avg_cost_savings = round(cost_norm.mean() * 100, 1) 
 
     return jsonify({
         "avg_co2_reduction_pct": avg_co2_reduction,
@@ -229,28 +229,6 @@ def material_full_impact():
         })
         .to_dict(orient="records")
     )
-
-
-# =================================================
-# FEATURE INFLUENCE
-# =================================================
-
-def feature_influence():
-    df = load_materials()
-
-    corr = df.corr(numeric_only=True)["Material_Suitability_Score"]
-    corr = corr.drop("Material_Suitability_Score")
-
-    influence = (
-        corr.sort_values(ascending=False)
-        .reset_index()
-        .rename(columns={
-            "index": "feature",
-            "Material_Suitability_Score": "correlation"
-        })
-    )
-
-    return jsonify(influence.to_dict(orient="records"))
 
 def export_excel(product=None):
 
