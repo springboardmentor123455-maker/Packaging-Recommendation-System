@@ -89,27 +89,25 @@ To visualize sustainability impact and market trends.
 
 ---
 
- 📈6. Deployment & Cloud Hosting
-The application has been successfully containerized and deployed to a live production environment using Hugging Face Spaces, utilizing Docker to ensure a consistent and robust runtime environment for AI models.
-6.1 Infrastructure & Configuration
-•	Hosting Provider: Hugging Face Spaces
-•	Deployment Method: Docker SDK (Containerization)
-•	Hardware Specification: Configured to utilize high-performance infrastructure (supporting up to 16GB RAM) to ensure efficient ML model inference and data processing.
-•	Port Configuration: The application utilizes a custom Dockerfile mapped to port 7860 for external accessibility.
-6.2 Deployment Pipeline
-1.	Containerization: A Dockerfile was created at the root directory to define the OS, Python dependencies, and entry commands.
-2.	SDK Selection: The Space was initialized using the Docker SDK, offering greater control over the environment compared to standard Streamlit/Gradio SDKs.
-3.	Metadata Configuration: The environment is managed via YAML configuration in the README.md:
-YAML
----
-title: EcoPackAI
-sdk: docker
-app_port: 7860
----
-4.	Build Process: Upon pushing code changes, Hugging Face automatically rebuilds the Docker container, ensuring Continuous Deployment (CD).
-6.3 Live Access
+## 📈 6. Deployment & Cloud Hosting
+
+The application has been successfully containerized and deployed to a live production environment using **Hugging Face Spaces**, utilizing Docker to ensure a consistent and robust runtime environment for AI models.
+
+### **6.1 Infrastructure & Configuration**
+*   **Hosting Provider:** Hugging Face Spaces
+*   **Deployment Method:** Docker SDK (Containerization)
+*   **Hardware Specification:** Configured to utilize high-performance infrastructure (supporting up to 16GB RAM) to ensure efficient ML model inference and data processing.
+*   **Port Configuration:** The application utilizes a custom Dockerfile mapped to port `7860` for external accessibility.
+
+### **6.2 Deployment Pipeline**
+1.  **Containerization:** A `Dockerfile` was created at the root directory to define the OS, Python dependencies, and entry commands.
+2.  **SDK Selection:** The Space was initialized using the **Docker SDK**, offering greater control over the environment compared to standard Streamlit/Gradio SDKs.
+3.  **Metadata Configuration:** The environment is managed via YAML configuration in the README.
+4.  **Build Process:** Upon pushing code changes, Hugging Face automatically rebuilds the Docker container, ensuring Continuous Deployment (CD).
+
+### **6.3 Live Access**
 The application is currently live and accessible globally via the following URL:
-•	Live Demo: https://huggingface.co/spaces/ragasudhaselvaraj/EcoPackAI
+*   **Live Demo:** [https://huggingface.co/spaces/ragasudhaselvaraj/EcoPackAI](https://huggingface.co/spaces/ragasudhaselvaraj/EcoPackAI)
 
 
 ## 📈 Project Status Summary
@@ -122,4 +120,4 @@ The application is currently live and accessible globally via the following URL:
 | **Backend API** | ✅ Completed | Flask |
 | **Frontend UI** | ✅ Completed | CSS3 Glassmorphism |
 | **Dashboard** | ✅ Completed | Chart.js |
-| **Deployment** | ⏳ Ready | huggingface docker|
+| **Deployment** | ✅ Completed | Hugging Face Docker |
