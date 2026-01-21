@@ -50,7 +50,7 @@ def predict_pm(X):
     return pm_model.predict(X)
 
 # =================================================
-# 🔥 REAL PRODUCT-AWARE ML RANKING
+# PRODUCT-AWARE ML RANKING
 # =================================================
 
 def rank_materials_for_product(product_name):
@@ -66,7 +66,6 @@ def rank_materials_for_product(product_name):
 
     subset = X_pm.iloc[start:end].copy()
 
-    # 🔥 ONLY PM MODEL HERE
     subset["Predicted_Suitability"] = pm_model.predict(subset)
 
     subset["material_name"] = [

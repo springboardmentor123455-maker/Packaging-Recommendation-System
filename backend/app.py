@@ -194,9 +194,4 @@ def export_excel_api():
 def home():
     return send_from_directory("static", "index.html")
 
-# -------------------------------
-# RUN SERVER
-# -------------------------------
 
-if __name__ == "__main__":
-    app.run(debug=True)

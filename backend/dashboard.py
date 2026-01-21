@@ -148,7 +148,7 @@ def product_material_table(product=None):
     if not product:
         return jsonify([])
 
-    # 🔥 product-specific ML ranking
+    #  product-specific ML ranking
     ranking = rank_materials_for_product(product)
 
     materials = pd.read_csv(PROCESSED_MATERIALS)
@@ -160,7 +160,7 @@ def product_material_table(product=None):
 
         mat_name = r["material_name"]
 
-        # 🔥 find material index from raw materials
+        #  find material index from raw materials
         match = raw_materials[raw_materials["material_name"] == mat_name]
 
         if match.empty:
@@ -288,7 +288,7 @@ def export_pdf(product=None):
     if not product:
         product = "Selected Product"
 
-    # 🔥 REAL ML — SAME AS UI
+    
     ranking = rank_materials_for_product(product)
 
     styles = getSampleStyleSheet()
