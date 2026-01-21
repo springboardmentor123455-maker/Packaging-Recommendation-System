@@ -188,7 +188,7 @@ Application Type → Web Service
 Database → PostgreSQL Cloud Database
 
 🔗 Live Application:
-https://my-packaging-recommendation-system.onrender.com
+
 
 ▶ How to Run the Project Locally
 
