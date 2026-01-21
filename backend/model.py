@@ -2,34 +2,43 @@ import joblib
 import os
 import pandas as pd
 
-# Project root
+# =================================================
+# PROJECT PATHS
+# =================================================
+
 BASE_DIR = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
 
-# Data paths
-DATA_DIR = os.path.join(BASE_DIR, "data")
-PREP_DIR = os.path.join(DATA_DIR, "prepared")
+DATA_DIR  = os.path.join(BASE_DIR, "data")
+PREP_DIR  = os.path.join(DATA_DIR, "prepared")
 MODEL_DIR = os.path.join(BASE_DIR, "trained_models")
 
 print("Looking for models in:", MODEL_DIR)
 
-# Load models
+# =================================================
+# LOAD MODELS
+# =================================================
+
 cost_model = joblib.load(os.path.join(MODEL_DIR, "cost_model.pkl"))
 co2_model  = joblib.load(os.path.join(MODEL_DIR, "co2_model.pkl"))
 pm_model   = joblib.load(os.path.join(MODEL_DIR, "pm_model.pkl"))
 
-print("All models loaded")
+print("✅ All ML models loaded")
 
-# Load prepared PM data + lookup tables
+# =================================================
+# LOAD DATA
+# =================================================
+
 X_pm = pd.read_csv(os.path.join(PREP_DIR, "X_pm_test.csv"))
+
 products  = pd.read_csv(os.path.join(DATA_DIR, "products.csv"))
 materials = pd.read_csv(os.path.join(DATA_DIR, "materials.csv"))
 
 material_count = len(materials)
 rows_per_product = len(X_pm) // len(products)
 
-# ---------------------------
-# BASIC PREDICTION FUNCTIONS
-# ---------------------------
+# =================================================
+# BASIC PREDICTIONS
+# =================================================
 
 def predict_cost(X):
     return cost_model.predict(X)
@@ -40,25 +49,25 @@ def predict_co2(X):
 def predict_pm(X):
     return pm_model.predict(X)
 
-# ---------------------------
-#PRODUCT-AWARE RANKING
-# ---------------------------
+# =================================================
+# 🔥 REAL PRODUCT-AWARE ML RANKING
+# =================================================
 
 def rank_materials_for_product(product_name):
 
     matches = products[products["product_name"] == product_name]
     if matches.empty:
-        return None
+        return []
 
     p_idx = matches.index[0]
 
     start = p_idx * rows_per_product
-    end   = start + rows_per_product
+    end = start + rows_per_product
 
     subset = X_pm.iloc[start:end].copy()
 
-    preds = pm_model.predict(subset)
-    subset["Predicted_Suitability"] = preds
+    # 🔥 ONLY PM MODEL HERE
+    subset["Predicted_Suitability"] = pm_model.predict(subset)
 
     subset["material_name"] = [
         materials.iloc[i % material_count]["material_name"]
@@ -75,3 +84,5 @@ def rank_materials_for_product(product_name):
     )
 
     return ranking.to_dict(orient="records")
+
+

@@ -1,8 +1,8 @@
 const API_KEY = "ECO2025";
 
 let materialChart = null;
-let co2Chart = null;
-let costChart = null;
+let productBubbleChart = null;
+
 
 // ------------------------
 // ECO STATUS LOGIC
@@ -32,19 +32,36 @@ document.addEventListener("DOMContentLoaded", () => {
       });
     });
 
-  // Global ranking
-  fetch("/global_rank", { headers: { "x-api-key": API_KEY } })
+  // 🌍 GLOBAL ECO MATERIALS (WITH COST + CO2)
+  fetch("/dashboard/global-materials", {
+    headers: { "x-api-key": API_KEY }
+  })
     .then(r => r.json())
     .then(data => {
-      let html = "<tr><th>#</th><th>Material</th><th>Eco Rank</th></tr>";
+
+      let html = `
+        <tr>
+          <th>#</th>
+          <th>Material</th>
+          <th>Eco Rank</th>
+          <th>Estimated CO₂</th>
+          <th>Estimated Cost (₹)</th>
+        </tr>
+      `;
+
       data.forEach((r, i) => {
-        html += `
-          <tr>
-            <td>${i + 1}</td>
-            <td>${r.material_name}</td>
-            <td>${r.Rank}</td>
-          </tr>`;
-      });
+      html += `
+      <tr>
+      <td>${i + 1}</td>
+      <td>${r.material_name}</td>
+      <td>${r.eco_rank}</td>
+      <td>${r.co2_score}</td>
+      <td>${r.estimated_cost}</td>
+    </tr>
+  `;
+});
+
+
       document.getElementById("globalTable").innerHTML = html;
     });
 
@@ -55,8 +72,10 @@ document.addEventListener("DOMContentLoaded", () => {
 // PRODUCT RECOMMENDATION
 // ------------------------
 function getRecommendations() {
+
   const product = document.getElementById("product").value;
 
+  // 🔹 AI ranking
   fetch("/rank", {
     method: "POST",
     headers: {
@@ -68,28 +87,107 @@ function getRecommendations() {
     .then(r => r.json())
     .then(data => {
 
-      let html = "<tr><th>#</th><th>Material</th><th>Suitability</th></tr>";
-
-      data.forEach((r, i) => {
-        html += `
-          <tr>
-            <td>${i + 1}</td>
-            <td>${r.material_name}</td>
-            <td>${r.Predicted_Suitability.toFixed(3)}</td>
-          </tr>`;
-      });
-
-      document.getElementById("productTable").innerHTML = html;
-
-      const best = data[0];
-
-      document.getElementById("metrics").innerHTML = `
-        <div class="metric">🥇 Best Material<br>${best.material_name}</div>
-        <div class="metric">📈 Suitability<br>${best.Predicted_Suitability.toFixed(3)}</div>
-        <div class="metric">🌱 Eco Status<br>${ecoStatus(best.Predicted_Suitability)}</div>
+      let html = `
+        <tr>
+          <th>#</th>
+          <th>Material</th>
+          <th>Suitability</th>
+          <th>Estimated CO₂</th>
+          <th>Estimated Cost (₹)</th>
+        </tr>
       `;
+
+      // 🔹 fetch ML cost + CO₂ estimates
+      fetch(`/dashboard/product-materials?product=${product}`, {
+        headers: { "x-api-key": API_KEY }
+      })
+        .then(r => r.json())
+        .then(enriched => {
+          
+          enriched.forEach((r, i) => {
+            html += `
+              <tr>
+                <td>${i + 1}</td>
+                <td>${r.material_name}</td>
+                <td>${r.Predicted_Suitability}</td>
+                <td>${r.co2_score}</td>
+                <td>${r.estimated_cost}</td>
+              </tr>
+            `;
+          });
+          renderProductBubbleChart(enriched);
+          document.getElementById("productTable").innerHTML = html;
+
+          if (!enriched || enriched.length === 0) {
+  document.getElementById("metrics").innerHTML = `
+    <div class="metric">⚠️ No recommendations available</div>
+  `;
+  return;
+}
+
+const best = enriched[0];
+
+document.getElementById("metrics").innerHTML = `
+  <div class="metric">🥇 Best Material<br>${best.material_name}</div>
+  <div class="metric">📈 Suitability<br>${best.Predicted_Suitability}</div>
+  <div class="metric">
+    🌱 Eco Status<br>${ecoStatus(best.Predicted_Suitability)}
+  </div>
+`;
+
+
+        });
     });
 }
+
+function renderProductBubbleChart(data) {
+
+  const dataset = data.map(m => ({
+    x: Number(m.estimated_cost.replace("₹", "")),
+    y: m.co2_score,
+    r: Math.max(m.Predicted_Suitability / 3, 12),
+    label: m.material_name
+  }));
+
+  if (productBubbleChart) productBubbleChart.destroy();
+
+  productBubbleChart = new Chart(
+    document.getElementById("productBubbleChart"),
+    {
+      type: "bubble",
+      data: {
+        datasets: dataset.map(d => ({
+          label: d.label,
+          data: [{ x: d.x, y: d.y, r: d.r }]
+        }))
+      },
+      options: {
+        plugins: {
+          tooltip: {
+            callbacks: {
+              label: ctx => {
+                const d = ctx.raw;
+                return `${ctx.dataset.label}
+Cost: ₹${d.x}
+CO₂: ${d.y}
+Suitability: ${Math.round(d.r * 8)}`;
+              }
+            }
+          }
+        },
+        scales: {
+          x: {
+            title: { display: true, text: "Estimated Cost (₹)" }
+          },
+          y: {
+            title: { display: true, text: "Estimated CO₂ Impact" }
+          }
+        }
+      }
+    }
+  );
+}
+
 
 // ------------------------
 // DASHBOARD
@@ -113,13 +211,14 @@ async function loadDashboard() {
   document.getElementById("costSavings").innerText =
     sustainability.avg_cost_savings_pct + "%";
 
-  // Material trends
+  // 📊 MATERIAL TREND CHART
   const materials = await fetch("/dashboard/material-trends", {
     headers: { "x-api-key": API_KEY }
   }).then(r => r.json());
 
   const labels = materials.map(m => m.material_name);
-  const values = materials.map(m => m.Predicted_Suitability);
+  const values = materials.map(m => Math.abs(m.Final_Rank_Score));
+
 
   if (materialChart) materialChart.destroy();
 
@@ -132,63 +231,18 @@ async function loadDashboard() {
         backgroundColor: "#22c55e"
       }]
     },
-    options: { plugins: { legend: { display: false } } }
-  });
-
-  // ✅ IMPORTANT
-  
-   await loadMaterialImpact();        // top 5
-   await loadAllMaterialImpact();    // all materials
-}
-
-
-// ------------------------
-// MATERIAL IMPACT TABLE + CHARTS
-// ------------------------
-async function loadMaterialImpact() {
-
-  const data = await fetch("/dashboard/material-impact", {
-    headers: { "x-api-key": API_KEY }
-  }).then(r => r.json());
-
-  // TABLE
-  let html = "";
-  data.forEach(m => {
-    html += `
-      <tr>
-        <td>${m.material_name}</td>
-        <td>${m.eco_score.toFixed(3)}</td>
-        <td>${m.co2_index.toFixed(3)}</td>
-        <td>${m.cost_index.toFixed(3)}</td>
-      </tr>`;
-  });
-
-  document.getElementById("materialImpactBody").innerHTML = html;
-
-  // CHARTS
-  const labels = data.map(d => d.material_name);
-  const co2 = data.map(d => d.co2_index);
-  const cost = data.map(d => d.cost_index);
-
-  if (co2Chart) co2Chart.destroy();
-  if (costChart) costChart.destroy();
-
-  co2Chart = new Chart(document.getElementById("co2Chart"), {
-    type: "bar",
-    data: {
-      labels,
-      datasets: [{ label: "CO₂ Impact (lower is better)", data: co2 }]
+    options: {
+      plugins: { legend: { display: false } }
     }
   });
 
-  costChart = new Chart(document.getElementById("costChart"), {
-    type: "bar",
-    data: {
-      labels,
-      datasets: [{ label: "Cost Index", data: cost }]
-    }
-  });
+  // GLOBAL MATERIAL ANALYSIS
+  await loadAllMaterialImpact();
 }
+
+// ------------------------
+// GLOBAL MATERIAL IMPACT CHARTS
+// ------------------------
 async function loadAllMaterialImpact() {
 
   const data = await fetch("/dashboard/material-full-impact", {
@@ -199,7 +253,6 @@ async function loadAllMaterialImpact() {
   const co2 = data.map(d => d.co2);
   const cost = data.map(d => d.cost);
 
-  // CO₂ CHART (horizontal)
   new Chart(document.getElementById("co2AllChart"), {
     type: "bar",
     data: {
@@ -210,28 +263,10 @@ async function loadAllMaterialImpact() {
       }]
     },
     options: {
-      indexAxis: "y",
-      plugins: {
-        legend: { display: true }
-      },
-      scales: {
-        x: {
-          title: {
-            display: true,
-            text: "CO₂ Impact Index"
-          }
-        },
-        y: {
-          title: {
-            display: true,
-            text: "Material"
-          }
-        }
-      }
+      indexAxis: "y"
     }
   });
 
-  // COST CHART (line)
   new Chart(document.getElementById("costAllChart"), {
     type: "line",
     data: {
@@ -241,26 +276,9 @@ async function loadAllMaterialImpact() {
         data: cost,
         tension: 0.3
       }]
-    },
-    options: {
-      scales: {
-        y: {
-          title: {
-            display: true,
-            text: "Cost (₹)"
-          }
-        },
-        x: {
-          title: {
-            display: true,
-            text: "Material"
-          }
-        }
-      }
     }
   });
 }
-
 
 // ------------------------
 // EXPORTS

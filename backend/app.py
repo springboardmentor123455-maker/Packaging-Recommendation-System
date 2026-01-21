@@ -1,25 +1,30 @@
 from flask import Flask, request, jsonify, send_from_directory
 import pandas as pd
-
+import os
 from model import (
     predict_cost,
     predict_co2,
     rank_materials_for_product
 )
 
-from db import get_materials, get_products
+
 from auth import require_key
-from dashboard import material_impact_table
+
+
 
 
 from dashboard import (
     dashboard_metrics,
+    sustainability_kpis,
+    global_material_table,
+    product_material_table,
     material_trends,
+    material_full_impact,
     feature_influence,
     export_excel,
-    export_pdf,
-    sustainability_kpis
+    export_pdf
 )
+
 
 # -----------------------------------
 # CREATE FLASK APP
@@ -30,16 +35,26 @@ app = Flask(__name__, static_folder="static")
 # BASIC LOOKUP APIs
 # -------------------------------
 
+BASE_DIR = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
+
+DATA_DIR = os.path.join(BASE_DIR, "data")
+
+def get_products():
+    df = pd.read_csv(os.path.join(DATA_DIR, "products.csv"))
+    return df["product_name"].tolist()
+
+def get_materials():
+    df = pd.read_csv(os.path.join(DATA_DIR, "materials.csv"))
+    return df["material_name"].tolist()
+
+
 @app.route("/materials")
-@require_key
 def materials():
     return jsonify(get_materials())
 
 @app.route("/products")
-@require_key
 def products():
     return jsonify(get_products())
-
 # -------------------------------
 # GLOBAL ECO RANKING
 # -------------------------------
@@ -119,6 +134,18 @@ def recommend():
 def metrics():
     return dashboard_metrics()
 
+@app.route("/dashboard/global-materials")
+@require_key
+def global_materials():
+    return global_material_table()
+
+
+@app.route("/dashboard/product-materials")
+@require_key
+def product_materials():
+    product = request.args.get("product")
+    return product_material_table(product)
+
 
 @app.route("/dashboard/material-trends")
 @require_key
@@ -146,10 +173,6 @@ def export_pdf_api():
 def sustainability_kpis_api():
     return sustainability_kpis()
 
-@app.route("/dashboard/material-impact")
-@require_key
-def material_impact_api():
-    return material_impact_table()
 
 from dashboard import material_full_impact
 
