@@ -189,6 +189,8 @@ Database → PostgreSQL Cloud Database
 
 🔗 Live Application:
 
+https://ecopackai-ai-powered-sustainable.onrender.com
+
 
 ▶ How to Run the Project Locally
 
