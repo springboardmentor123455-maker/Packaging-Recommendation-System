@@ -37,17 +37,16 @@ def recommend():
     recommendations_df = None
     engine = None
     
-    # Try to initialize AI Engine (Lazy Load)
-    # RENDER FIX: DISABLED AI ENGINE TO PREVENT MEMORY CRASHES ON FREE TIER
-    # try:
-    #     from recommendation_engine import RecommendationEngine
-    #     # Lazy initialization
-    #     models_dir = os.path.join(rec_model_dir, 'models')
-    #     engine = RecommendationEngine(model_dir=models_dir)
-    #     print("✓ Recommendation Engine initialized successfully (Lazy Load)")
-    # except Exception as e:
-    #      print(f"⚠️ Warning: Failed to initialize AI Engine: {e}. Switching to Simple/Rule-Based Fallback.")
-    #      engine = None
+    # Try to initialize AI Engine
+    try:
+        from recommendation_engine import RecommendationEngine
+        # Lazy initialization
+        models_dir = os.path.join(rec_model_dir, 'models')
+        engine = RecommendationEngine(model_dir=models_dir)
+        print("✓ Recommendation Engine initialized successfully")
+    except Exception as e:
+         print(f"⚠️ Warning: Failed to initialize AI Engine: {e}")
+         engine = None
 
     data = request.json
     
@@ -100,7 +99,7 @@ def recommend():
                  filtered_df['sustainable_score'] = (
                      (filtered_df['biodegradability_score'] / 100) * 0.4 + 
                      (1 - (filtered_df['co2_emission_score'] / filtered_df['co2_emission_score'].max())) * 0.4 +
-                     (filtered_df['recyclability_score'] / 10) * 0.2
+                     (filtered_df['recyclability_percent'] / 10) * 0.2
                  ) * 100
             
             recommendations_df = filtered_df.sort_values(by='sustainable_score', ascending=False).head(5)
