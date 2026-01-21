@@ -188,7 +188,7 @@ Application Type → Web Service
 Database → PostgreSQL Cloud Database
 
 🔗 Live Application:
-https://my-packaging-recommendation-system.onrender.com/
+https://my-packaging-recommendation-system.onrender.com
 
 ▶ How to Run the Project Locally
 
@@ -240,4 +240,4 @@ Enterprise-scale deployment with CI/CD pipelines
 
 Name → Abrar H
 
-Role → BCA Student | AI & Data Science Enthusiast
+Role → Integrated MCA Student | AI & Data Science Enthusiast
