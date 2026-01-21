@@ -125,7 +125,7 @@ The system follows a modular architecture where data storage, AI prediction, bac
 * SECRET_KEY
 
 🔗 **Live URL:**
-https://my-packaging-recommendation-system.onrender.com
+
 
 ---
 
