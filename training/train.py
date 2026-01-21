@@ -98,10 +98,17 @@ ranking_global["material_name"] = raw_materials.loc[
 print("\nTop 5 Recommended Materials (GLOBAL):")
 print(ranking_global[["material_name", "Final_Rank_Score", "Rank"]].head(5))
 
-ranking_global.to_csv(
+ranking_global[[
+    "material_name",
+    "Predicted_Cost_Index",
+    "Predicted_CO2_Index",
+    "Final_Rank_Score",
+    "Rank"
+]].to_csv(
     OUTPUT_DIR + "material_ranking_named.csv",
     index=False
 )
+
 
 
 # PART 2: PRODUCT–MATERIAL MODEL 
