@@ -224,6 +224,15 @@ Fully deployed cloud-based application
 
 Modular, scalable, and industry-aligned system
 
+
+Video Demo 
+
+https://github.com/user-attachments/assets/ecc6d0c3-c835-4a89-b29a-33bfcb2ee171
+
+
+
+
+
 🔮 Future Enhancements
 
 Integration of real-time market pricing
