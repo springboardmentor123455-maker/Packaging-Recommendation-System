@@ -1,7 +1,7 @@
-import os
 import matplotlib
 matplotlib.use("Agg")  # IMPORTANT for Render (no GUI)
 import matplotlib.pyplot as plt
+import os
 
 
 def generate_comparison_charts(analytics, comparison, output_dir):
