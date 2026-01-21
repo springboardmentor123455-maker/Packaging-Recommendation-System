@@ -38,15 +38,16 @@ def recommend():
     engine = None
     
     # Try to initialize AI Engine (Lazy Load)
-    try:
-        from recommendation_engine import RecommendationEngine
-        # Lazy initialization
-        models_dir = os.path.join(rec_model_dir, 'models')
-        engine = RecommendationEngine(model_dir=models_dir)
-        print("✓ Recommendation Engine initialized successfully (Lazy Load)")
-    except Exception as e:
-         print(f"⚠️ Warning: Failed to initialize AI Engine: {e}. Switching to Simple/Rule-Based Fallback.")
-         engine = None
+    # RENDER FIX: DISABLED AI ENGINE TO PREVENT MEMORY CRASHES ON FREE TIER
+    # try:
+    #     from recommendation_engine import RecommendationEngine
+    #     # Lazy initialization
+    #     models_dir = os.path.join(rec_model_dir, 'models')
+    #     engine = RecommendationEngine(model_dir=models_dir)
+    #     print("✓ Recommendation Engine initialized successfully (Lazy Load)")
+    # except Exception as e:
+    #      print(f"⚠️ Warning: Failed to initialize AI Engine: {e}. Switching to Simple/Rule-Based Fallback.")
+    #      engine = None
 
     data = request.json
     
