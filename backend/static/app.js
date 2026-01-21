@@ -284,23 +284,31 @@ async function loadAllMaterialImpact() {
 // EXPORTS
 // ------------------------
 function downloadPDF() {
-  fetch("/dashboard/export/pdf", { headers: { "x-api-key": API_KEY } })
-    .then(res => res.blob())
-    .then(blob => {
-      const a = document.createElement("a");
-      a.href = URL.createObjectURL(blob);
-      a.download = "sustainability_report.pdf";
-      a.click();
-    });
+  const product = document.getElementById("product").value;
+
+  fetch(`/dashboard/export/pdf?product=${product}`, {
+    headers: { "x-api-key": API_KEY }
+  })
+  .then(res => res.blob())
+  .then(blob => {
+    const a = document.createElement("a");
+    a.href = URL.createObjectURL(blob);
+    a.download = "EcoPack_Sustainability_Report.pdf";
+    a.click();
+  });
 }
 
 function downloadExcel() {
-  fetch("/dashboard/export/excel", { headers: { "x-api-key": API_KEY } })
-    .then(res => res.blob())
-    .then(blob => {
-      const a = document.createElement("a");
-      a.href = URL.createObjectURL(blob);
-      a.download = "sustainability_report.xlsx";
-      a.click();
-    });
+  const product = document.getElementById("product").value;
+
+  fetch(`/dashboard/export/excel?product=${product}`, {
+    headers: { "x-api-key": API_KEY }
+  })
+  .then(res => res.blob())
+  .then(blob => {
+    const a = document.createElement("a");
+    a.href = URL.createObjectURL(blob);
+    a.download = "EcoPack_Sustainability_Report.xlsx";
+    a.click();
+  });
 }

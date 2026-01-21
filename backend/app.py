@@ -1,19 +1,19 @@
 from flask import Flask, request, jsonify, send_from_directory
 import pandas as pd
 import os
-from backend.model import (
+from model import (
     predict_cost,
     predict_co2,
     rank_materials_for_product
 )
 
 
-from backend.auth import require_key
+from auth import require_key
 
 
 
 
-from backend.dashboard import (
+from dashboard import (
     dashboard_metrics,
     sustainability_kpis,
     global_material_table,
@@ -162,28 +162,29 @@ def feature_influence_api():
     return feature_influence()
 
 
-@app.route("/dashboard/export/excel")
-@require_key
-def export_excel_api():
-    return export_excel()
-
-@app.route("/dashboard/export/pdf")
-@require_key
-def export_pdf_api():
-    return export_pdf()
-
 @app.route("/dashboard/sustainability-kpis")
 @require_key
 def sustainability_kpis_api():
     return sustainability_kpis()
 
 
-from dashboard import material_full_impact
-
 @app.route("/dashboard/material-full-impact")
 @require_key
 def material_full_impact_api():
     return material_full_impact()
+
+@app.route("/dashboard/export/pdf")
+@require_key
+def export_pdf_api():
+    product = request.args.get("product")
+    return export_pdf(product)
+
+@app.route("/dashboard/export/excel")
+@require_key
+def export_excel_api():
+    product = request.args.get("product")
+    return export_excel(product)
+
 
 # -------------------------------
 # FRONTEND

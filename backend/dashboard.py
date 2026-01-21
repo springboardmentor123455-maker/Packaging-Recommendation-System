@@ -9,8 +9,9 @@ from reportlab.lib.pagesizes import A4
 from reportlab.platypus import SimpleDocTemplate, Paragraph, Spacer, Table, TableStyle
 from reportlab.lib.styles import getSampleStyleSheet
 from reportlab.lib import colors
-from backend.model import rank_materials_for_product, predict_cost, predict_co2
+from model import rank_materials_for_product, predict_cost, predict_co2
 import pandas as pd
+from model import rank_materials_for_product
 
 # =================================================
 # PATHS
@@ -251,30 +252,28 @@ def feature_influence():
 
     return jsonify(influence.to_dict(orient="records"))
 
-# ---------------------------------
-# EXPORT EXCEL
-# ---------------------------------
-def export_excel():
+def export_excel(product=None):
+
+    if not product:
+        product = "Selected Product"
+
+    ranking = rank_materials_for_product(product)
+
+    rows = []
+
+    for r in ranking:
+        rows.append({
+            "Material": r["material_name"],
+            "Suitability (0–100)": round(r["Predicted_Suitability"], 1),
+        
+        })
+
+    df = pd.DataFrame(rows)
+
     path = os.path.join(OUTPUT_DIR, "EcoPack_Sustainability_Report.xlsx")
 
-    ranking = pd.read_csv(PRODUCT_RANKING)
-    materials = pd.read_csv(PROCESSED_MATERIALS)
-
-    summary = pd.DataFrame([
-        ["Average Eco Score", round(ranking["Predicted_Suitability"].mean(), 3)],
-        ["Top Material",
-         ranking.sort_values("Predicted_Suitability", ascending=False)
-                .iloc[0]["material_name"]],
-        ["CO₂ Reduction (%)",
-         round(-ranking["Predicted_Suitability"].mean() * 100, 2)],
-        ["Cost Savings (%)",
-         round(ranking["Predicted_Suitability"].std() * 100, 2)]
-    ], columns=["Metric", "Value"])
-
     with ExcelWriter(path, engine="openpyxl") as writer:
-        summary.to_excel(writer, sheet_name="Summary_KPIs", index=False)
-        ranking.to_excel(writer, sheet_name="Product_Material_Ranking", index=False)
-        materials.to_excel(writer, sheet_name="Material_Profile", index=False)
+        df.to_excel(writer, sheet_name="Product Recommendations", index=False)
 
     return send_file(
         path,
@@ -282,55 +281,49 @@ def export_excel():
         download_name="EcoPack_Sustainability_Report.xlsx"
     )
 
-# ---------------------------------
-# EXPORT PDF (SUMMARY REPORT)
-# ---------------------------------
-def export_pdf():
-    path = os.path.join(OUTPUT_DIR, "EcoPack_Sustainability_Report.pdf")
 
-    ranking = pd.read_csv(PRODUCT_RANKING)
+
+def export_pdf(product=None):
+
+    if not product:
+        product = "Selected Product"
+
+    # 🔥 REAL ML — SAME AS UI
+    ranking = rank_materials_for_product(product)
 
     styles = getSampleStyleSheet()
-    report = SimpleDocTemplate(path, pagesize=A4)
+    report = SimpleDocTemplate(
+        os.path.join(OUTPUT_DIR, "EcoPack_Sustainability_Report.pdf"),
+        pagesize=A4
+    )
+
     elements = []
 
     elements.append(
         Paragraph("EcoPack AI – Sustainability Report", styles["Title"])
     )
-    elements.append(Spacer(1, 20))
 
-    avg_score = round(ranking["Predicted_Suitability"].mean(), 3)
-
-    top_material = ranking.sort_values(
-        "Predicted_Suitability", ascending=False
-    ).iloc[0]["material_name"]
-
-    elements.append(Paragraph(
-        f"""
-        <b>Average Eco Score:</b> {avg_score}<br/>
-        <b>Top Recommended Material:</b> {top_material}<br/>
-        <b>CO₂ Reduction (Relative):</b> {-avg_score * 100:.2f}%<br/>
-        <b>Cost Savings (Relative):</b>
-        {ranking["Predicted_Suitability"].std() * 100:.2f}%
-        """,
-        styles["Normal"]
-    ))
+    elements.append(Spacer(1, 12))
+    elements.append(
+        Paragraph(f"<b>Selected Product:</b> {product}", styles["Normal"])
+    )
 
     elements.append(Spacer(1, 20))
 
-    top5 = ranking.sort_values(
-        "Predicted_Suitability", ascending=False
-    ).head(5)
+    table_data = [
+        ["Material", "Suitability", "Estimated CO₂", "Estimated Cost (₹)"]
+    ]
 
-    table_data = [["Material", "Eco Suitability Score"]]
-
-    for _, row in top5.iterrows():
+    for r in ranking:
         table_data.append([
-            row["material_name"],
-            round(row["Predicted_Suitability"], 3)
+            r["material_name"],
+            round(r["Predicted_Suitability"], 1),
+            r.get("co2_score", "-"),
+            r.get("estimated_cost", "-")
         ])
 
-    table = Table(table_data, colWidths=[260, 150])
+    table = Table(table_data, colWidths=[170, 90, 90, 110])
+
     table.setStyle(TableStyle([
         ("BACKGROUND", (0, 0), (-1, 0), colors.darkgreen),
         ("TEXTCOLOR", (0, 0), (-1, 0), colors.white),
@@ -340,10 +333,120 @@ def export_pdf():
     ]))
 
     elements.append(table)
+
+    elements.append(Spacer(1, 25))
+
+    elements.append(
+        Paragraph("<b>Interpretation Guide</b>", styles["Heading2"])
+    )
+
+    elements.append(
+        Paragraph(
+            """
+            • Suitability Score: Relative ML-based indicator (0–100) showing how appropriate
+            a material is for the selected product.<br/>
+            • Estimated CO₂: Relative environmental impact predicted by AI model.
+            Lower values indicate lower emissions.<br/>
+            • Estimated Cost: Relative production cost prediction in Indian Rupees.<br/>
+            • Product Ranking: Product-aware recommendation generated using trained ML models.
+            """,
+            styles["Normal"]
+        )
+    )
+
     report.build(elements)
 
     return send_file(
-        path,
+        os.path.join(OUTPUT_DIR, "EcoPack_Sustainability_Report.pdf"),
+        as_attachment=True,
+        download_name="EcoPack_Sustainability_Report.pdf"
+    )
+def export_pdf(product=None):
+
+    if not product:
+        product = "Selected Product"
+
+    ranking = rank_materials_for_product(product)
+
+    styles = getSampleStyleSheet()
+    report = SimpleDocTemplate(
+        os.path.join(OUTPUT_DIR, "EcoPack_Sustainability_Report.pdf"),
+        pagesize=A4
+    )
+
+    elements = []
+
+    # ----------------------------
+    # TITLE
+    # ----------------------------
+    elements.append(
+        Paragraph("EcoPack AI – Sustainability Report", styles["Title"])
+    )
+
+    elements.append(Spacer(1, 12))
+
+    elements.append(
+        Paragraph(
+            f"<b>Selected Product:</b> {product}",
+            styles["Normal"]
+        )
+    )
+
+    elements.append(Spacer(1, 20))
+
+    # ----------------------------
+    # TABLE
+    # ----------------------------
+    table_data = [
+        ["Material", "Sustainability Score (0–100)"]
+    ]
+
+    for r in ranking:
+        table_data.append([
+            r["material_name"],
+            round(r["Predicted_Suitability"], 1)
+        ])
+
+    table = Table(table_data, colWidths=[260, 180])
+
+    table.setStyle(TableStyle([
+        ("BACKGROUND", (0, 0), (-1, 0), colors.darkgreen),
+        ("TEXTCOLOR", (0, 0), (-1, 0), colors.white),
+        ("GRID", (0, 0), (-1, -1), 1, colors.grey),
+        ("FONT", (0, 0), (-1, 0), "Helvetica-Bold"),
+        ("ALIGN", (1, 1), (-1, -1), "CENTER"),
+        ("BOTTOMPADDING", (0, 0), (-1, 0), 10),
+        ("TOPPADDING", (0, 0), (-1, 0), 10),
+    ]))
+
+    elements.append(table)
+
+    elements.append(Spacer(1, 25))
+
+    # ----------------------------
+    # INTERPRETATION GUIDE
+    # ----------------------------
+    elements.append(
+        Paragraph("Interpretation Guide", styles["Heading2"])
+    )
+
+    elements.append(
+        Paragraph(
+            """
+            • Sustainability Score (0–100): Relative AI-based indicator showing how suitable
+            a packaging material is for the selected product.<br/>
+            • Scores are derived from trained machine learning models and should be interpreted
+            comparatively rather than as absolute environmental measurements.<br/>
+            • Higher scores indicate better overall sustainability suitability for the product.
+            """,
+            styles["Normal"]
+        )
+    )
+
+    report.build(elements)
+
+    return send_file(
+        os.path.join(OUTPUT_DIR, "EcoPack_Sustainability_Report.pdf"),
         as_attachment=True,
         download_name="EcoPack_Sustainability_Report.pdf"
     )
