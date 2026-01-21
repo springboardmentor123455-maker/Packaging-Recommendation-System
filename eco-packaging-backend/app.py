@@ -1,5 +1,5 @@
 from flask import Flask, jsonify, render_template, request, send_file
-import mysql.connector
+import psycopg2
 import os
 import pandas as pd
 import matplotlib.pyplot as plt
@@ -9,15 +9,15 @@ from reportlab.lib.styles import getSampleStyleSheet
 app = Flask(__name__)
 
 # -----------------------------------
-# DATABASE CONNECTION
+# DATABASE CONNECTION (POSTGRESQL)
 # -----------------------------------
 def get_db_connection():
-    return mysql.connector.connect(
-        host="localhost",
-        user="root",
-        password="venky5678",
-        database="eco_packaging_clean",
-        port=3306
+    return psycopg2.connect(
+        host=os.environ.get("DB_HOST"),
+        database=os.environ.get("DB_NAME"),
+        user=os.environ.get("DB_USER"),
+        password=os.environ.get("DB_PASSWORD"),
+        port=os.environ.get("DB_PORT", 5432)
     )
 
 # -----------------------------------
@@ -35,7 +35,7 @@ def system_status():
     return jsonify({
         "engine": "Material Decision Engine",
         "status": "Running",
-        "database": "eco_packaging_clean"
+        "database": os.environ.get("DB_NAME", "PostgreSQL")
     })
 
 # -----------------------------------
@@ -53,7 +53,7 @@ def material_comparison():
     fragility_factor = {"Low": 0, "Medium": -3, "High": -7}
 
     conn = get_db_connection()
-    cursor = conn.cursor(dictionary=True)
+    cursor = conn.cursor()
 
     cursor.execute("""
         SELECT material_type,
@@ -62,26 +62,25 @@ def material_comparison():
                co2_emission_score
         FROM materials
     """)
-    materials = cursor.fetchall()
+    rows = cursor.fetchall()
+
     cursor.close()
     conn.close()
 
     comparison = []
 
-    for m in materials:
+    for r in rows:
         score = (
-            m["biodegradability_score"]
-            + m["recyclability_percent"]
-            - m["co2_emission_score"]
+            r[1] + r[2] - r[3]
             + weight_factor.get(weight, 0)
             + fragility_factor.get(fragility, 0)
         )
 
         comparison.append({
-            "material": m["material_type"],
-            "biodegradability": m["biodegradability_score"],
-            "recyclability": m["recyclability_percent"],
-            "co2_emission": m["co2_emission_score"],
+            "material": r[0],
+            "biodegradability": r[1],
+            "recyclability": r[2],
+            "co2_emission": r[3],
             "sustainability_score": score
         })
 
@@ -110,7 +109,6 @@ def dashboard():
 def generate_charts():
     os.makedirs("static/charts", exist_ok=True)
 
-    # Material Usage Chart
     materials = ["Bagasse", "Seaweed Wrap", "Mycelium", "Palm Leaf"]
     usage = [40, 25, 20, 15]
 
@@ -120,7 +118,6 @@ def generate_charts():
     plt.savefig("static/charts/material_usage.png")
     plt.close()
 
-    # CO2 Reduction Pie
     plt.figure()
     plt.pie([65, 35], labels=["Reduced CO₂", "Remaining CO₂"], autopct="%1.1f%%")
     plt.title("CO₂ Reduction Analysis")
@@ -131,8 +128,7 @@ def generate_charts():
 # EXCEL REPORT
 # -----------------------------------
 def generate_excel():
-    BASE_DIR = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
-    REPORTS_DIR = os.path.join(BASE_DIR, "dashboard", "reports")
+    REPORTS_DIR = os.path.join(os.getcwd(), "reports")
     os.makedirs(REPORTS_DIR, exist_ok=True)
 
     df = pd.DataFrame({
@@ -146,8 +142,8 @@ def generate_excel():
 # PDF REPORT
 # -----------------------------------
 def generate_pdf():
-    BASE_DIR = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
-    REPORTS_DIR = os.path.join(BASE_DIR, "dashboard", "reports")
+    REPORTS_DIR = os.path.join(os.getcwd(), "reports")
+    os.makedirs(REPORTS_DIR, exist_ok=True)
 
     file_path = os.path.join(REPORTS_DIR, "sustainability_report.pdf")
 
@@ -168,18 +164,16 @@ def generate_pdf():
 # -----------------------------------
 @app.route("/download-excel")
 def download_excel():
-    BASE_DIR = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
-    file_path = os.path.join(BASE_DIR, "dashboard", "reports", "sustainability_report.xlsx")
+    file_path = os.path.join(os.getcwd(), "reports", "sustainability_report.xlsx")
     return send_file(file_path, as_attachment=True)
 
 @app.route("/download-pdf")
 def download_pdf():
-    BASE_DIR = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
-    file_path = os.path.join(BASE_DIR, "dashboard", "reports", "sustainability_report.pdf")
+    file_path = os.path.join(os.getcwd(), "reports", "sustainability_report.pdf")
     return send_file(file_path, as_attachment=True)
 
 # -----------------------------------
-# RUN SERVER
+# RUN SERVER (LOCAL ONLY)
 # -----------------------------------
 if __name__ == "__main__":
     app.run(debug=True)
