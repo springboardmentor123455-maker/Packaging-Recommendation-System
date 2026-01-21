@@ -1,30 +1,23 @@
 import pandas as pd
-import os
 
 def generate_excel_report(analytics, comparison, recommendations, output_path):
     """
-    Generate sustainability report in Excel format
+    Generate Excel report with analytics, comparison, and recommendations.
     """
 
+    # ---- Sheet 1: Analytics ----
+    analytics_df = pd.DataFrame([analytics])
+
+    # ---- Sheet 2: Comparison ----
+    comparison_df = pd.DataFrame([
+        {"Type": "Baseline", **comparison["baseline"]},
+        {"Type": "Best Recommended", **comparison["best"]}
+    ])
+
+    # ---- Sheet 3: Recommendations ----
+    recommendations_df = pd.DataFrame(recommendations)
+
     with pd.ExcelWriter(output_path, engine="openpyxl") as writer:
-
-        # -------------------------
-        # Sheet 1: Analytics Summary
-        # -------------------------
-        analytics_df = pd.DataFrame([analytics])
-        analytics_df.to_excel(writer, sheet_name="Analytics Summary", index=False)
-
-        # -------------------------
-        # Sheet 2: Material Comparison
-        # -------------------------
-        comparison_df = pd.DataFrame([
-            {"Type": "Baseline", **comparison["baseline"]},
-            {"Type": "Recommended", **comparison["recommended"]}
-        ])
-        comparison_df.to_excel(writer, sheet_name="Material Comparison", index=False)
-
-        # -------------------------
-        # Sheet 3: Recommendations
-        # -------------------------
-        recommendations_df = pd.DataFrame(recommendations)
-        recommendations_df.to_excel(writer, sheet_name="Top Recommendations", index=False)
+        analytics_df.to_excel(writer, sheet_name="Analytics", index=False)
+        comparison_df.to_excel(writer, sheet_name="Comparison", index=False)
+        recommendations_df.to_excel(writer, sheet_name="Recommendations", index=False)
