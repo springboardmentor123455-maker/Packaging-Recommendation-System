@@ -103,6 +103,19 @@ def recommend():
                  ) * 100
             
             recommendations_df = filtered_df.sort_values(by='sustainable_score', ascending=False).head(5)
+            
+            # Rename columns to match AI Engine output for frontend compatibility
+            recommendations_df = recommendations_df.rename(columns={
+                'cost_per_kg': 'predicted_cost',
+                'co2_emission_score': 'predicted_co2'
+            })
+            
+            # Add rank_score (Frontend expects 0-1, where lower is better)
+            # sustainable_score is 0-100 (higher is better), so we invert it
+            if 'sustainable_score' in recommendations_df.columns:
+                 recommendations_df['rank_score'] = 1 - (recommendations_df['sustainable_score'] / 100)
+            else:
+                 recommendations_df['rank_score'] = 0.5 # Default
 
         if recommendations_df.empty:
              print("DEBUG: No recommendations found.")

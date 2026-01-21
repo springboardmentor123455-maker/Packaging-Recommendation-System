@@ -1,7 +1,9 @@
 from huggingface_hub import HfApi
 import os
 
-token = "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"
+token = os.getenv("HF_TOKEN")
+if not token:
+    raise ValueError("HF_TOKEN environment variable not set")
 repo_id = "ragasudhaselvaraj/EcoPackAI"
 
 api = HfApi()

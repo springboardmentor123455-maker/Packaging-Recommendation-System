@@ -1,7 +1,9 @@
 from huggingface_hub import HfApi
 import os
 
-token = "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"
+token = os.getenv("HF_TOKEN")
+if not token:
+    raise ValueError("HF_TOKEN environment variable not set")
 repo_id = "ragasudhaselvaraj/EcoPackAI"
 
 api = HfApi()
@@ -11,6 +13,7 @@ print(f"Starting upload to {repo_id}...")
 # Upload specific folders and files to avoid uploading giant unrelated things
 folders_to_upload = [
     "Milestone_1",
+    "Milestone_2",
     "Milestone_3",
     "infosys"
 ]
