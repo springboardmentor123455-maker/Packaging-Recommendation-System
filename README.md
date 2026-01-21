@@ -1,91 +1,130 @@
-📦EcoPackAI - AI-Powered Sustainable Packaging Recommendation System
-Milestone 1 – Data Collection & Preprocessing
-This project is part of the Infosys Springboard Virtual Internship (AI Domain). The goal is to build an intelligent system that recommends eco-friendly packaging materials based on sustainability metrics.
+# EcoPackAI - Sustainable Packaging Recommendation System
 
-✅ Milestone 1 Completed Tasks
-1️⃣ Data Import & Storage
-Imported a 500-row synthetic eco-material dataset
+## 📘 Project Documentation & Methodology
 
-Stored it inside a MySQL database (materials table)
+**Project Name:** EcoPackAI  
+**Domain:** Supply Chain Sustainability & AI  
+**Tech Stack:** Python, Flask, Pandas, SQLite/PostgreSQL, HTML/CSS/JS
 
-Connected MySQL to Jupyter Notebook using mysql.connector
+---
 
-Loaded dataset into Pandas DataFrame
+## 🚀 1. Data Collection & Architecture (Milestone 1)
 
-2️⃣ Data Quality Checks
-Performed essential checks:
+### **Objective**
+To build a robust dataset representing various packaging materials and their environmental impact.
 
-Dataset shape
+### **Methodology used**
+Since real-world proprietary data is scarce, we used **Synthetic Data Generation**.
+*   **Tools:** `Faker`, `NumPy`, `Pandas`.
+*   **Process:**
+    1.  defined 15 core **Material Types** (e.g., Corrugated Cardboard, Corn Starch, Mushroom Packaging).
+    2.  Generated **1200 data points**.
+    3.  Simulated plausible relationships (e.g., higher strength $\approx$ slightly higher cost).
+*   **Key Attributes:** `CO2_Emission`, `Biodegradability_Score`, `Cost_per_kg`, `Water_Resistance`.
 
-Missing values
+### **Data Cleaning**
+*   **Outliers:** Used **IQR (Interquartile Range)** method to detect and cap extreme values in Cost and CO2.
+*   **Missing Values:** Imputed using category-wise mean filling.
+*   **Normalization:** Applied **Min-Max Scaling** to normalize scores between 0-100 for easier comparison.
 
-Duplicate rows
+---
 
-Descriptive statistics (df.describe())
+## 🗄️ 2. Database Implementation (Milestone 1 & 2)
 
-3️⃣ Outlier Detection (IQR Method)
-Identified outliers in:
+### **Objective**
+Store and retrieve material standards and recommendations efficiently.
 
-Weight
+### **Methodology**
+*   **Hybrid Approach:** 
+    *   We designed the system for **PostgreSQL** (Production standard) but implemented a smart fallback to **SQLite/CSV** for local development ease.
+*   **Schema Design:**
+    *   `materials_data`: Master table for all material properties.
+    *   `product_categories`: Rules for what material suits what product (e.g., Electronics need high cushion).
+*   **Why this approach?** It allows the app to run instantly on any machine without complex database installation validation.
 
-Cost
+---
 
-CO₂ Emissions
+## 🧠 3. AI & Recommendation Engine (Milestone 2)
 
-Used IQR to calculate:
+### **Objective**
+To intelligently rank materials based on user constraints.
 
-Q1, Q3
+### **Methodology**
+*   **Scoring Algorithm:** We developed a **Weighted Suitability Score**.
+    *   *Formula:* $Score = (0.4 \times Bio) + (0.3 \times Strength) - (0.2 \times CO2) - (0.1 \times Cost)$
+*   **Filtering:** The engine first filters materials that meet the "Hard Constraints" (e.g., if User says "Must be Waterproof", strictly remove non-waterproof items).
+*   **Ranking:** remaining items are sorted by the calculated Suitability Score.
 
-Lower bound
+---
 
-Upper bound
+## 💻 4. Web Application Development (Milestone 3)
 
-Outlier count per column
+### **Objective**
+Create a user-friendly interface for Supply Chain Managers.
 
-4️⃣ Outlier Treatment (Clipping)
-df_clean[numeric_cols] = df[numeric_cols].clip(lower_bound, upper_bound, axis=1)
+### **Tech Stack**
+*   **Backend:** **Flask (Python)**. Lightweight and fast.
+    *   `routes.py`: Handles HTTP requests.
+    *   `run.py`: Entry point for the server.
+*   **Frontend:** **HTML5, CSS3, JavaScript**.
+    *   **Design Style:** **Glassmorphism** (Translucent backgrounds, blur effects) for a modern, premium look.
+    *   **Responsiveness:** CSS Grid/Flexbox used to ensure it works on Tablets/Desktops.
+*   **Integration:** The Frontend sends JSON data to Flask features, Flask consults the AI engine, and returns JSON results.
 
-✔ All outliers were successfully removed.
+---
 
-5️⃣ Cleaned Dataset Export
-Exported cleaned dataset as:
+## 📊 5. BI Dashboard (Milestone 4)
 
-materials_cleaned.csv
+### **Objective**
+To visualize sustainability impact and market trends.
 
-This file will be used in further milestones.
+### **Methodology**
+*   **Visuals:** Implemented interactive charts using **Chart.js**.
+*   **Key Metrics:**
+    *   **Market vs. Sustainable:** Bar charts comparing average CO2 of general market vs. our green recommendations.
+    *   **Cost Analysis:** Scatter plots showing Cost vs. Eco-friendliness.
+    *   **Material Distribution:** Pie charts of available material types.
 
-📁 Project Structure
-Packaging-Recommendation-System/ │ README.md │ requirements.txt │ ├── notebooks/ │ milestone1_data_preprocessing.ipynb │ ├── data/ │ materials_cleaned.csv
+---
 
-🛠️ Tools & Technologies Used
-Python
+## ☁️ 6. Deployment Guide (Render.com)
 
-Pandas
+### **How to Deploy (Step-by-Step)**
 
-NumPy
+This application is "Cloud Ready". Follow these steps to deploy on Render (Free Tier):
 
-Jupyter Notebook
+**1. Prepare the Code**
+*   Ensure `requirements.txt` is present (Already done).
+*   Ensure `run.py` uses `port=os.environ.get("PORT", 5000)` (Already handled).
 
-VS Code
+**2. Push to GitHub**
+*   Create a repo on GitHub.
+*   Push all project files to the repo.
 
-MySQL
+**3. Configure Render**
+1.  Go to **dashboard.render.com** -> Click **"New +"** -> **"Web Service"**.
+2.  Connect your GitHub repository.
+3.  **Settings:**
+    *   **Name:** `ecopack-ai`
+    *   **Runtime:** `Python 3`
+    *   **Build Command:** `pip install -r requirements.txt`
+    *   **Start Command:** `gunicorn run:app`
+4.  Click **"Deploy Web Service"**.
 
-Git & GitHub
+**4. Result**
+*   Render will install dependencies and start Gunicorn.
+*   You will get a URL (e.g., `https://ecopack-ai.onrender.com`) to access your live app.
 
-🚀 Upcoming Milestone: Feature Engineering
-Milestone 2 will include:
+---
 
-Sustainability Score
+## 📈 Project Status Summary
 
-CO₂ Impact Index
-
-Cost Efficiency Index
-
-Durability Normalization
-
-Correlation Heatmaps & EDA Visualizations
-
-📞 Contact
-Maintainer: Ayush Kumar Pandey Email: ayushpandey1974@gmail.com
-
-GitHub: github.com/ayushpandey3357
+| Module | Status | Technology Used |
+| :--- | :--- | :--- |
+| **Data Cleaning** | ✅ Completed | Pandas, NumPy |
+| **Database** | ✅ Completed | SQLite / CSV Fallback |
+| **AI Model** | ✅ Completed | Scikit-Learn |
+| **Backend API** | ✅ Completed | Flask |
+| **Frontend UI** | ✅ Completed | CSS3 Glassmorphism |
+| **Dashboard** | ✅ Completed | Chart.js |
+| **Deployment** | ⏳ Ready | Render Configuration |

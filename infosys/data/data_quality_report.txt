@@ -1,0 +1,22 @@
+Generated: 2026-01-19 12:20:59
+======================================================================
+
+1. DATASET OVERVIEW
+   Raw Materials: 1200 records, 12 columns
+   Cleaned Materials: 90 records, 19 columns
+   Engineered Materials: 90 records, 28 columns
+   Product Categories: 12 records, 9 columns
+
+2. DATA COMPLETENESS
+   Raw: 98.73%
+   Cleaned: 100.00%
+   Engineered: 100.00%
+   Categories: 100.00%
+
+3. DATA CONSISTENCY
+
+4. DATA ACCURACY
+
+5. ENGINEERED FEATURES SUMMARY
+   New features created: 16
+   Features: strength_scaled, weight_capacity_scaled, cost_scaled, biodegradability_normalized, recyclability_normalized, co2_normalized, material_type_encoded, co2_impact_index, cost_efficiency_index, material_suitability_score

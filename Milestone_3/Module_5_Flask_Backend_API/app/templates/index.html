@@ -1,0 +1,425 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>EcoPackAI - Sustainable Packaging Recommender</title>
+
+    <!-- Fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Outfit:wght@300;400;600;700&display=swap" rel="stylesheet">
+
+    <!-- Bootstrap CSS -->
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
+
+    <!-- FontAwesome -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+
+    <!-- Custom CSS -->
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/style.css') }}">
+    <script src="https://cdn.plot.ly/plotly-2.27.0.min.js"></script>
+</head>
+
+<body>
+    <div class="background-globes">
+        <div class="globe globe-1"></div>
+        <div class="globe globe-2"></div>
+    </div>
+
+    <nav class="navbar navbar-expand-lg navbar-dark glass-nav">
+        <div class="container">
+            <a class="navbar-brand fw-bold" href="#" onclick="showHome()">
+                <i class="fa-solid fa-leaf text-success me-2"></i>EcoPack<span class="text-primary">AI</span>
+            </a>
+            <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav">
+                <span class="navbar-toggler-icon"></span>
+            </button>
+            <div class="collapse navbar-collapse" id="navbarNav">
+                <ul class="navbar-nav ms-auto">
+                    <li class="nav-item">
+                        <a class="nav-link active" href="#" id="navHome" onclick="showHome()">Home</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="#" id="navDash" onclick="showDashboard()">Dashboard</a>
+                    </li>
+                </ul>
+            </div>
+        </div>
+    </nav>
+
+    <div class="container mt-5" id="homeSection">
+        <div class="row">
+            <!-- Input Section -->
+            <div class="col-lg-4 mb-4">
+                <div class="glass-card p-4 h-100">
+                    <h3 class="mb-4 fw-bold">Parametrization</h3>
+                    <form id="recommendationForm">
+                        <div class="mb-3">
+                            <label for="categorySelect" class="form-label">Product Category</label>
+                            <select class="form-select custom-input" id="categorySelect">
+                                <option selected disabled>Select a category...</option>
+                                <!-- Categories populated via JS -->
+                            </select>
+                        </div>
+
+                        <div class="mb-3">
+                            <label for="strengthInput" class="form-label">Required Strength (kg/cm²)</label>
+                            <div class="input-group">
+                                <span class="input-group-text custom-addon"><i class="fa-solid fa-dumbbell"></i></span>
+                                <input type="number" class="form-control custom-input" id="strengthInput"
+                                    placeholder="e.g. 50" required>
+                            </div>
+                        </div>
+
+                        <div class="mb-3">
+                            <label for="maxCostInput" class="form-label">Max Cost (Optional)</label>
+                            <div class="input-group">
+                                <span class="input-group-text custom-addon"><i
+                                        class="fa-solid fa-dollar-sign"></i></span>
+                                <input type="number" class="form-control custom-input" id="maxCostInput"
+                                    placeholder="Max budget/kg">
+                            </div>
+                        </div>
+
+                        <div class="mb-3">
+                            <label for="maxCo2Input" class="form-label">Max CO₂ (Optional)</label>
+                            <div class="input-group">
+                                <span class="input-group-text custom-addon"><i class="fa-solid fa-smog"></i></span>
+                                <input type="number" class="form-control custom-input" id="maxCo2Input"
+                                    placeholder="Max CO₂ score">
+                            </div>
+                        </div>
+
+                        <button type="submit" class="btn btn-primary w-100 btn-lg mt-3 custom-btn pulse-on-hover">
+                            <i class="fa-solid fa-wand-magic-sparkles me-2"></i>Generate Recommendations
+                        </button>
+                    </form>
+                </div>
+            </div>
+
+            <!-- Results Section -->
+            <div class="col-lg-8">
+                <div class="glass-card p-4 min-vh-50">
+                    <div class="d-flex justify-content-between align-items-center mb-4">
+                        <h3 class="fw-bold">AI Recommendations</h3>
+                        <div>
+                            <button class="btn btn-primary custom-btn me-2" id="compareBtn" onclick="compareSelected()"
+                                disabled>
+                                <i class="fa-solid fa-code-compare me-2"></i>Compare (0/2)
+                            </button>
+                            <span class="badge bg-primary-subtle text-primary rounded-pill px-3 py-2" id="resultCount">0
+                                Found</span>
+                        </div>
+                    </div>
+
+                    <div id="loadingSpinner" class="text-center d-none my-5">
+                        <div class="spinner-border text-primary" role="status">
+                            <span class="visually-hidden">Loading...</span>
+                        </div>
+                        <p class="mt-2 text-muted">Analyzing materials...</p>
+                    </div>
+
+                    <div class="table-responsive">
+                        <table class="table table-hover custom-table align-middle" id="resultsTable">
+                            <thead>
+                                <tr>
+                                    <th>Rank</th>
+                                    <th>Select</th>
+                                    <th>Material Name</th>
+                                    <th>Type</th>
+                                    <th>Strength</th>
+                                    <th>Cost ($)</th>
+                                    <th>CO₂</th>
+                                    <th>Score</th>
+                                </tr>
+                            </thead>
+                            <tbody id="resultsBody">
+                                <tr>
+                                    <td colspan="8" class="text-center text-muted py-5">
+                                        Fill in parameters and click generate to see AI-ranked materials.
+                                    </td>
+                                </tr>
+                            </tbody>
+                        </table>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Comparison Modal -->
+    <div class="modal fade" id="comparisonModal" tabindex="-1" aria-hidden="true">
+        <div class="modal-dialog modal-lg modal-dialog-centered">
+            <div class="modal-content glass-card border-0 text-white">
+                <div class="modal-header border-bottom border-light-subtle">
+                    <h5 class="modal-title fw-bold"><i class="fa-solid fa-scale-balanced me-2"></i>Material Comparison
+                    </h5>
+                    <button type="button" class="btn-close btn-close-white" data-bs-dismiss="modal"
+                        aria-label="Close"></button>
+                </div>
+                <div class="modal-body p-0">
+                    <div class="row g-0">
+                        <!-- Headings Col -->
+                        <div class="col-4 bg-black bg-opacity-25 p-4 border-end border-light-subtle">
+                            <h5 class="text-muted d-block uppercase mb-4 opacity-0">Labels</h5> <!-- Spacer -->
+                            <div class="mb-3 text-muted">Cost ($/kg)</div>
+                            <div class="mb-3 text-muted">CO₂ Impact</div>
+                            <div class="mb-3 text-muted">Strength</div>
+                            <div class="mb-3 text-muted">Biodegradability</div>
+                            <div class="mb-3 text-muted">Recyclability</div>
+                        </div>
+
+                        <!-- Item 1 -->
+                        <div class="col-4 p-4 text-center border-end border-light-subtle position-relative">
+                            <h5 class="fw-bold text-primary mb-4 text-truncate" id="compName1">Material A</h5>
+                            <div class="mb-3 fw-bold" id="compCost1">-</div>
+                            <div class="mb-3 fw-bold" id="compCo21">-</div>
+                            <div class="mb-3 fw-bold" id="compStr1">-</div>
+                            <div class="mb-3" id="compBio1">-</div>
+                            <div class="mb-3" id="compRec1">-</div>
+                        </div>
+
+                        <!-- Item 2 -->
+                        <div class="col-4 p-4 text-center position-relative">
+                            <h5 class="fw-bold text-info mb-4 text-truncate" id="compName2">Material B</h5>
+                            <div class="mb-3 fw-bold" id="compCost2">-</div>
+                            <div class="mb-3 fw-bold" id="compCo22">-</div>
+                            <div class="mb-3 fw-bold" id="compStr2">-</div>
+                            <div class="mb-3" id="compBio2">-</div>
+                            <div class="mb-3" id="compRec2">-</div>
+                        </div>
+                    </div>
+                </div>
+                <div class="modal-footer border-top border-light-subtle justify-content-center">
+                    <small class="text-white-50"><i class="fa-solid fa-check text-success me-1"></i> indicates the
+                        better choice per metric.</small>
+                </div>
+            </div>
+        </div>
+    </div>
+
+
+
+    <!-- Dashboard Section -->
+    <div class="container mt-5 d-none" id="dashboardSection">
+        <div class="d-flex justify-content-between align-items-center mb-4">
+            <h2 class="fw-bold text-white"><i class="fa-solid fa-chart-line me-2"></i>Sustainability Intelligence</h2>
+
+            <div class="d-flex gap-2">
+                <select class="form-select custom-input form-select-sm" id="materialTypeFilter" style="width: auto;">
+                    <option value="all">All Materials</option>
+                </select>
+
+                <select class="form-select custom-input form-select-sm" id="chartViewSelect" style="width: auto;">
+                    <option value="sustainability">🌿 Sustainability View</option>
+                    <option value="performance">💪 Performance View</option>
+                    <option value="market">💰 Market View</option>
+                </select>
+
+                <button class="btn btn-outline-warning btn-sm d-none" id="resetDashboardBtn"
+                    onclick="resetDashboardKPIs()">
+                    <i class="fa-solid fa-rotate-left me-2"></i>Reset View
+                </button>
+
+                <button class="btn btn-outline-light btn-sm dropdown-toggle" type="button" data-bs-toggle="dropdown">
+                    <i class="fa-solid fa-download me-2"></i>Export
+                </button>
+                <ul class="dropdown-menu dropdown-menu-dark">
+                    <li><a class="dropdown-item" href="#" onclick="exportReport('pdf')"><i
+                                class="fa-solid fa-file-pdf me-2"></i>Export PDF</a></li>
+                    <li><a class="dropdown-item" href="#" onclick="exportReport('xlsx')"><i
+                                class="fa-solid fa-file-excel me-2"></i>Export Excel</a></li>
+                </ul>
+            </div>
+        </div>
+
+        <!-- Metrics Cards -->
+        <div class="row g-4 mb-5">
+            <div class="col-md-3">
+                <div class="glass-card p-4 text-center h-100 hover-scale">
+                    <div class="rounded-circle bg-success bg-opacity-25 d-inline-flex p-3 mb-3">
+                        <i class="fa-solid fa-arrow-trend-down fa-2x text-success"></i>
+                    </div>
+                    <h5 class="text-muted">CO₂ Reduction</h5>
+                    <h2 class="fw-bold text-white" id="dashCO2">0%</h2>
+                    <small class="text-success" id="dashCO2Text">Potential Impact</small>
+                </div>
+            </div>
+            <div class="col-md-3">
+                <div class="glass-card p-4 text-center h-100 hover-scale">
+                    <div class="rounded-circle bg-warning bg-opacity-25 d-inline-flex p-3 mb-3">
+                        <i class="fa-solid fa-piggy-bank fa-2x text-warning"></i>
+                    </div>
+                    <h5 class="text-muted">Cost Savings</h5>
+                    <h2 class="fw-bold text-white" id="dashCost">0%</h2>
+                    <small class="text-warning" id="dashCostText">Potential Savings</small>
+                </div>
+            </div>
+            <div class="col-md-3">
+                <div class="glass-card p-4 text-center h-100 hover-scale">
+                    <div class="rounded-circle bg-info bg-opacity-25 d-inline-flex p-3 mb-3">
+                        <i class="fa-solid fa-certificate fa-2x text-info"></i>
+                    </div>
+                    <h5 class="text-muted">Avg. Eco Score</h5>
+                    <h2 class="fw-bold text-white" id="dashRating">0.0</h2>
+                    <small class="text-info">Sustainable Base</small>
+                </div>
+            </div>
+            <div class="col-md-3">
+                <div class="glass-card p-4 text-center h-100">
+                    <div class="rounded-circle bg-light bg-opacity-10 d-inline-flex p-3 mb-3">
+                        <i class="fa-solid fa-file-export fa-2x text-white"></i>
+                    </div>
+                    <h5 class="text-muted">Export Report</h5>
+                    <div class="d-flex justify-content-center gap-2 mt-3">
+                        <button class="btn btn-outline-light btn-sm" onclick="exportReport('pdf')">
+                            <i class="fa-solid fa-file-pdf me-1"></i>PDF
+                        </button>
+                        <button class="btn btn-outline-success btn-sm" onclick="exportReport('xlsx')">
+                            <i class="fa-solid fa-file-excel me-1"></i>XLSX
+                        </button>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Charts Row -->
+        <div class="row g-4">
+            <div class="col-lg-6">
+                <div class="glass-card p-4 h-100">
+                    <h5 class="fw-bold text-white mb-3">Material Composition</h5>
+                    <div id="materialTrendChart" style="height: 350px;"></div>
+                </div>
+            </div>
+            <div class="col-lg-6">
+                <div class="glass-card p-4 h-100">
+                    <h5 class="fw-bold text-white mb-3">Cost vs. Environmental Impact</h5>
+                    <div id="costImpactChart" style="height: 350px;"></div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Savings Analysis Row -->
+        <div class="row g-4 mt-2">
+            <div class="col-12">
+                <div class="glass-card p-4">
+                    <h5 class="fw-bold text-white mb-3">CO₂ Savings Analysis (Market vs. Sustainable)</h5>
+                    <div id="savingsChart" style="height: 350px;"></div>
+                </div>
+            </div>
+        </div>
+
+        <!-- AI Insights & Radar Row -->
+        <div class="row g-4 mt-2">
+            <div class="col-lg-5">
+                <div class="glass-card p-4 h-100">
+                    <h5 class="fw-bold text-white mb-3"><i class="fa-solid fa-robot me-2 text-info"></i>AI Analysis</h5>
+                    <div class="d-flex align-items-start mb-3">
+                        <i class="fa-solid fa-quote-left text-white-50 me-2 fa-lg"></i>
+                        <p id="aiInsightsText" class="text-white lead fs-6 fst-italic">
+                            Analyzing material ecosystem...
+                        </p>
+                    </div>
+                    <hr class="border-light-subtle opacity-25">
+                    <div class="d-flex justify-content-between text-white-50 small">
+                        <span><i class="fa-solid fa-database me-2"></i>Data Points: 1,240</span>
+                        <span><i class="fa-solid fa-clock-rotate-left me-2"></i>Updated: Just now</span>
+                    </div>
+                </div>
+            </div>
+            <div class="col-lg-7">
+                <div class="glass-card p-4 h-100">
+                    <h5 class="fw-bold text-white mb-3">Holistic Performance Radar</h5>
+                    <div id="radarChart" style="height: 350px;"></div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Material Details Modal -->
+    <div class="modal fade" id="materialModal" tabindex="-1" aria-hidden="true">
+        <div class="modal-dialog modal-dialog-centered">
+            <div class="modal-content glass-card border-0 text-white">
+                <div class="modal-header border-bottom border-light-subtle">
+                    <h5 class="modal-title fw-bold" id="modalMaterialName">Material Details</h5>
+                    <button type="button" class="btn-close btn-close-white" data-bs-dismiss="modal"
+                        aria-label="Close"></button>
+                </div>
+                <div class="modal-body">
+                    <div class="row g-3">
+                        <div class="col-6">
+                            <div class="p-3 rounded bg-black bg-opacity-25 h-100">
+                                <small class="text-muted d-block uppercase mb-1">Type</small>
+                                <span class="fw-bold fs-5" id="modalType">-</span>
+                            </div>
+                        </div>
+                        <div class="col-6">
+                            <div class="p-3 rounded bg-black bg-opacity-25 h-100">
+                                <small class="text-muted d-block uppercase mb-1">Strength</small>
+                                <span class="fw-bold fs-5" id="modalStrength">-</span> <small>kg/cm²</small>
+                            </div>
+                        </div>
+
+                        <div class="col-12">
+                            <hr class="border-light-subtle opacity-25">
+                        </div>
+
+                        <!-- Eco Metrics -->
+                        <div class="col-6">
+                            <small class="text-info d-block mb-1"><i class="fa-solid fa-leaf me-1"></i>
+                                Biodegradability</small>
+                            <div class="progress" style="height: 8px;">
+                                <div class="progress-bar bg-success" id="progBio" role="progressbar" style="width: 0%">
+                                </div>
+                            </div>
+                            <div class="text-end small mt-1" id="valBio">0/100</div>
+                        </div>
+                        <div class="col-6">
+                            <small class="text-info d-block mb-1"><i class="fa-solid fa-recycle me-1"></i>
+                                Recyclability</small>
+                            <div class="progress" style="height: 8px;">
+                                <div class="progress-bar bg-info" id="progRecycle" role="progressbar" style="width: 0%">
+                                </div>
+                            </div>
+                            <div class="text-end small mt-1" id="valRecycle">0%</div>
+                        </div>
+
+                        <div class="col-12">
+                            <hr class="border-light-subtle opacity-25">
+                        </div>
+
+                        <!-- Technical Specs -->
+                        <div class="col-6">
+                            <small class="text-muted">Weight Cap.</small>
+                            <div class="fw-semibold" id="valWeight">- kg</div>
+                        </div>
+                        <div class="col-6">
+                            <small class="text-muted">Thickness</small>
+                            <div class="fw-semibold" id="valThick">- mm</div>
+                        </div>
+                        <div class="col-6">
+                            <small class="text-muted">Water Res.</small>
+                            <div class="fw-semibold" id="valWater">- / 10</div>
+                        </div>
+                        <div class="col-6">
+                            <small class="text-muted">Temp Tol.</small>
+                            <div class="fw-semibold" id="valTemp">- °C</div>
+                        </div>
+                    </div>
+                </div>
+                <div class="modal-footer border-top border-light-subtle">
+                    <button type="button" class="btn btn-secondary btn-sm" data-bs-dismiss="modal">Close</button>
+                    <!-- Future: Add 'Export PDF' or 'Select' button -->
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Bootstrap JS -->
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
+    <script src="{{ url_for('static', filename='js/script.js') }}"></script>
+</body>
+
+</html>
