@@ -224,11 +224,26 @@ Fully deployed cloud-based application
 
 Modular, scalable, and industry-aligned system
 
+Screenshots 
+
+Web UI
+
+<img width="1919" height="960" alt="image" src="https://github.com/user-attachments/assets/2000c6ce-5af6-444e-96c4-561988127a71" />
+
+Recommendation Results 
+<img width="1514" height="686" alt="image" src="https://github.com/user-attachments/assets/437b58e4-8aa0-4f86-b6a3-88ef5809bde9" />
+
+Dashboard (Power BI) 
+<img width="1919" height="960" alt="image" src="https://github.com/user-attachments/assets/89653d6a-df58-48fc-91be-e624b8b176a0" />
+
+<img width="1919" height="954" alt="image" src="https://github.com/user-attachments/assets/f858fd88-9304-4bf9-b361-d7cb4a72214e" />
+
+<img width="1916" height="960" alt="image" src="https://github.com/user-attachments/assets/cf3de865-1b1d-43c5-a848-8e2df1acfc58" />
+
 
 Video Demo 
 
 https://github.com/user-attachments/assets/ecc6d0c3-c835-4a89-b29a-33bfcb2ee171
-
 
 
 
