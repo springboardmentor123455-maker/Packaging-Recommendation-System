@@ -1,3 +1,13 @@
+---
+title: EcoPackAI
+emoji: 📦
+colorFrom: green
+colorTo: blue
+sdk: docker
+pinned: false
+app_port: 7860
+---
+
 # EcoPackAI - Sustainable Packaging Recommendation System
 
 ## 📘 Project Documentation & Methodology
@@ -87,33 +97,37 @@ To visualize sustainability impact and market trends.
 
 ---
 
-## ☁️ 6. Deployment Guide (Render.com)
+## ☁️ 6. Deployment Guide (Hugging Face Spaces)
 
 ### **How to Deploy (Step-by-Step)**
 
-This application is "Cloud Ready". Follow these steps to deploy on Render (Free Tier):
+This application is deployed on **Hugging Face Spaces** for robust AI performance (16GB RAM support).
 
-**1. Prepare the Code**
-*   Ensure `requirements.txt` is present (Already done).
-*   Ensure `run.py` uses `port=os.environ.get("PORT", 5000)` (Already handled).
+**1. Create a Space**
+*   Go to **huggingface.co/spaces**.
+*   Click **"Create new Space"**.
+*   **Name:** `EcoPackAI`
+*   **SDK:** `Docker` (Crucial for Flask).
+*   **Privacy:** `Public`.
 
-**2. Push to GitHub**
-*   Create a repo on GitHub.
-*   Push all project files to the repo.
+**2. Upload Code**
+*   You can upload via Git or manually via the "Files" tab.
+*   Ensure `Dockerfile` is at the root.
 
-**3. Configure Render**
-1.  Go to **dashboard.render.com** -> Click **"New +"** -> **"Web Service"**.
-2.  Connect your GitHub repository.
-3.  **Settings:**
-    *   **Name:** `ecopack-ai`
-    *   **Runtime:** `Python 3`
-    *   **Build Command:** `pip install -r requirements.txt`
-    *   **Start Command:** `gunicorn run:app`
-4.  Click **"Deploy Web Service"**.
+**3. Configuration (README.md)**
+*   Ensure the `README.md` has the YAML metadata at the top:
+    ```yaml
+    ---
+    title: EcoPackAI
+    sdk: docker
+    app_port: 7860
+    ---
+    ```
 
 **4. Result**
-*   Render will install dependencies and start Gunicorn.
-*   You will get a URL (e.g., `https://ecopack-ai.onrender.com`) to access your live app.
+*   Hugging Face will build the Docker container.
+*   Once "Running", your app is live!
+*   **Live Demo:** [https://huggingface.co/spaces/ragasudhaselvaraj/EcoPackAI](https://huggingface.co/spaces/ragasudhaselvaraj/EcoPackAI)
 
 ---
 
