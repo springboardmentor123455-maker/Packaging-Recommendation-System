@@ -1,2 +1,6 @@
-flask
-mysql-connector-python
+Flask
+psycopg2-binary
+gunicorn
+pandas
+matplotlib
+reportlab
