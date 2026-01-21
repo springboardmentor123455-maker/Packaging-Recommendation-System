@@ -1,168 +1,243 @@
 🌱 EcoPackAI – AI-Powered Sustainable Packaging Recommendation System
 
-EcoPackAI is an AI-driven web application that recommends sustainable and cost-efficient packaging materials based on product requirements. The system combines machine learning models, sustainability metrics, business intelligence dashboards, and cloud deployment to support data-driven and environmentally responsible packaging decisions.
+EcoPackAI is an AI-driven web application designed to recommend sustainable and cost-efficient packaging materials based on specific product requirements. The system integrates machine learning models, sustainability metrics, business intelligence dashboards, and cloud deployment to enable data-driven and environmentally responsible packaging decisions for businesses.
 
 📌 Problem Statement
 
-Selecting eco-friendly packaging materials is challenging because it requires balancing multiple factors:
+Selecting eco-friendly packaging materials is a complex task that requires balancing multiple factors such as:
 
-• Environmental impact (CO₂ emissions, biodegradability)
-• Material performance (strength, weight capacity, water resistance)
-• Cost efficiency
+Environmental impact (CO₂ emissions, biodegradability)
 
-Traditional selection approaches are manual, subjective, and lack quantitative evaluation. EcoPackAI addresses this challenge by providing an automated, AI-based recommendation system.
+Material performance (strength, weight capacity, water resistance)
+
+Cost efficiency
+
+Traditional packaging selection methods are largely manual, subjective, and lack quantitative evaluation. These limitations often result in higher environmental impact and inefficient material usage. EcoPackAI addresses this challenge by providing an automated, AI-based recommendation system that objectively evaluates packaging materials using data-driven intelligence.
 
 🎯 Project Objectives
 
-• Collect and manage eco-friendly packaging material data
-• Perform data cleaning and feature engineering
-• Build machine learning models for cost and CO₂ impact prediction
-• Recommend optimal packaging materials using AI
-• Develop an interactive web-based user interface
-• Build a BI dashboard for sustainability insights
-• Deploy the application on cloud infrastructure
-• Provide complete technical documentation and demo
+The primary objectives of EcoPackAI are to:
+
+Collect and manage eco-friendly packaging material data
+
+Perform data cleaning and feature engineering
+
+Build machine learning models for cost and CO₂ impact prediction
+
+Recommend optimal packaging materials using AI-based ranking
+
+Develop an interactive web-based user interface
+
+Build a Business Intelligence (BI) dashboard for sustainability insights
+
+Deploy the application on cloud infrastructure
+
+Provide complete technical documentation and project demonstration
 
 🧠 System Overview
 
-EcoPackAI consists of the following layers:
+EcoPackAI follows a modular, layered architecture:
 
-• Data Layer → PostgreSQL database storing material and product data
-• AI Layer → Machine learning models (Random Forest, XGBoost)
-• Backend Layer → Flask REST APIs with business logic
-• Frontend Layer → HTML, CSS, Bootstrap, JavaScript
-• BI Layer → Dashboards, KPIs, sustainability reports
-• Deployment Layer → Render cloud platform
+Data Layer → PostgreSQL database storing material and product data
+
+AI Layer → Machine learning models (Random Forest, XGBoost)
+
+Backend Layer → Flask REST APIs implementing business logic
+
+Frontend Layer → HTML, CSS, Bootstrap, JavaScript
+
+BI Layer → Dashboards, KPIs, sustainability reports
+
+Deployment Layer → Render cloud platform
 
 🛠 Technology Stack
 
-• Programming Language → Python
-• Backend Framework → Flask
-• Machine Learning → Random Forest, XGBoost
-• Database → PostgreSQL
-• Frontend → HTML, CSS, Bootstrap, JavaScript
-• Data Processing → Pandas, NumPy
-• Visualization → Chart.js, Matplotlib
-• Deployment → Render
+Programming Language → Python
+
+Backend Framework → Flask
+
+Machine Learning → Random Forest, XGBoost
+
+Database → PostgreSQL
+
+Frontend → HTML, CSS, Bootstrap, JavaScript
+
+Data Processing → Pandas, NumPy
+
+Visualization → Chart.js, Matplotlib
+
+Deployment → Render
 
 ⚙ Key Features
 
-• AI-based packaging material recommendation
-• Cost efficiency prediction
-• CO₂ impact estimation
-• Sustainability scoring
-• Material ranking system
-• Business Intelligence dashboard
-• Exportable sustainability reports
-• Cloud deployment with PostgreSQL integration
+AI-based packaging material recommendation
+
+Cost efficiency prediction
+
+CO₂ environmental impact estimation
+
+Sustainability scoring and ranking system
+
+Business Intelligence dashboard
+
+Exportable sustainability reports (Excel)
+
+Cloud deployment with PostgreSQL integration
 
 📊 Machine Learning Models
 
-• Random Forest Regressor
-→ Used for predicting packaging cost efficiency
-→ Handles non-linear relationships effectively
+Random Forest Regressor
 
-• XGBoost Regressor
-→ Used for predicting CO₂ environmental impact
-→ Provides high accuracy for complex feature patterns
+Used for predicting packaging cost efficiency
 
-• Model evaluation metrics used:
-→ RMSE
-→ MAE
-→ R² Score
+Effectively handles non-linear relationships
+
+XGBoost Regressor
+
+Used for predicting CO₂ environmental impact
+
+Provides high accuracy for complex feature patterns
+
+Evaluation Metrics Used:
+
+RMSE (Root Mean Squared Error)
+
+MAE (Mean Absolute Error)
+
+R² Score
 
 🔗 API Endpoints
-
 ► /recommend
-• HTTP Method → POST
-• Purpose → Returns top recommended packaging materials
-• Inputs → Product weight, product fragility
-• Output → Ranked materials with predicted cost and CO₂ impact
+
+Method → POST
+
+Purpose → Returns top recommended packaging materials
+
+Inputs → Product weight, product fragility
+
+Output → Ranked materials with predicted cost and CO₂ impact
 
 ► /environment-score
-• HTTP Method → POST
-• Purpose → Evaluates environmental sustainability
-• Output → CO₂ impact index and material suitability score
+
+Method → POST
+
+Purpose → Evaluates environmental sustainability
+
+Output → CO₂ impact index and material suitability score
 
 📊 Business Intelligence (BI) Dashboard & Sustainability Reporting
 
-The BI dashboard transforms AI-generated recommendations into actionable insights for sustainability and cost optimization.
+The BI dashboard converts AI-generated recommendations into actionable sustainability and cost-optimization insights.
 
 🎯 Dashboard Objectives
-• Visualize AI recommendations
-• Compare baseline vs recommended materials
-• Measure CO₂ emission reduction
-• Measure cost savings
-• Provide exportable sustainability reports
 
-📈 Key Dashboard Metrics
-• CO₂ Reduction Percentage
-• Cost Reduction Percentage
-• Material Performance Score
-• Sustainability Score (0–100)
+Visualize AI recommendations
 
-📋 Dashboard Functional Modules
-• Baseline vs Recommended Material Comparison
-• Material Comparison Table
-• KPI Cards (Average Cost Reduction, Average CO₂ Reduction)
-• Material Suitability Distribution
-• Top Performing Materials
+Compare baseline vs recommended materials
+
+Measure CO₂ emission reduction
+
+Measure cost savings
+
+Generate exportable sustainability reports
+
+📈 Key Metrics
+
+CO₂ Reduction Percentage
+
+Cost Reduction Percentage
+
+Material Performance Score
+
+Sustainability Score (0–100)
+
+📋 Dashboard Modules
+
+Baseline vs Recommended Material Comparison
+
+Material Comparison Table
+
+KPI Cards (Average Cost Reduction, Average CO₂ Reduction)
+
+Material Suitability Distribution
+
+Top Performing Materials
 
 📊 Visualization Types
-• Pie charts
-• KPI cards
-• Comparison tables
 
-📤 Sustainability Report Export
-• Material Comparison Report (Excel)
-• Material Performance Report (Excel)
-• Sustainability Summary Report (Excel)
+Pie charts
+
+KPI cards
+
+Comparison tables
+
+📤 Report Export
+
+Material Comparison Report (Excel)
+
+Material Performance Report (Excel)
+
+Sustainability Summary Report (Excel)
 
 🚀 Deployment Details
 
-• Cloud Platform → Render
-• Application Type → Web Service
-• Database → PostgreSQL Cloud Database
+Cloud Platform → Render
 
-🔗 Live Application Link:
+Application Type → Web Service
+
+Database → PostgreSQL Cloud Database
+
+🔗 Live Application:
 https://my-packaging-recommendation-system.onrender.com/
 
 ▶ How to Run the Project Locally
 
-• Clone the project repository
-• Create a virtual environment
-• Install required dependencies
-• Configure PostgreSQL environment variables
-• Run the Flask application(local_app.py)
-• Don't run app.py because it is a deployed code it won't works in the local
+Clone the project repository
+
+Create a virtual environment
+
+Install required dependencies
+
+Configure PostgreSQL environment variables
+
+Run the Flask application using local_app.py
+⚠️ Note: Do not run app.py locally as it is configured for cloud deployment.
 
 📄 Documentation and Demo
 
-• Project Report → Included in the repository
-link →  https://drive.google.com/drive/folders/1NYe67iTyC0tsSrTnaa05xgEIkZyBdGxo?usp=drive_link
+Project Report:
+https://drive.google.com/drive/folders/1NYe67iTyC0tsSrTnaa05xgEIkZyBdGxo
 
-• Video Demo Link →
+Video Demo:
 https://drive.google.com/file/d/18Ijd5YpUXgIBRVOi_AXpxgBhLOady-lM/view
 
-• PPT Presentation Link →
+PPT Presentation:
 https://drive.google.com/drive/folders/1BC3py8AlXgBCHcCSl754JSDp1QGtOFVC
 
 📌 Results and Outcomes
 
-• Accurate AI-based packaging recommendations
-• Effective balance between sustainability and cost
-• Fully deployed cloud-based application
-• Modular, scalable, and industry-aligned system
+Accurate AI-based packaging recommendations
+
+Effective balance between sustainability and cost
+
+Fully deployed cloud-based application
+
+Modular, scalable, and industry-aligned system
 
 🔮 Future Enhancements
 
-• Integration of real-time market pricing
-• Advanced deep learning models
-• User authentication and role-based access
-• Real-time dashboards and analytics
-• Enterprise-scale deployment with CI/CD
+Integration of real-time market pricing
 
-👩‍🎓 Author
+Advanced deep learning models
 
-• Name → Nandhitha PT
-• Role → College Student | AI & Data Science Enthusiast
+User authentication and role-based access
+
+Real-time dashboards and analytics
+
+Enterprise-scale deployment with CI/CD pipelines
+
+👨‍🎓 Author
+
+Name → Abrar H
+
+Role → BCA Student | AI & Data Science Enthusiast
