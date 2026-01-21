@@ -163,7 +163,13 @@ python app.py
  <img width="1916" height="958" alt="image" src="https://github.com/user-attachments/assets/46b37c32-5274-4a70-9e65-cc31326c40fd" />
 
 ---
+ Video Demo
 
+
+https://github.com/user-attachments/assets/c7c20c23-8a54-4ef9-81c4-05ad066c2e1b
+
+
+ 
 ## 🔮 Future Enhancements
 
 * Machine learning model optimization
