@@ -1,19 +1,19 @@
 from flask import Flask, request, jsonify, send_from_directory
 import pandas as pd
 import os
-from model import (
+from backend.model import (
     predict_cost,
     predict_co2,
     rank_materials_for_product
 )
 
 
-from auth import require_key
+from backend.auth import require_key
 
 
 
 
-from dashboard import (
+from backend.dashboard import (
     dashboard_metrics,
     sustainability_kpis,
     global_material_table,
@@ -62,8 +62,11 @@ def products():
 @app.route("/global_rank")
 @require_key
 def global_rank():
+    BASE_DIR = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
+    DATA_DIR = os.path.join(BASE_DIR, "data")
+
     df = pd.read_csv(
-        "D:/codingvscode/Python vscode/Packaging-Recommendation-System/data/material_ranking_named.csv"
+        os.path.join(DATA_DIR, "material_ranking_named.csv")
     )
 
     top = df.sort_values("Rank").head(5)
@@ -72,6 +75,7 @@ def global_rank():
         top[["material_name", "Final_Rank_Score", "Rank"]]
         .to_dict(orient="records")
     )
+
 
 # -------------------------------
 # PRODUCT-SPECIFIC MATERIAL RANKING
