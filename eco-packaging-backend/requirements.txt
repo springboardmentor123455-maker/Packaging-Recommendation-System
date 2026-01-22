@@ -1,15 +1,6 @@
-<<<<<<< HEAD
 Flask
-psycopg2-binary
-gunicorn
+mysql-connector-python
 pandas
 matplotlib
 reportlab
-=======
-flask
-mysql-connector-python
-psycopg2-binary
 gunicorn
-
-
->>>>>>> 7ab7984aaf6dc2cdfc27b8ba935af6584599df5a
