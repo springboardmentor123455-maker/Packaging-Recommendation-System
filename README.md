@@ -54,11 +54,111 @@ materials_cleaned.csv
 
 This file will be used in further milestones.
 
+✅ Milestone 2 (Week 3–4)
+🔹 Module 3: Machine Learning Dataset Preparation
+
+In this phase, we prepare the dataset for training ML models by performing structured preprocessing and feature selection.
+
+Key tasks completed:
+
+Split the dataset into training and testing sets for unbiased evaluation
+
+Selected important features for prediction such as:
+material safety, strength, shipping category, recyclability, biodegradability, cost factors, and CO₂ factors
+
+Generated target variables to support predictions:
+
+📌 Cost Prediction
+
+🌍 CO₂ Impact Prediction
+
+Created a clean ML pipeline including:
+
+Feature engineering
+
+Data scaling / normalization
+
+Final dataset preparation for model training
+
+🔹 Module 4: AI Recommendation Model (ML-Based)
+
+This module focuses on training machine learning models and creating an intelligent packaging recommendation engine based on predicted performance.
+
+Model Training Implemented:
+
+✅ Random Forest Regressor → for Cost Prediction
+
+✅ XGBoost Regressor → for CO₂ Footprint Prediction
+
+Model Evaluation Metrics Used:
+
+📉 RMSE (Root Mean Squared Error)
+
+📌 MAE (Mean Absolute Error)
+
+📊 R² Score
+
+Final Output of this Module:
+
+Built an AI-powered material ranking system that recommends the most suitable packaging material based on:
+✅ predicted cost, ✅ environmental impact (CO₂), ✅ material strength, and ✅ safety suitability.
+
+✅ Milestone 3 (Week 5–6)
+🔹 Module 5: Flask Backend API Development
+
+In this milestone, we built a complete Flask-based REST API to power the Packaging Recommendation System.
+
+Key backend deliverables:
+
+Developed REST APIs for:
+
+📦 Product input handling
+
+🤖 AI-based packaging material recommendations
+
+🌱 Environmental / sustainability score computation
+
+Connected backend services with a PostgreSQL / Database layer for storage & retrieval
+
+Implemented structured and consistent JSON response formats across endpoints
+
+Secured APIs with clean request validation and reliable endpoint handling
+
+🔹 Module 6: Frontend UI Development
+
+To make the system interactive and user-friendly, we designed a responsive frontend interface for smooth user experience.
+
+Frontend features implemented:
+
+Built UI using:
+
+✅ HTML
+
+✅ CSS
+
+✅ Bootstrap
+
+Created dynamic input forms to collect product parameters such as:
+category, weight, fragility, shipping distance
+
+Displayed AI-generated material recommendations in a clean format
+
+Presented results using:
+📊 Ranking table
+📌 Comparison metrics (Cost, CO₂, Strength, Final Score)
+
 📁 Project Structure
-Packaging-Recommendation-System/ │ README.md │ requirements.txt │ ├── notebooks/ │ milestone1_data_preprocessing.ipynb │ ├── data/ │ materials_cleaned.csv
+Packaging-Recommendation-System/ │ README.md │ requirements.txt │ ├── notebooks/ │ _Data_preprocessing │ ├── data/ │ materials_cleaned.csv | | Flask Backend API | | Frontend UI Development |
 
 🛠️ Tools & Technologies Used
-Python
+
+Python - Flask 
+
+HTML
+
+CSS 
+
+Bootstrap
 
 Pandas
 
