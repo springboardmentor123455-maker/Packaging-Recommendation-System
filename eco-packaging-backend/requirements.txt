@@ -1,6 +1,6 @@
-Flask
+flask
 mysql-connector-python
 pandas
 matplotlib
 reportlab
-gunicorn
+openpyxl
