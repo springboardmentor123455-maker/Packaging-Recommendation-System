@@ -17,51 +17,85 @@
 </header>
 
 <section class="panel">
-    <h2>Product Configuration</h2>
+    <h2>📦 Product Configuration</h2>
 
     <div class="grid">
-        <select id="category">
-            <option>Food</option>
-            <option>Electronics</option>
-            <option>Cosmetics</option>
-            <option>Furniture</option>
-        </select>
 
-        <select id="weight">
-            <option>Low</option>
-            <option selected>Medium</option>
-            <option>High</option>
-        </select>
+        <!-- PRODUCT CATEGORY -->
+        <div>
+            <label><strong>Product Category</strong></label>
+            <select id="category">
+                <option>Food</option>
+                <option>Electronics</option>
+                <option>Cosmetics</option>
+                <option>Furniture</option>
+            </select>
+            <small>Select the industry type</small>
+        </div>
 
-        <select id="fragility">
-            <option>Low</option>
-            <option selected>Medium</option>
-            <option>High</option>
-        </select>
+        <!-- PRODUCT WEIGHT -->
+        <div>
+            <label><strong>Product Weight</strong></label>
+            <select id="weight">
+                <option>Low</option>
+                <option selected>Medium</option>
+                <option>High</option>
+            </select>
+            <small>Controls material strength</small>
+        </div>
 
-        <select id="budget">
-            <option>Low Cost</option>
-            <option selected>Balanced</option>
-            <option>Premium</option>
-        </select>
+        <!-- PRODUCT FRAGILITY -->
+        <div>
+            <label><strong>Product Fragility</strong></label>
+            <select id="fragility">
+                <option>Low</option>
+                <option selected>Medium</option>
+                <option>High</option>
+            </select>
+            <small>Higher fragility → safer materials</small>
+        </div>
 
-        <select id="priority">
-            <option selected>Eco Priority</option>
-            <option>Balanced</option>
-            <option>Performance Priority</option>
-        </select>
+        <!-- BUDGET -->
+        <div>
+            <label><strong>Budget Preference</strong></label>
+            <select id="budget">
+                <option>Low Cost</option>
+                <option selected>Balanced</option>
+                <option>Premium</option>
+            </select>
+            <small>Cost sensitivity</small>
+        </div>
 
-        <select id="limit">
-            <option value="3">Top 3</option>
-            <option value="5">Top 5</option>
-            <option value="10" selected>Top 10</option>
-            <option value="15">Top 15</option>
-        </select>
+        <!-- OPTIMIZATION PRIORITY -->
+        <div>
+            <label><strong>Optimization Priority</strong></label>
+            <select id="priority">
+                <option selected>Eco Priority</option>
+                <option>Balanced</option>
+                <option>Performance Priority</option>
+            </select>
+            <small>Eco vs durability focus</small>
+        </div>
+
+        <!-- TOP N -->
+        <div>
+            <label><strong>Recommendation Limit</strong></label>
+            <select id="limit">
+                <option value="3">Top 3</option>
+                <option value="5">Top 5</option>
+                <option value="10" selected>Top 10</option>
+                <option value="15">Top 15</option>
+            </select>
+            <small>Number of materials shown</small>
+        </div>
+
     </div>
 
     <div class="actions">
-        <button onclick="getResults()">Generate</button>
-        <a href="/dashboard"><button class="secondary">BI Dashboard</button></a>
+        <button onclick="getResults()">⚡ Generate Recommendations</button>
+        <a href="/dashboard">
+            <button class="secondary">📊 BI Dashboard</button>
+        </a>
     </div>
 </section>
 
@@ -73,3 +107,4 @@
 <script src="/static/script.js"></script>
 </body>
 </html>
+
