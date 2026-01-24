@@ -1,0 +1,17 @@
+### Test GET materials
+GET http://127.0.0.1:5000/api/materials
+
+### Test POST recommend
+
+POST http://127.0.0.1:5000/api/recommend?debug=true
+Content-Type: application/json
+
+{
+  "category": "food",
+  "fragile": false,
+  "weight_kg": 1.2,
+  "shipping_distance_km": 100
+}
+
+
+
