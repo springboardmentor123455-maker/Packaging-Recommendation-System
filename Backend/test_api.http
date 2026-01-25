@@ -1,17 +1,23 @@
 ### Test GET materials
-GET http://127.0.0.1:5000/api/materials
+GET https://packaging-recommendation-system-5.onrender.com/api/materials
 
 ### Test POST recommend
 
-POST http://127.0.0.1:5000/api/recommend?debug=true
+POST https://packaging-recommendation-system-5.onrender.com/api/material
 Content-Type: application/json
 
+
+
 {
-  "category": "food",
-  "fragile": false,
-  "weight_kg": 1.2,
-  "shipping_distance_km": 100
+  "product_name": "mobile",
+  "category": "electronics",
+  "weight_kg": 1,
+  "fragile": false
 }
+
+
+
+
 
 
 
