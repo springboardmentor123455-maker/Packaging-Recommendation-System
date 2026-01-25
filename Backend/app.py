@@ -4,7 +4,7 @@ from config import Config
 from db import db
 from models import Material, Product, Recommendation
 from flask import render_template
-import pandas as pd
+
 from flask import send_file
 import os
 
