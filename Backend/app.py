@@ -13,15 +13,14 @@ app.config.from_object(Config)
 db.init_app(app)
 CORS(app)
 
-
 @app.route("/")
 def home():
-    return jsonify({"success": True, "message": "Packaging Backend Running ✅"})
-
-
-@app.route("/ui")
-def ui():
     return render_template("index.html")
+
+@app.route("/health")
+def health():
+    return jsonify({"success": True, "message": "Backend Running ✅"})
+
 
 
 @app.route("/dashboard")
