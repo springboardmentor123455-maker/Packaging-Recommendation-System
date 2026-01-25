@@ -1,4 +1,3 @@
-✅ 2) Technical Documentation (Paste in DOCUMENTATION.md OR in README)
 # Technical Documentation – Packaging Recommendation System
 
 ## 1. Overview
@@ -79,3 +78,4 @@ After deployment, database tables are created via:
 - Add Admin panel for materials management
 - Improve scoring model using ML / training data
 - Add chart filters and export options
+
