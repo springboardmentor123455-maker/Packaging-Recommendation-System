@@ -93,10 +93,7 @@
               <input type="number" class="form-control" id="weight_kg" step="0.1" placeholder="2.5" required>
             </div>
 
-            <div class="col-md-6">
-              <label class="form-label">Shipping Distance (km)</label>
-              <input type="number" class="form-control" id="shipping_distance_km" step="1" placeholder="500" required>
-            </div>
+
 
             <div class="col-12 d-flex align-items-center gap-2">
               <input class="form-check-input" type="checkbox" id="fragile">
@@ -158,7 +155,6 @@
                   <h5 class="mb-0">📊 Recommendation Score Chart</h5>
                   <div class="muted-small">Top 5 material score comparison</div>
                 </div>
-                <button class="btn btn-outline-dark" id="downloadBtn" disabled>⬇️ Download Report </button>
               </div>
               <hr>
               <canvas id="scoreChart" height="110"></canvas>
@@ -233,7 +229,7 @@
       category: document.getElementById("category").value,
       weight_kg: parseFloat(document.getElementById("weight_kg").value),
       fragile: document.getElementById("fragile").checked,
-      shipping_distance_km: parseFloat(document.getElementById("shipping_distance_km").value),
+
     };
 
     try {
