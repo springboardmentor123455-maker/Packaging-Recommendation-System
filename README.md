@@ -86,19 +86,23 @@ Returns JSON status message.
 - `GET /api/materials` → Fetch all materials
 
 ### ✅ Products
-- `POST /api/product` → Add product
-- `POST /api/product-recommend` → Save product + generate recommendations
+https://packaging-recommendation-system-5.onrender.com/api/product → Add product
+https://packaging-recommendation-system-5.onrender.com/api/product-recommend → Save product + generate recommendations
 
 ### ✅ Recommendation Engine
 - `POST /api/recommend` → Get top 5 recommendations (without saving)
 
 ### ✅ Dashboard APIs
-- `GET /api/dashboard/summary`
-- `GET /api/dashboard/material-trends`
-- `GET /api/dashboard/savings`
+https://packaging-recommendation-system-5.onrender.com/api/dashboard/summary
+
+https://packaging-recommendation-system-5.onrender.com/api/dashboard/material-trends
+
+https://packaging-recommendation-system-5.onrender.com/api/dashboard/savings
+
 
 ### ✅ Export Excel
-- `GET /api/dashboard/export/excel`
+https://packaging-recommendation-system-5.onrender.com/api/dashboard/export/excel
+
 
 ---
 
@@ -119,5 +123,5 @@ Final Score is calculated using:
 
 1) Clone the repo
 ```bash
-git clone <your-repo-url>
+git clone <https://github.com/ayushpandey3357>
 cd Packaging-Recommendation-System/Backend
