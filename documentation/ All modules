@@ -1,0 +1,318 @@
+# 📘 PROJECT DOCUMENTATION
+
+## EcoPackAI – AI-Powered Sustainable Packaging Recommendation System
+
+**Project Type:** infosys virtual internship
+**Duration:** 6 Weeks
+**Technology Stack:** Python, Flask, Machine Learning, React, CSV-based Data Storage
+
+---
+
+## 1. Executive Summary
+
+EcoPackAI is an AI-powered decision-support system designed to recommend sustainable packaging materials based on product requirements, cost efficiency, and environmental impact. The system processes structured datasets, applies machine-learning-based prediction and intelligent scoring logic, and presents ranked recommendations through a web-based interface.
+
+The project follows a milestone-driven approach covering data preparation, model development, backend APIs, frontend visualization, integration, and evaluation.
+
+---
+
+## 2. System Architecture Overview
+
+The system follows a layered architecture similar to standard AI-based recommendation frameworks .
+
+### Architecture Layers
+
+* **Frontend Layer:** React-based user interface
+* **Backend Layer:** Flask REST API
+* **AI Logic Layer:** ML prediction + rule-based ranking
+* **Data Layer:** CSV-based structured datasets
+
+### Data Flow
+
+User Input → Frontend → Flask API → ML Models → Scoring & Ranking → Output → Frontend Display
+
+---
+
+## 3. Milestone-Wise Documentation
+
+---
+
+## 🔹 Milestone 1: Problem Identification & Data Collection
+
+### Objective
+
+To understand real-world challenges in sustainable packaging selection and collect relevant data.
+
+### Key Contributions
+
+* Identified key decision parameters:
+
+  * Cost
+  * Strength
+  * Weight
+  * Recyclability
+  * Biodegradability
+  * CO₂ emission
+* Collected structured datasets in CSV format representing packaging materials and products
+
+### Deliverables
+
+* `materials.csv`
+* `products.csv`
+
+### Outcome
+
+Clear problem definition and availability of structured raw data.
+
+---
+
+## 🔹 Milestone 2: Data Cleaning & Preprocessing
+
+### Objective
+
+To clean and transform raw data into a machine-learning-ready format.
+
+### Key Contributions
+
+* Removed inconsistencies and missing values
+* Normalized numeric features
+* Selected relevant attributes for modeling
+
+### Tools Used
+
+* Python
+* Pandas
+
+### Deliverables
+
+* `materials_cleaned.csv`
+* `pipeline_output.csv`
+
+### Outcome
+
+Clean, standardized datasets suitable for ML modeling.
+
+---
+
+## 🔹 Milestone 3: Machine Learning Model Development
+
+### Objective
+
+To build predictive models for estimating packaging cost and environmental impact.
+
+### Key Contributions
+
+* Prepared training and testing datasets
+* Trained:
+
+  * Random Forest Regressor for cost prediction
+  * Gradient Boosting Regressor for CO₂ prediction
+* Evaluated models using standard metrics (MAE, RMSE, R²)
+
+### Deliverables
+
+* Cost prediction outputs
+* CO₂ emission prediction outputs
+
+### Outcome
+
+Accurate predictive models supporting sustainable recommendations, aligned with ML practices described in similar systems .
+
+---
+
+## 🔹 Milestone 4: Recommendation Logic & Ranking
+
+### Objective
+
+To generate optimized packaging recommendations using AI-based scoring.
+
+### Key Contributions
+
+* Combined ML predictions with sustainability parameters
+* Designed weighted scoring mechanism
+* Ranked materials based on final AI score
+
+### Deliverables
+
+* `final_recommendations.csv`
+
+### Outcome
+
+Ranked list of suitable and sustainable packaging materials.
+
+---
+
+## 🔹 Milestone 5: Backend API Development
+
+### Objective
+
+To expose AI recommendation logic through REST APIs.
+
+### Key Contributions
+
+* Developed Flask backend
+* Implemented API endpoints for recommendation retrieval
+* Integrated ML models with backend logic
+
+### Backend URL
+
+```
+http://127.0.0.1:5000
+```
+
+### Deliverables
+
+* `app.py`
+* API responses in JSON format
+
+### Outcome
+
+Reliable backend service for AI-based recommendations.
+
+---
+
+## 🔹 Milestone 6: Frontend Development & Visualization
+
+### Objective
+
+To present recommendations through a user-friendly interface.
+
+### Key Contributions
+
+* Developed React-based frontend
+* Integrated frontend with backend APIs
+* Displayed recommendations in tabular format
+
+### Frontend URL
+
+```
+http://localhost:8080
+```
+
+### Outcome
+
+Interactive user interface for viewing packaging recommendations.
+
+---
+
+## 🔹 Milestone 7: System Integration & Testing
+
+### Objective
+
+To integrate all modules and validate end-to-end functionality.
+
+### Key Contributions
+
+* Integrated frontend, backend, and AI modules
+* Tested API responses and frontend rendering
+* Verified correctness of recommendation outputs
+
+### Outcome
+
+Stable and fully integrated AI-powered system.
+
+---
+
+## 🔹 Milestone 8: Results & Evaluation
+
+### Objective
+
+To evaluate system performance and recommendation quality.
+
+### Evaluation Metrics
+
+* MAE, RMSE, R² for ML models
+* Ranking accuracy and sustainability relevance
+
+### Outputs
+
+* `final_recommendations.csv`
+* Backend JSON responses
+* Frontend visualization
+
+### Outcome
+
+The system successfully generates accurate, optimized, and sustainable packaging recommendations.
+
+---
+
+## 4. Challenges Faced
+
+* Balancing cost and sustainability parameters
+* Feature normalization across datasets
+* Integrating ML outputs with ranking logic
+* Managing CSV-based data storage
+
+---
+
+## 5. Future Enhancements
+
+* Live database integration
+* Real-time user inputs
+* Cloud deployment
+* Advanced analytics dashboard
+* Additional ML models and optimization
+
+---
+
+## 6. Conclusion
+
+EcoPackAI demonstrates a complete AI-powered sustainable packaging recommendation system developed through milestone-based implementation. The project integrates data preprocessing, machine learning, backend APIs, and frontend visualization into a scalable and maintainable architecture, consistent with industry-style AI recommendation frameworks .
+
+---
+
+## 7. Reference
+
+
+* Infosys Virtual Internship Documentation –  
+  *Packaging Recommendation System: AI Framework for Sustainable Packaging Design and Material Optimization*
+ 
+
+##  document file structure
+EcoPackAI/
+│
+├── backend/
+│   ├── app.py
+│   ├── model.py
+│   ├── preprocess.py
+│   ├── recommend.py
+│   ├── db.py
+│   ├── database_schema.txt
+│   ├── requirements.txt
+│   │
+│   ├── data/
+│   │   ├── materials.csv
+│   │   ├── products.csv
+│   │   ├── materials_cleaned.csv
+│   │   ├── pipeline_output.csv
+│   │   └── final_recommendations.csv
+│   │
+│   └── documentation/
+│       ├── module_1_overview.md
+│       ├── module_2_data_preprocessing.md
+│       ├── module_3_ml_model.md
+│       ├── module_4_backend_api.md
+│       ├── module_5_frontend.md
+│       ├── module_6_results_evaluation.md
+│
+├── scripts/
+│   ├── clean_materials.py
+│   ├── module2_histograms.py
+│   ├── module3_pipeline.py
+│   └── module4_random_forest.py
+│
+├── Packaging-Recommendation-System/   (Frontend)
+│   ├── src/
+│   ├── public/
+│   ├── index.html
+│   ├── package.json
+│   ├── vite.config.ts
+│   └── README.md
+│
+├── README.md
+├── .gitignore
+└── LICENSE   (optional)
+
+
+### 8. cloud deployment model(Netlify)
+    https://mellifluous-boba-8c51ef.netlify.app/
