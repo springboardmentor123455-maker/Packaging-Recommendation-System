@@ -11,6 +11,14 @@ app = Flask(__name__, template_folder="templates")
 app.config.from_object(Config)
 
 db.init_app(app)
+
+with app.app_context():
+    db.create_all()
+
+    if Material.query.count() == 0:
+        from import_materials import import_materials
+        import_materials()
+
 CORS(app)
 
 @app.route("/")
@@ -240,103 +248,73 @@ def save_recommendation():
 
 @app.route("/api/product-recommend", methods=["POST"])
 def product_recommend():
-    data = request.get_json()
+    try:
+        data = request.get_json()
 
-    if not data:
-        return jsonify({"success": False, "message": "JSON body required"}), 400
+        if not data:
+            return jsonify({"success": False, "message": "JSON body required"}), 400
 
-    product = Product(
-        product_name=data.get("product_name"),
-        category=data.get("category"),
-        weight_kg=data.get("weight_kg"),
-        fragile=data.get("fragile", False),
-    )
-
-    db.session.add(product)
-    db.session.commit()
-
-    category = (data.get("category") or "").lower()
-    fragile = data.get("fragile", False)
-    weight_kg = float(data.get("weight_kg", 1.0))
-
-    materials = Material.query.all()
-
-    results = []
-    for m in materials:
-        strength_score = (m.strength or 50) / 100
-        cost_score = 1 / (1 + (m.cost_per_kg or 50))
-        co2_score = 1 / (1 + (m.co2_per_kg or 1))
-
-        recyclable_bonus = 0.10 if m.recyclable else 0
-        fragile_bonus = 0.10 if fragile and (m.strength or 0) >= 70 else 0
-
-        category_bonus = 0
-
-        if category in ["food", "grocery"]:
-            if m.biodegradable:
-                category_bonus += 0.12
-            if m.recyclable:
-                category_bonus += 0.05
-
-        elif category in ["electronics"]:
-            if (m.strength or 0) >= 75:
-                category_bonus += 0.12
-            if m.recyclable:
-                category_bonus += 0.08
-
-        elif category in ["furniture"]:
-            if (m.strength or 0) >= 80:
-                category_bonus += 0.15
-
-        elif category in ["cosmetics", "glass"]:
-            if (m.strength or 0) >= 70:
-                category_bonus += 0.12
-
-        final_score = (
-            0.35 * strength_score +
-            0.35 * co2_score +
-            0.20 * cost_score +
-            recyclable_bonus +
-            fragile_bonus +
-            category_bonus
-        ) * 100
-
-        estimated_cost = round((m.cost_per_kg or 0) * weight_kg, 2)
-        estimated_co2 = round((m.co2_per_kg or 0) * weight_kg, 2)
-
-        results.append({
-            "material_name": m.material_name,
-            "material_type": m.material_type,
-            "recyclable": m.recyclable,
-            "cost_per_kg": m.cost_per_kg,
-            "co2_per_kg": m.co2_per_kg,
-            "strength": m.strength,
-            "final_score": round(final_score, 2),
-            "estimated_cost": estimated_cost,
-            "estimated_co2": estimated_co2
-        })
-
-    results.sort(key=lambda x: x["final_score"], reverse=True)
-    top5 = results[:5]
-
-    for r in top5:
-        rec = Recommendation(
-            product_id=product.id,
-            material_name=r["material_name"],
-            final_score=r["final_score"],
-            estimated_cost=r.get("estimated_cost"),
-            estimated_co2=r.get("estimated_co2"),
+        product = Product(
+            product_name=data.get("product_name"),
+            category=data.get("category"),
+            weight_kg=data.get("weight_kg"),
+            fragile=data.get("fragile", False),
         )
-        db.session.add(rec)
 
-    db.session.commit()
+        db.session.add(product)
+        db.session.commit()
 
-    return jsonify({
-        "success": True,
-        "message": "Product saved and recommendation generated ✅",
-        "product_id": product.id,
-        "top_recommendations": top5
-    }), 201
+        category = (data.get("category") or "").lower()
+        fragile = data.get("fragile", False)
+        weight_kg = float(data.get("weight_kg", 1.0))
+
+        materials = Material.query.all()
+
+        results = []
+
+        for m in materials:
+            strength_score = (m.strength or 50) / 100
+            cost_score = 1 / (1 + (m.cost_per_kg or 50))
+            co2_score = 1 / (1 + (m.co2_per_kg or 1))
+
+            recyclable_bonus = 0.10 if m.recyclable else 0
+            fragile_bonus = 0.10 if fragile and (m.strength or 0) >= 70 else 0
+
+            category_bonus = 0
+
+            final_score = (
+                0.35 * strength_score +
+                0.35 * co2_score +
+                0.20 * cost_score +
+                recyclable_bonus +
+                fragile_bonus +
+                category_bonus
+            ) * 100
+
+            estimated_cost = round((m.cost_per_kg or 0) * weight_kg, 2)
+            estimated_co2 = round((m.co2_per_kg or 0) * weight_kg, 2)
+
+            results.append({
+                "material_name": m.material_name,
+                "final_score": round(final_score, 2),
+                "estimated_cost": estimated_cost,
+                "estimated_co2": estimated_co2
+            })
+
+        results.sort(key=lambda x: x["final_score"], reverse=True)
+        top5 = results[:5]
+
+        return jsonify({
+            "success": True,
+            "product_id": product.id,
+            "top_recommendations": top5
+        }), 201
+
+    except Exception as e:
+        return jsonify({
+            "success": False,
+            "error": str(e)
+        }), 500
 
 
 @app.route("/api/dashboard/summary", methods=["GET"])
