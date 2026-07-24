@@ -233,7 +233,7 @@
     };
 
     try {
-      const res = await fetch("https://packaging-recommendation-system-8.onrender.com/api/product-recommend", {
+      const res = await fetch("/api/product-recommend", {
         method: "POST",
         headers: { "Content-Type": "application/json" },
         body: JSON.stringify(payload),

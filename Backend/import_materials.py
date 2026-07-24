@@ -1,9 +1,11 @@
+import os
 import pandas as pd
-from app import app
 from db import db
 from models import Material
 
-CSV_PATH = r"C:\Users\ayush\OneDrive\Desktop\Infosys Project\materials_500.csv"  # update if file is in different location
+
+# Use relative path so it works on any machine
+CSV_PATH = os.path.join(os.path.dirname(os.path.abspath(__file__)), "..", "materials_500.csv")
 
 
 def to_bool(x):
@@ -15,7 +17,8 @@ def to_bool(x):
     return x in ["1", "true", "yes", "y"]
 
 
-with app.app_context():
+def import_materials():
+    """Import materials from CSV. Must be called within an app context."""
     df = pd.read_csv(CSV_PATH)
 
     print("✅ CSV Loaded. Rows:", len(df))
@@ -51,3 +54,10 @@ with app.app_context():
 
     db.session.commit()
     print(f"✅ Inserted: {inserted}, Skipped: {skipped}")
+
+
+if __name__ == "__main__":
+    from app import app
+    with app.app_context():
+        import_materials()
+

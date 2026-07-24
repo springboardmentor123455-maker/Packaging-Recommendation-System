@@ -28,7 +28,7 @@ def home():
 @app.route("/health")
 def health():
     return jsonify({"success": True, "message": "Backend Running ✅"})
-4
+
 
 
 @app.route("/dashboard")
@@ -282,6 +282,26 @@ def product_recommend():
 
             category_bonus = 0
 
+            if category in ["food", "grocery"]:
+                if m.biodegradable:
+                    category_bonus += 0.12
+                if m.recyclable:
+                    category_bonus += 0.05
+
+            elif category in ["electronics"]:
+                if (m.strength or 0) >= 75:
+                    category_bonus += 0.12
+                if m.recyclable:
+                    category_bonus += 0.08
+
+            elif category in ["furniture"]:
+                if (m.strength or 0) >= 80:
+                    category_bonus += 0.15
+
+            elif category in ["cosmetics", "glass"]:
+                if (m.strength or 0) >= 70:
+                    category_bonus += 0.12
+
             final_score = (
                 0.35 * strength_score +
                 0.35 * co2_score +
@@ -296,6 +316,11 @@ def product_recommend():
 
             results.append({
                 "material_name": m.material_name,
+                "material_type": m.material_type,
+                "recyclable": m.recyclable,
+                "strength": m.strength,
+                "cost_per_kg": m.cost_per_kg,
+                "co2_per_kg": m.co2_per_kg,
                 "final_score": round(final_score, 2),
                 "estimated_cost": estimated_cost,
                 "estimated_co2": estimated_co2
@@ -303,6 +328,18 @@ def product_recommend():
 
         results.sort(key=lambda x: x["final_score"], reverse=True)
         top5 = results[:5]
+
+        # Save top 5 recommendations to database
+        for r in top5:
+            rec = Recommendation(
+                product_id=product.id,
+                material_name=r["material_name"],
+                final_score=r["final_score"],
+                estimated_cost=r["estimated_cost"],
+                estimated_co2=r["estimated_co2"],
+            )
+            db.session.add(rec)
+        db.session.commit()
 
         return jsonify({
             "success": True,
