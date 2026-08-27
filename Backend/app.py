@@ -1,14 +1,17 @@
-from flask import Flask, jsonify, request, render_template
+from flask import Flask, jsonify, request, render_template, send_file
 from flask_cors import CORS
 from config import Config
 from db import db
 from models import Material, Product, Recommendation
 from sqlalchemy import func
 import os
+import io
+
 
 
 app = Flask(__name__, template_folder="templates")
 app.config.from_object(Config)
+app.config["TEMPLATES_AUTO_RELOAD"] = True
 
 db.init_app(app)
 
@@ -468,6 +471,56 @@ def dashboard_savings():
         "co2_reduction_percent": round(co2_reduction_percent, 2),
         "total_products": len(products)
     })
+
+
+@app.route("/api/dashboard/export/excel", methods=["GET"])
+def export_excel():
+    try:
+        import pandas as pd
+        products = Product.query.all()
+        data = []
+        for p in products:
+            recs = Recommendation.query.filter_by(product_id=p.id).all()
+            for r in recs:
+                data.append({
+                    "Product ID": p.id,
+                    "Product Name": p.product_name,
+                    "Category": p.category,
+                    "Weight (kg)": p.weight_kg,
+                    "Fragile": p.fragile,
+                    "Recommended Material": r.material_name,
+                    "Final Score": r.final_score,
+                    "Estimated Cost": r.estimated_cost,
+                    "Estimated CO2 (kg)": r.estimated_co2,
+                })
+        
+        if not data:
+            data.append({
+                "Product ID": "N/A",
+                "Product Name": "No products recorded yet",
+                "Category": "-",
+                "Weight (kg)": "-",
+                "Fragile": "-",
+                "Recommended Material": "-",
+                "Final Score": "-",
+                "Estimated Cost": "-",
+                "Estimated CO2 (kg)": "-",
+            })
+
+        df = pd.DataFrame(data)
+        output = io.BytesIO()
+        with pd.ExcelWriter(output, engine="openpyxl") as writer:
+            df.to_excel(writer, index=False, sheet_name="Sustainability Report")
+        output.seek(0)
+
+        return send_file(
+            output,
+            mimetype="application/vnd.openxmlformats-officedocument.spreadsheetml.sheet",
+            as_attachment=True,
+            download_name="sustainability_report.xlsx"
+        )
+    except Exception as e:
+        return jsonify({"success": False, "error": str(e)}), 500
 
 
 if __name__ == "__main__":
