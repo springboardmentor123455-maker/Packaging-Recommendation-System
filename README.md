@@ -2,6 +2,8 @@
 Milestone 1 – Data Collection & Preprocessing
 This project is part of the Infosys Springboard Virtual Internship (AI Domain). The goal is to build an intelligent system that recommends eco-friendly packaging materials based on sustainability metrics.
 
+URL - https://packaging-recommendation-system-10.onrender.com/
+
 ✅ Milestone 1 Completed Tasks
 1️⃣ Data Import & Storage
 Imported a 500-row synthetic eco-material dataset
